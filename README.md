@@ -34,7 +34,7 @@ To Visit App:
 
 `localhost:3000/`
 
-## Q&A or something if anyone want to read about this project
+## Q&A or something if anyone wants to read about this project
 
 ### What was the context for this project?
 
