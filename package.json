@@ -1,0 +1,19 @@
+{
+  "name": "consciouswallet",
+  "version": "1.0.0",
+  "description": "App for personal budget menagement",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PanKarton/ConsciousWallet.git"
+  },
+  "author": "PanKarton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PanKarton/ConsciousWallet/issues"
+  },
+  "homepage": "https://github.com/PanKarton/ConsciousWallet#readme"
+}
