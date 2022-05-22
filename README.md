@@ -1,6 +1,6 @@
-## ConsciousWallet
+## Twitter copy
 
-First solo made app for personal budget menagement. Probably with tons of bugs and stuff, but mine and making me proud
+First solo made app that is basically twitter copy with tons of bugs and stuff, but mine and making me proud
 
 ## Project Status
 
@@ -40,7 +40,7 @@ To Visit App:
 
 This is a first react project made all by myself. Will not be pefect, but its reason to exist is to make me learn how to work alone, read docs and solve
 new react problems without any kind of course. My first first flight from the bird's nest. Not sure if that is perfect metaphor but you know what I mean.
-Originally I wanted to build an application that allowed users to add their expenses with categories and display it with charts, day list with calendar and stuff.
+Originally I wanted to build an application that allowed users to do twitter stuff and cancel each other
 
 ### What did you set out to build?
 

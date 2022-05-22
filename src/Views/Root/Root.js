@@ -1,8 +1,12 @@
+import { useAuth } from 'hooks/useAuth';
 import React from 'react';
-const Root = (props) => {
-  return <div>aaaaaaaaaaaaaaaaaaaaaa</div>;
-};
+import AuthenticatedApp from 'Views/AuthenticatedApp/AuthenticatedApp';
+import UnauthenticatedApp from 'Views/UnauthenticatedApp/UnauthenticatedApp';
 
-Root.propTypes = {};
+const Root = () => {
+  const { user } = useAuth();
+
+  return user == null ? <UnauthenticatedApp /> : <AuthenticatedApp />;
+};
 
 export default Root;
