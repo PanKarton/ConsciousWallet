@@ -5,10 +5,12 @@ export const theme = {
     twBlue: 'rgb(29, 155, 240)',
   },
   fontSize: {
-    xl: '4rem',
-    l: '2rem',
-    xm: '1rem',
-    m: '13px',
-    s: '11px',
+    xxxl: '64px',
+    xxl: '40px',
+    xl: '31px',
+    l: '23px',
+    m: '15px',
+    xs: '13px',
+    xxs: '11px',
   },
 };

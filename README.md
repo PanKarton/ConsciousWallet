@@ -56,6 +56,7 @@ All libraries and stuff are listed below:
     - prettier
     - react-router-6.0
     - react-icons
+    - react-helmet-async
 
 ### Why was this project challenging and therefore a really good learning experience?
 
