@@ -42,9 +42,20 @@ This is a first react project made all by myself. Will not be pefect, but its re
 new react problems without any kind of course. My first first flight from the bird's nest. Not sure if that is perfect metaphor but you know what I mean.
 Originally I wanted to build an application that allowed users to do twitter stuff and cancel each other
 
-### What did you set out to build?
+### What did you use in this project?
 
-I started this process by using the `create-react-app` boilerplate, then adding `react-router-6.0` and `redux toolkit`.
+All libraries and stuff are listed below:
+
+    - create-react-app boilerplate
+    - styled components
+    - storybook
+    - react-testing-library
+    - husky
+    - lint-staged
+    - esint
+    - prettier
+    - react-router-6.0
+    - react-icons
 
 ### Why was this project challenging and therefore a really good learning experience?
 

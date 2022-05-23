@@ -1,34 +1,36 @@
 import React from 'react';
-import { useAuth } from 'hooks/useAuth';
-import logInBackground from 'assets/img/logo192.png';
 import styled from 'styled-components';
+import { FaTwitter } from 'react-icons/fa';
+import { useTheme } from 'styled-components';
 
 const UnauthenticatedAppWrapper = styled.section`
   position: relative;
-  inset: 0;
+  height: 100vh;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
 `;
 
 const LeftImageWrapper = styled.div`
-  flex-basis: 100%;
-  height: 100vh;
   border: 1px solid ${({ theme }) => theme.colors.twBlue};
 `;
 
 // Trzeba ustawic stałą szerokosc na tego dziada, a cos sie nie słucha
 const SignInSignUpWrapper = styled.div`
-  width: 760px;
+  width: max;
   border: 1px solid red;
   height: 100vh;
 `;
 
 const UnauthenticatedApp = () => {
+  const theme = useTheme();
+
   return (
     <UnauthenticatedAppWrapper>
       <LeftImageWrapper></LeftImageWrapper>
       <SignInSignUpWrapper>
+        <FaTwitter color={theme.colors.twBlue} />
         <h1>The latest news from the world</h1>
         <h2>Join Twitter today.</h2>
         <div>
