@@ -10,9 +10,13 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 const UnauthenticatedApp = () => {
   const theme = useTheme();
 
+  // TRZENA TEGO JEBANEGO PTAKA JAKOŚ ZROBIĆ, ZEBY SIE POWIĘKSZAŁ I ZMNIEJSZAŁ ŚMIEĆ
+
   return (
     <UnauthenticatedAppWrapper>
-      <LeftImageWrapper img={leftBackground}></LeftImageWrapper>
+      <LeftImageWrapper img={leftBackground}>
+        <FaTwitter color={theme.colors.white} height="100%" width="100%" />
+      </LeftImageWrapper>
       <SignInSignUpWrapper>
         <ContentWrapper>
           <FaTwitter color={theme.colors.twBlue} size={42} />

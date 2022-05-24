@@ -1,20 +1,36 @@
 import styled from 'styled-components';
+import { FaTwitter } from 'react-icons/fa';
 
 export const UnauthenticatedAppWrapper = styled.section`
   position: relative;
-  height: 100vh;
   display: flex;
   flex-direction: column-reverse;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  /* background-color: wheat; */
+
+  @media screen and (min-width: 1001px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
 
 export const LeftImageWrapper = styled.div`
-  /* height: 100%; */
-  /* width: 100%; */
-  /* background-image: url(${(props) => props.img}); */
-  /* background-position: center center; */
+  height: 24rem;
+  width: 100%;
+  background-image: url(${(props) => props.img});
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${FaTwitter} {
+    font-size: 100px;
+  }
+  @media screen and (min-width: 1001px) {
+    height: 100vh;
+  }
 `;
 
 export const SignInSignUpWrapper = styled.div`
@@ -24,8 +40,6 @@ export const SignInSignUpWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  border: 1px solid red;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -33,12 +47,10 @@ export const ContentWrapper = styled.div`
   gap: clamp(3rem, 9vw, 4rem);
   width: min(100%, 35rem);
   padding: 2.25rem;
-
+  background-color: ${({ theme }) => theme.colors.white};
   h1 {
-    /* margin-block: 3rem; */
     font-size: ${({ theme }) => theme.fontSize.xxl};
     @media screen and (min-width: 501px) {
-      /* margin-block: 2.5rem; */
       font-size: ${({ theme }) => theme.fontSize.xxxl};
     }
   }
