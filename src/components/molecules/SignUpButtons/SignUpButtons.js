@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 
 const SignUpButtons = (props) => {
   return (
     <div>
-      <button>Sign up with Google</button>
-      <button>
+      <CylinderButton>
+        <strong>Sign up with Google </strong>
+      </CylinderButton>
+      <CylinderButton>
         <strong>Sign up with Apple</strong>
-      </button>
+      </CylinderButton>
       <p>or</p>
-      <button>
+      <CylinderButton>
         <strong>Sign up phone or email</strong>
-      </button>
+      </CylinderButton>
       <p>
         By signing up, you agree to the
         <a href="/">Terms of Service</a>

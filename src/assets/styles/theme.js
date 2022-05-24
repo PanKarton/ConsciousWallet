@@ -3,6 +3,7 @@ export const theme = {
     white: '#fff',
     black: 'rgb(15, 20, 25)',
     twBlue: 'rgb(29, 155, 240)',
+    cylinderButtonBorderGrey: 'rgb(218, 220, 224)',
   },
   fontSize: {
     xxxl: '64px',

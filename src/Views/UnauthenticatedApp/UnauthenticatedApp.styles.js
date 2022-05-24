@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const UnauthenticatedAppWrapper = styled.section`
   position: relative;
   height: 100vh;
