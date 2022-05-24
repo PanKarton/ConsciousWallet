@@ -7,6 +7,7 @@ export const UnauthenticatedAppWrapper = styled.section`
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
+  /* background-color: wheat; */
 `;
 
 export const LeftImageWrapper = styled.div`
@@ -24,23 +25,28 @@ export const SignInSignUpWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   border: 1px solid red;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
+  gap: clamp(3rem, 9vw, 4rem);
   width: min(100%, 35rem);
   padding: 2.25rem;
 
   h1 {
+    /* margin-block: 3rem; */
     font-size: ${({ theme }) => theme.fontSize.xxl};
     @media screen and (min-width: 501px) {
+      /* margin-block: 2.5rem; */
       font-size: ${({ theme }) => theme.fontSize.xxxl};
     }
   }
-  h2 {
-    font-size: ${({ theme }) => theme.fontSize.l};
-    @media screen and (min-width: 501px) {
-      font-size: ${({ theme }) => theme.fontSize.xl};
-    }
+`;
+
+export const SignInWrapper = styled.div`
+  h3 {
+    font-size: ${({ theme }) => theme.fontSize.xm};
+    margin-bottom: 1rem;
   }
 `;

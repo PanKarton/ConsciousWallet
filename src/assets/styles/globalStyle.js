@@ -10,4 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-family: 'Ubuntu', sans-serif;
     } 
+    a{
+        text-decoration: none;
+    }
 `;

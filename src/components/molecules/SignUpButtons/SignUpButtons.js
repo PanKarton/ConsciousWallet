@@ -1,31 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
+import { OrWithLines, PrivacyTermsDisclaimer, Wrapper } from './SignUpButtons.styles';
 
-const SignUpButtons = (props) => {
+const SignUpButtons = () => {
   return (
-    <div>
+    <Wrapper>
+      <h2>Join Twitter today.</h2>
       <CylinderButton>
         <strong>Sign up with Google </strong>
       </CylinderButton>
       <CylinderButton>
         <strong>Sign up with Apple</strong>
       </CylinderButton>
-      <p>or</p>
-      <CylinderButton>
-        <strong>Sign up phone or email</strong>
+      <OrWithLines>
+        <p>or</p>
+      </OrWithLines>
+      <CylinderButton bgColor="blue" textColor="white">
+        <strong>Sign up via phone number or email</strong>
       </CylinderButton>
-      <p>
+      <PrivacyTermsDisclaimer>
         By signing up, you agree to the
-        <a href="/">Terms of Service</a>
+        <a href="/"> Terms of Service </a>
         and
-        <a href="/">Privacy Policy</a>, including
-        <a href="/">Cookie Use</a>.
-      </p>
-    </div>
+        <a href="/"> Privacy Policy </a>, including
+        <a href="/"> Cookie Use </a>.
+      </PrivacyTermsDisclaimer>
+    </Wrapper>
   );
 };
-
-SignUpButtons.propTypes = {};
 
 export default SignUpButtons;
