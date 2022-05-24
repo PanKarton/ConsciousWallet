@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AuthProvider } from 'hooks/useAuth';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
-import { GlobalStyle } from 'assets/styles/globalStyles';
+import { GlobalStyle } from 'assets/styles/globalStyle';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const AppProvider = ({ children }) => {
@@ -14,7 +14,9 @@ const AppProvider = ({ children }) => {
         <Helmet>
           <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
         </Helmet>
-        <AuthProvider>{children}</AuthProvider>
+        {/* <AuthProvider> */}
+        {children}
+        {/* </AuthProvider> */}
       </ThemeProvider>
     </HelmetProvider>
   );
