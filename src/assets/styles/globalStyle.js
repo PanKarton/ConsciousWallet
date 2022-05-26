@@ -13,4 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     a{
         text-decoration: none;
     }
+    ul{
+        list-style-type: none;
+    }
 `;

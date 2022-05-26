@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
   padding: 0.75rem 1rem;
   width: 18.75rem;
   border-radius: 1000px;

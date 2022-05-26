@@ -3,6 +3,12 @@ import { FaTwitter } from 'react-icons/fa';
 
 export const UnauthenticatedAppWrapper = styled.section`
   position: relative;
+  @media screen and (min-width: 1001px) {
+    min-height: 95vh;
+  }
+`;
+
+export const MainContentWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
