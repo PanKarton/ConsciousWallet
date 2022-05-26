@@ -3,7 +3,7 @@ import React from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import leftBackground from 'assets/img/logo192.png';
-import { ContentWrapper, LeftImageWrapper, SignInSignUpWrapper, SignInWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedApp.styles';
+import { BirdWrapper, ContentWrapper, LeftBlueImageWrapper, SignInSignUpWrapper, SignInWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedApp.styles';
 import SignUpButtons from 'components/molecules/SignUpButtons/SignUpButtons';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 
@@ -14,9 +14,11 @@ const UnauthenticatedApp = () => {
 
   return (
     <UnauthenticatedAppWrapper>
-      <LeftImageWrapper img={leftBackground}>
-        <FaTwitter color={theme.colors.white} height="100%" width="100%" />
-      </LeftImageWrapper>
+      <LeftBlueImageWrapper img={leftBackground}>
+        <BirdWrapper>
+          <FaTwitter color={theme.colors.white} style={{ width: '100%', height: '100%' }} />
+        </BirdWrapper>
+      </LeftBlueImageWrapper>
       <SignInSignUpWrapper>
         <ContentWrapper>
           <FaTwitter color={theme.colors.twBlue} size={42} />
