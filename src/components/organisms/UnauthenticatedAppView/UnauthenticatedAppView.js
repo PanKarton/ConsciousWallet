@@ -6,10 +6,15 @@ import { useTheme } from 'styled-components';
 import { ContentWrapper, SignInWrapper, SignInSignUpWrapper } from './UnauthenticatedAppView.styles';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalOpen } from 'store/slices/isSignInModalOpenSlice';
+import SignUpModalWrapper from 'components/organisms/SignUpModalWrapper/SignUpModalWrapper';
+import SignInModalWrapper from 'components/organisms/SignInModalWrapper/SignInModalWrapper';
+import { useSelector } from 'react-redux';
 
 const UnauthenticatedAppView = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const isSignInModalOpenSlice = useSelector((store) => store.isSignInModalOpenSlice);
+  const isSignUpModalOpenSlice = useSelector((store) => store.isSignUpModalOpenSlice);
 
   const openSignInModal = () => dispatch(handleSignInModalOpen());
 
@@ -26,6 +31,8 @@ const UnauthenticatedAppView = () => {
           </CylinderButton>
         </SignInWrapper>
       </ContentWrapper>
+      {isSignUpModalOpenSlice && <SignUpModalWrapper />}
+      {isSignInModalOpenSlice && <SignInModalWrapper />}
     </SignInSignUpWrapper>
   );
 };
