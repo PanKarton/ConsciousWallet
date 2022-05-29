@@ -11,7 +11,7 @@ const CylinderButton = ({ children, bgColor = 'white', textColor = 'black', ...p
 };
 
 CylinderButton.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.element)]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.arrayOf(PropTypes.element)]),
   bgColor: PropTypes.string,
   textColor: PropTypes.string,
 };

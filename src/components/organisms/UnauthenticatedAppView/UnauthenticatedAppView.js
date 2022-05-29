@@ -6,8 +6,8 @@ import { useTheme } from 'styled-components';
 import { ContentWrapper, SignInWrapper, SignInSignUpWrapper } from './UnauthenticatedAppView.styles';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalOpen } from 'store/slices/isSignInModalOpenSlice';
-import SignUpModalWrapper from 'components/organisms/SignUpModalWrapper/SignUpModalWrapper';
-import SignInModalWrapper from 'components/organisms/SignInModalWrapper/SignInModalWrapper';
+import SignUpModalWrapper from 'components/organisms/SignUpModal/SignUpModal';
+import SignInModalWrapper from 'components/organisms/SignInModal/SignInModal';
 import { useSelector } from 'react-redux';
 
 const UnauthenticatedAppView = () => {
