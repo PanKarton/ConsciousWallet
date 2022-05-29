@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MainContentWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedApp.styles';
 import UnauthenticatedNav from 'components/molecules/SignUpButtons/UnauthenticatedNav/UnauthenticatedNav';
 import UnauthenticatedAppView from 'components/organisms/UnauthenticatedAppView/UnauthenticatedAppView';
 import WallWithBirdImage from 'components/molecules/WallWithBirdImage/WallWithBirdImage';
-import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
+import ModalWrapper from 'components/atoms/ModalWrapper/ModalWrapper';
 
 const UnauthenticatedApp = () => {
-  const [isSignInModalOpen, isIsSignInModalOpen] = useState(false);
-  const [isSignUpModalOpen, isIsSignUpModalOpen] = useState(false);
+  const isSignInModalOpenSlice = useSelector((store) => store.isSignInModalOpenSlice);
+  const isSignUpModalOpenSlice = useSelector((store) => store.isSignUpModalOpenSlice);
 
   return (
     <UnauthenticatedAppWrapper>
@@ -16,6 +17,8 @@ const UnauthenticatedApp = () => {
         <UnauthenticatedAppView />
       </MainContentWrapper>
       <UnauthenticatedNav />
+      {isSignInModalOpenSlice && <ModalWrapper>SIGN IN MOODAL</ModalWrapper>}
+      {isSignUpModalOpenSlice && <ModalWrapper>SIGN UP MOODAL</ModalWrapper>}
     </UnauthenticatedAppWrapper>
   );
 };

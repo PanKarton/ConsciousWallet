@@ -50,6 +50,7 @@ All libraries and stuff are listed below:
     - styled components
     - storybook
     - react-testing-library
+    - redux toolkit
     - husky
     - lint-staged
     - esint
@@ -57,6 +58,7 @@ All libraries and stuff are listed below:
     - react-router-6.0
     - react-icons
     - react-helmet-async
+    - react-modal
 
 ### Why was this project challenging and therefore a really good learning experience?
 

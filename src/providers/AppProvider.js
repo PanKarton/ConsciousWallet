@@ -5,20 +5,24 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 const AppProvider = ({ children }) => {
   return (
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Helmet>
-          <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
-        </Helmet>
-        {/* <AuthProvider> */}
-        {children}
-        {/* </AuthProvider> */}
-      </ThemeProvider>
-    </HelmetProvider>
+    <Provider store={store}>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Helmet>
+            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+          </Helmet>
+          {/* <AuthProvider> */}
+          {children}
+          {/* </AuthProvider> */}
+        </ThemeProvider>
+      </HelmetProvider>
+    </Provider>
   );
 };
 
