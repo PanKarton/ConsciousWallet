@@ -4,9 +4,10 @@ import AuthenticatedApp from 'Views/AuthenticatedApp/AuthenticatedApp';
 import UnauthenticatedApp from 'Views/UnauthenticatedApp/UnauthenticatedApp';
 
 const Root = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  return user == null ? <UnauthenticatedApp /> : <AuthenticatedApp />;
+  // return user == null ? <UnauthenticatedApp /> : <AuthenticatedApp />;
+  return <UnauthenticatedApp />;
 };
 
 export default Root;
