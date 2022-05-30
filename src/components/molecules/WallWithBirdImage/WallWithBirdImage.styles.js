@@ -22,4 +22,9 @@ export const WallWrapper = styled.div`
 export const BirdWrapper = styled.div`
   padding: 1rem;
   width: min(100%, 22rem);
+  svg {
+    color: ${({ theme }) => theme.colors.white};
+    width: 100%;
+    height: 100%;
+  }
 `;

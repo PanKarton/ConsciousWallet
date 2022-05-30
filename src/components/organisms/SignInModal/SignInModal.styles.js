@@ -1,4 +1,4 @@
-import { FaTwitter } from 'react-icons/fa';
+import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
 import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
@@ -14,6 +14,20 @@ export const ContentWrapper = styled.div`
   @media screen and (min-width: 700px) {
     width: 37.5rem;
     height: auto;
+  }
+  svg:first-child {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 1.25rem;
+  }
+  svg:nth-of-type(2) {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;
+    font-size: 2rem;
+    transform: translateX(-50%);
+    color: ${({ theme }) => theme.colors.twBlue};
   }
 `;
 
@@ -36,13 +50,4 @@ export const SignUpSuggestion = styled.p`
     color: ${({ theme }) => theme.colors.twBlue};
     text-decoration: underline;
   }
-`;
-
-export const BirdIcon = styled(FaTwitter)`
-  position: absolute;
-  left: 50%;
-  top: 1.5rem;
-  font-size: 2rem;
-  transform: translateX(-50%);
-  color: ${({ theme }) => theme.colors.twBlue};
 `;

@@ -4,8 +4,9 @@ import ModalViewWrapper from 'components/molecules/ModalViewWrapper/ModalViewWra
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import LogInForm from 'components/molecules/LogInForm/LogInForm';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
-import { BirdIcon, ContentWrapper, MaxWidthWrapper, SignUpSuggestion, StyledHeader } from './SignInModal.styles';
+import { ContentWrapper, MaxWidthWrapper, SignUpSuggestion, StyledHeader } from './SignInModal.styles';
 import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
+import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 
 const SignInModalWrapper = () => {
   const isSignInModalOpenSlice = useSelector((store) => store.isSignInModalOpenSlice);

@@ -15,6 +15,7 @@ const SignUpModalWrapper = () => {
   return (
     <ModalViewWrapper isOpen={isSignUpModalOpenSlice}>
       <div>
+        {/* Trzeba zrobic z ptaka komponent do atomów */}
         <CloseIcon onClick={closeModal} />
         <h2>Create your account</h2>
         <form>

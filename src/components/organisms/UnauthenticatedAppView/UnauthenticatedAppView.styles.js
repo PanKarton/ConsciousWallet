@@ -15,6 +15,10 @@ export const ContentWrapper = styled.div`
       font-size: ${({ theme }) => theme.fontSize.xxxl};
     }
   }
+  svg {
+    color: ${({ theme }) => theme.colors.twBlue};
+    font-size: 3.5rem;
+  }
 `;
 
 export const SignInWrapper = styled.div`
