@@ -4,7 +4,7 @@ import ModalViewWrapper from 'components/molecules/ModalViewWrapper/ModalViewWra
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import LogInForm from 'components/molecules/LogInForm/LogInForm';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
-import { ContentWrapper, MaxWidthWrapper, SignUpSuggestion, StyledHeader } from './SignInModal.styles';
+import { ContentWrapper, SignUpSuggestion, StyledHeader } from './SignInModal.styles';
 import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
 import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 
@@ -19,14 +19,14 @@ const SignInModalWrapper = () => {
       <ContentWrapper>
         <CloseIcon onClick={closeModal} />
         <BirdIcon />
-        <MaxWidthWrapper>
+        <div className="max-width-wrapper">
           <StyledHeader>Log in on Twitter</StyledHeader>
           <LogInForm />
           <CylinderButton>Forgot Password?</CylinderButton>
           <SignUpSuggestion>
             No accout yet? <a href="/">Sign up</a>
           </SignUpSuggestion>
-        </MaxWidthWrapper>
+        </div>
       </ContentWrapper>
     </ModalViewWrapper>
   );

@@ -1,11 +1,9 @@
-import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
 import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
   position: relative;
-  padding-inline: 5rem;
-  padding-block: 7rem 6rem;
-  border-radius: 2rem;
+  height: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
@@ -14,11 +12,23 @@ export const ContentWrapper = styled.div`
   @media screen and (min-width: 700px) {
     width: 37.5rem;
     height: auto;
+    border-radius: 2rem;
+    padding-inline: 5rem;
+    padding-block: 7rem 6rem;
+  }
+  .max-width-wrapper {
+    width: min(100%, 18.75rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1rem;
   }
   svg:first-child {
     position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
+    top: 2rem;
+    left: 2rem;
     font-size: 1.25rem;
   }
   svg:nth-of-type(2) {
@@ -29,15 +39,6 @@ export const ContentWrapper = styled.div`
     transform: translateX(-50%);
     color: ${({ theme }) => theme.colors.twBlue};
   }
-`;
-
-export const MaxWidthWrapper = styled.div`
-  min-width: 18.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1.25rem;
 `;
 
 export const StyledHeader = styled.h2`

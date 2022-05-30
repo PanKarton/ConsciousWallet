@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from './CylinderButton.styles';
+import { StyledButton } from './CylinderButton.styles';
 
 const CylinderButton = ({ children, bgColor = 'white', textColor = 'black', ...props }) => {
   return (
-    <Button bgColor={bgColor} textColor={textColor} {...props}>
+    <StyledButton bgColor={bgColor} textColor={textColor} {...props}>
       {children}
-    </Button>
+    </StyledButton>
   );
 };
 

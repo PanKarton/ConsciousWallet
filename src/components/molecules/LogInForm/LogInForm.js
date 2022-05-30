@@ -5,8 +5,8 @@ import { StyledForm } from './LogInForm.styles';
 
 const LogInForm = () => (
   <StyledForm>
-    <CredentialsInput name="login" id="login" type="text" placeholder="Phone, email or username" />
-    <CredentialsInput name="password" id="password" type="password" placeholder="Password" />
+    <CredentialsInput name="login" id="login" type="text" placeholder="Phone, email or username" required />
+    <CredentialsInput name="password" id="password" type="password" placeholder="Password" required />
     <CylinderButton type="submit" bgColor="blue" textColor="white">
       Log in
     </CylinderButton>
