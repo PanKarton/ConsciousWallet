@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledInput = styled.div`
+export const StyledWrapper = styled.div`
   position: relative;
   width: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

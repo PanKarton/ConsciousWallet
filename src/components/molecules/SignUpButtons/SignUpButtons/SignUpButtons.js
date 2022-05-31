@@ -6,8 +6,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { useDispatch } from 'react-redux';
 import { handleSignUpModalOpen } from 'store/slices/isSignUpModalOpenSlice';
 
-// TRZEBA DODAC IKONKI DO PRZYCISKOW, A PTOEM SPRAWADZIC JAK DZIAŁA STOPKA CZY ZNIKA PO ZALOGOWANIU SIE CZY JEST CALY CZAS
-
 const SignUpButtons = () => {
   const dispatch = useDispatch();
 

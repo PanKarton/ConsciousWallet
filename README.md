@@ -59,6 +59,7 @@ All libraries and stuff are listed below:
     - react-icons
     - react-helmet-async
     - react-modal
+    - react-hook-form
 
 ### Why was this project challenging and therefore a really good learning experience?
 

@@ -22,6 +22,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const SignInWrapper = styled.div`
+  width: min(100%, 18.75rem);
   h3 {
     font-size: ${({ theme }) => theme.fontSize.xm};
     margin-bottom: 1rem;
