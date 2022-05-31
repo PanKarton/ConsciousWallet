@@ -47,7 +47,7 @@ export const OrWithLines = styled.div`
 `;
 
 export const PrivacyTermsDisclaimer = styled.p`
-  width: min(100%, 16rem);
+  width: min(100%, 16.5rem);
   font-size: ${({ theme }) => theme.fontSize.xxs};
   color: ${({ theme }) => theme.colors.textGray};
   a {

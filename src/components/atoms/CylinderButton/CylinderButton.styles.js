@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
   padding: 0.75rem 1rem;
-  width: 18.75rem;
+  width: 100%;
   border-radius: 1000px;
   background-color: ${({ bgColor, theme }) => {
     switch (bgColor) {

@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AuthProvider } from 'hooks/useAuth';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
+import { store } from 'store';
+import { AuthProvider } from 'hooks/useAuth';
 
 const AppProvider = ({ children }) => {
   return (
-    <HelmetProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Helmet>
-          <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
-        </Helmet>
-        {/* <AuthProvider> */}
-        {children}
-        {/* </AuthProvider> */}
-      </ThemeProvider>
-    </HelmetProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <HelmetProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Helmet>
+              <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+            </Helmet>
+            {children}
+          </ThemeProvider>
+        </HelmetProvider>
+      </AuthProvider>
+    </Provider>
   );
 };
 

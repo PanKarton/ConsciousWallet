@@ -3,10 +3,14 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { OrWithLines, PrivacyTermsDisclaimer, Wrapper } from './SignUpButtons.styles';
 import { AiFillApple } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-
-// TRZEBA DODAC IKONKI DO PRZYCISKOW, A PTOEM SPRAWADZIC JAK DZIAŁA STOPKA CZY ZNIKA PO ZALOGOWANIU SIE CZY JEST CALY CZAS
+import { useDispatch } from 'react-redux';
+import { handleSignUpModalOpen } from 'store/slices/isSignUpModalOpenSlice';
 
 const SignUpButtons = () => {
+  const dispatch = useDispatch();
+
+  const openSignUpModal = () => dispatch(handleSignUpModalOpen());
+
   return (
     <Wrapper>
       <h2>Join Twitter today.</h2>
@@ -21,7 +25,7 @@ const SignUpButtons = () => {
       <OrWithLines>
         <p>or</p>
       </OrWithLines>
-      <CylinderButton bgColor="blue" textColor="white">
+      <CylinderButton bgColor="blue" textColor="white" onClick={openSignUpModal}>
         <strong>Sign up with phone number or email</strong>
       </CylinderButton>
       <PrivacyTermsDisclaimer>
