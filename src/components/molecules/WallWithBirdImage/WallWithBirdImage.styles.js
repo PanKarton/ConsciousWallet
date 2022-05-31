@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FaTwitter } from 'react-icons/fa';
 
 export const WallWrapper = styled.div`
   height: 24rem;
@@ -11,7 +10,7 @@ export const WallWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${FaTwitter} {
+  svg {
     font-size: 100px;
   }
   @media screen and (min-width: 1001px) {
