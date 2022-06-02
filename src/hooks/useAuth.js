@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
       login,
       password,
       email,
-      xd: 'xd',
     });
   };
 

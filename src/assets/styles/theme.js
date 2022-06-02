@@ -8,6 +8,7 @@ export const theme = {
     twBlueHover: 'rgba(26, 140, 216)',
     borderGray: 'rgb(218, 220, 224)',
     textGray: 'rgb(83, 100, 113)',
+    errorRed: 'rgb(255,148,148)',
   },
   fontSize: {
     xxxl: '64px',
