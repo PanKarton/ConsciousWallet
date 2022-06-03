@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyledWrapper } from './CredentialsInput.styles';
+import { InputWrapper, StyledWrapper } from './CredentialsInput.styles';
 
-const CredentialsInput = React.forwardRef(({ name, id, placeholder, type = 'text', required, ...props }, ref) => (
+const CredentialsInput = React.forwardRef(({ name, id, placeholder, type = 'text', required, errorMessage, ...props }, ref) => (
   <StyledWrapper>
-    <label htmlFor={id} />
-    <input name={name} id={id} type={type} placeholder={placeholder} required={required} ref={ref} {...props} />
+    <InputWrapper>
+      <label htmlFor={id} />
+      <input name={name} id={id} type={type} placeholder={placeholder} required={required} ref={ref} {...props} />
+    </InputWrapper>
+    {errorMessage && <p>{errorMessage}</p>}
   </StyledWrapper>
 ));
 

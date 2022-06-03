@@ -1,17 +1,24 @@
 import React, { useContext, useState } from 'react';
+import { db } from 'firebase-config';
+import { addDoc, collection } from '@firebase/firestore';
 
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [currentUser, setcurrentUser] = useState(null);
 
-  console.log(user);
+  const usersCollectionRef = collection(db, 'users');
 
-  const handleSignUp = (userData) => {
-    setUser(userData);
+  const handleSignUp = async ({ login, password, passwordConfirmation, email }) => {
+    if (password !== passwordConfirmation) return console.log(`wrr`);
+    await addDoc(usersCollectionRef, {
+      login,
+      password,
+      email,
+    });
   };
 
-  return <AuthContext.Provider value={{ user, handleSignUp }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ currentUser, handleSignUp }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

@@ -60,6 +60,7 @@ All libraries and stuff are listed below:
     - react-helmet-async
     - react-modal
     - react-hook-form
+    - firebase and firestore
 
 ### Why was this project challenging and therefore a really good learning experience?
 
