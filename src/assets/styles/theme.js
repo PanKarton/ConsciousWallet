@@ -9,6 +9,7 @@ export const theme = {
     borderGray: 'rgb(218, 220, 224)',
     textGray: 'rgb(83, 100, 113)',
     errorRed: 'rgb(255,148,148)',
+    bgcGray: 'rgba(0, 0 , 0, 0.15)',
   },
   fontSize: {
     xxxl: '64px',

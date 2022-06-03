@@ -1,19 +1,14 @@
 import React from 'react';
-import { MainContentWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedApp.styles';
-import UnauthenticatedNav from 'components/molecules/SignUpButtons/UnauthenticatedNav/UnauthenticatedNav';
-import UnauthenticatedAppView from 'components/organisms/UnauthenticatedAppView/UnauthenticatedAppView';
-import WallWithBirdImage from 'components/molecules/WallWithBirdImage/WallWithBirdImage';
+import { Routes, Route } from 'react-router-dom';
+import UnauthenticatedAppMain from 'Views/UnauthenticatedAppMain/UnauthenticatedAppMain';
+import SignUpView from 'Views/SignUpView/SignUpView';
 
 const UnauthenticatedApp = () => {
   return (
-    <UnauthenticatedAppWrapper>
-      <MainContentWrapper>
-        <WallWithBirdImage />
-        <UnauthenticatedAppView />
-      </MainContentWrapper>
-      <UnauthenticatedNav />
-    </UnauthenticatedAppWrapper>
+    <Routes>
+      <Route path="/" element={<UnauthenticatedAppMain />} />
+      <Route path="/signup" element={<SignUpView />} />
+    </Routes>
   );
 };
-
 export default UnauthenticatedApp;

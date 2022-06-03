@@ -4,7 +4,6 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { ContentWrapper, SignInWrapper, SignInSignUpWrapper } from './UnauthenticatedAppView.styles';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalOpen } from 'store/slices/isSignInModalOpenSlice';
-import SignUpModalWrapper from 'components/organisms/SignUpModal/SignUpModal';
 import SignInModalWrapper from 'components/organisms/SignInModal/SignInModal';
 import { useSelector } from 'react-redux';
 import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
@@ -12,7 +11,6 @@ import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 const UnauthenticatedAppView = () => {
   const dispatch = useDispatch();
   const isSignInModalOpenSlice = useSelector((store) => store.isSignInModalOpenSlice);
-  const isSignUpModalOpenSlice = useSelector((store) => store.isSignUpModalOpenSlice);
 
   const openSignInModal = () => dispatch(handleSignInModalOpen());
 
@@ -29,7 +27,6 @@ const UnauthenticatedAppView = () => {
           </CylinderButton>
         </SignInWrapper>
       </ContentWrapper>
-      {isSignUpModalOpenSlice && <SignUpModalWrapper />}
       {isSignInModalOpenSlice && <SignInModalWrapper />}
     </SignInSignUpWrapper>
   );

@@ -1,7 +1,15 @@
 import { PrivacyTermsDisclaimer } from 'components/molecules/SignUpButtons/SignUpButtons/SignUpButtons.styles';
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
+export const SignUpWrapper = styled.section`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.bgcGray};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SignUpFormWrapper = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
