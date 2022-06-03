@@ -3,12 +3,19 @@ import { PrivacyTermsDisclaimer } from 'components/molecules/SignUpButtons/SignU
 import SignUpForm from 'components/molecules/SignUpForm/SignUpForm';
 import { SignUpFormWrapper, SignUpWrapper } from './SignUpView.styles';
 import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpView = () => {
+  const navigate = useNavigate();
+
+  const handleCloseForm = () => {
+    navigate('/');
+  };
+
   return (
     <SignUpWrapper>
       <SignUpFormWrapper>
-        <CloseIcon />
+        <CloseIcon onClick={handleCloseForm} />
         <div className="max-width-wrapper">
           <h2>Create your account</h2>
           <SignUpForm />

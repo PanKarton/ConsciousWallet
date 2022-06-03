@@ -3,8 +3,12 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { OrWithLines, PrivacyTermsDisclaimer, Wrapper } from './SignUpButtons.styles';
 import { AiFillApple } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-
+import { useNavigate } from 'react-router-dom';
 const SignUpButtons = () => {
+  const navigate = useNavigate();
+
+  const handleOpenForm = () => navigate('/signup');
+
   return (
     <Wrapper>
       <h2>Join Twitter today.</h2>
@@ -19,7 +23,7 @@ const SignUpButtons = () => {
       <OrWithLines>
         <p>or</p>
       </OrWithLines>
-      <CylinderButton bgColor="blue" textColor="white">
+      <CylinderButton bgColor="blue" textColor="white" onClick={handleOpenForm}>
         <strong>Sign up with phone number or email</strong>
       </CylinderButton>
       <PrivacyTermsDisclaimer>
