@@ -4,9 +4,12 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { StyledForm } from './SignUpForm.styles';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import useSignUpValidation from 'hooks/useSignUpValidation';
 
 const SignUpForm = () => {
   const { register, handleSubmit, watch } = useForm();
+  // hook walidujący rzeczy
+  const validation = useSignUpValidation();
   const { handleSignUp } = useAuth();
   const [loginError, setLoginError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -40,7 +43,7 @@ const SignUpForm = () => {
   return (
     <StyledForm onSubmit={handleSubmit(handleSignUpSubmit)}>
       <CredentialsInput {...register('login')} name="login" id="login" type="text" placeholder="Login" errorMessage={loginError} required />
-      <CredentialsInput {...register('password')} name="password" id="password" type="password" placeholder="Password" required />
+      <CredentialsInput {...register('password')} name="password" id="password" type="password" placeholder="Password" errorMessage={passwordError} required />
       <CredentialsInput {...register('passwordConfirmation')} name="passwordConfirmation" id="passwordConfirmation" type="password" placeholder="Password confirmation" required />
       <CredentialsInput {...register('email')} name="email" id="email" type="email" placeholder="Email" required />
       <CylinderButton type="submit" bgColor="blue" textColor="white">
