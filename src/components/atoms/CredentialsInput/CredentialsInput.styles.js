@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
-  width: 100%;
+  width: ${({ isHalfWidth }) => (isHalfWidth ? '50%' : '100%')};
+  display: ${({ isHalfWidth }) => (isHalfWidth ? 'inline-block' : 'block')};
   p {
     font-size: ${({ theme }) => theme.fontSize.xs};
     color: ${({ theme }) => theme.colors.errorRed};

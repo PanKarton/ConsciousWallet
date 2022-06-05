@@ -27,19 +27,23 @@ export const SignUpForm = styled.form`
   }
 
   .max-width-wrapper {
+    position: relative;
     width: min(100%, 20.75rem);
+    min-height: 26rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 1.25rem;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
 
-    h2 {
-      font-size: ${({ theme }) => theme.fontSize.l};
-      @media screen and (min-width: 500px) {
-        font-size: ${({ theme }) => theme.fontSize.xl};
-      }
+    & > p {
+      color: ${({ theme }) => theme.colors.textGray};
+      font-size: ${({ theme }) => theme.fontSize.xxm};
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      font-weight: 700;
     }
   }
 

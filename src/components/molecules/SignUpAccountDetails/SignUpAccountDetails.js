@@ -1,23 +1,31 @@
 import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
+import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HeadingWrapper, StyledWrapper } from './SignUpAccountDetails.styles';
 
-const SignUpAccountDetails = ({ register }) => {
+const SignUpAccountDetails = ({ register, setNextStep }) => {
   const navigate = useNavigate();
 
   const handleNextStep = () => {
+    setNextStep();
     navigate('/signup/personals');
   };
 
   return (
-    <>
-      <h2>Let's </h2>
-      <CredentialsInput {...register('login')} name="login" id="login" type="text" placeholder="Login" required />
-      <CredentialsInput {...register('password')} name="password" id="password" type="password" placeholder="Password" required />
-      <CredentialsInput {...register('passwordConfirmation')} name="passwordConfirmation" id="passwordConfirmation" type="password" placeholder="Password confirmation" required />
-      <CredentialsInput {...register('email')} name="email" id="email" type="email" placeholder="Email" required />
-      <button onClick={handleNextStep}>Next</button>
-    </>
+    <StyledWrapper>
+      <HeadingWrapper>
+        <h2>Sign Up! </h2>
+        <p>It's quick and easy.</p>
+      </HeadingWrapper>
+      <CredentialsInput {...register('login')} id="login" type="text" placeholder="Login" required />
+      <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required />
+      <CredentialsInput {...register('passwordConfirmation')} id="passwordConfirmation" type="password" placeholder="Password confirmation" required />
+      <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required />
+      <CylinderButton bgColor="blue" textColor="white" onClick={handleNextStep}>
+        Next
+      </CylinderButton>
+    </StyledWrapper>
   );
 };
 

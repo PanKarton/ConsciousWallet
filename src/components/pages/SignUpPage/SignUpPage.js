@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SignUpForm, SignUpWrapper } from './SignUpPage.styles';
 import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 const SignUpPage = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, watch } = useForm();
+  const [step, setStep] = useState(1);
 
   const handleCloseForm = () => {
     navigate('/');
@@ -23,9 +24,10 @@ const SignUpPage = () => {
       <SignUpForm onSubmit={handleSubmit(handleCreateAccount)}>
         <CloseIcon onClick={handleCloseForm} />
         <div className="max-width-wrapper">
+          <p>Step {step}/2</p>
           <Routes>
-            <Route path="/personals" element={<SignUpPersonalDetails register={register} />} />
-            <Route path="*" element={<SignUpAccountDetails register={register} />} />
+            <Route path="/personals" element={<SignUpPersonalDetails register={register} setPrevStep={() => setStep(1)} />} />
+            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} />} />
           </Routes>
         </div>
       </SignUpForm>
