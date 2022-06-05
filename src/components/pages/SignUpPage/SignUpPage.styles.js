@@ -22,27 +22,28 @@ export const SignUpForm = styled.form`
     border-radius: 2rem;
     width: 37.5rem;
     height: auto;
-    padding-inline: 5rem;
-    padding-block: 7rem 6rem;
+    padding-block: 5rem;
   }
 
   .max-width-wrapper {
     position: relative;
-    width: min(100%, 20.75rem);
+    width: min(100%, 20rem);
     min-height: 26rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.25rem;
     padding: 2rem 1rem 1rem 1rem;
 
     & > p {
+      width: 100%;
+      text-align: left;
       color: ${({ theme }) => theme.colors.textGray};
       font-size: ${({ theme }) => theme.fontSize.xxm};
-      position: absolute;
-      left: 1rem;
-      top: 0;
+      /* position: absolute; */
+      /* left: 1rem; */
+      /* top: 0; */
       font-weight: 700;
     }
   }

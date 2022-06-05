@@ -27,7 +27,7 @@ const SignUpPage = () => {
           <p>Step {step}/2</p>
           <Routes>
             <Route path="/personals" element={<SignUpPersonalDetails register={register} setPrevStep={() => setStep(1)} />} />
-            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} />} />
+            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} watch={watch} />} />
           </Routes>
         </div>
       </SignUpForm>

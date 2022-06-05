@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.75rem;
   button {
     margin-top: 1rem;
   }
