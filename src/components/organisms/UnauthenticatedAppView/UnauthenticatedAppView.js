@@ -4,7 +4,7 @@ import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { ContentWrapper, SignInWrapper, SignInSignUpWrapper } from './UnauthenticatedAppView.styles';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalOpen } from 'store/slices/isSignInModalOpenSlice';
-import SignInModalWrapper from 'components/organisms/SignInModal/SignInModal';
+import SignInModalWrapper from 'components/molecules/SignInModal/SignInModal';
 import { useSelector } from 'react-redux';
 import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 

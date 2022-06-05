@@ -9,7 +9,7 @@ export const SignUpWrapper = styled.section`
   align-items: center;
 `;
 
-export const SignUpFormWrapper = styled.div`
+export const SignUpForm = styled.form`
   position: relative;
   height: 100vh;
   width: 100vw;

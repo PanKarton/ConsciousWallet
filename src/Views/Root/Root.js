@@ -1,7 +1,7 @@
 import { useAuth } from 'hooks/useAuth';
 import React from 'react';
-import AuthenticatedApp from 'Views/AuthenticatedApp/AuthenticatedApp';
-import UnauthenticatedApp from 'Views/UnauthenticatedApp/UnauthenticatedApp';
+import AuthenticatedApp from 'components/templates/AuthenticatedApp/AuthenticatedApp';
+import UnauthenticatedApp from 'components/pages/UnauthenticatedApp/UnauthenticatedApp';
 
 const Root = () => {
   const { currentUser } = useAuth();
