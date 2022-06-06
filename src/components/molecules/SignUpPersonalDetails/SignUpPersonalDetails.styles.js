@@ -5,9 +5,15 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.75rem;
   button {
     margin-top: 1rem;
+  }
+  .name-surname-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
 `;
 

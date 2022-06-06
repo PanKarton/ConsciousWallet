@@ -18,8 +18,7 @@ const useSignUpValidation = () => {
   }, []);
 
   const getPasswordError = (password) => {
-    // DOKANCZAMY SPRAWDZANIE HASŁA
-    if (!password) return;
+    if (!password) return '';
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
     return passwordPattern.test(password)
       ? ''

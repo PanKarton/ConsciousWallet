@@ -5,42 +5,43 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeadingWrapper, StyledWrapper } from './SignUpAccountDetails.styles';
 
-const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
+const SignUpAccountDetails = ({ register, setNextStep, watch, canMoveNext, setCanMoveNext }) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [passwordsMatchError, setPasswordMatchError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [canMoveNext, setCanMoveNext] = useState(false);
   const { getLoginError, getPasswordError, getPasswordMatchError, getEmailError } = useSignUpValidation();
 
   useEffect(() => {
     const subscription = watch(({ login, password, passwordConfirmation, email }) => {
+      const newLoginError = getLoginError(login);
+      const newPasswordError = getPasswordError(password);
+      const newPasswordMatchError = getPasswordMatchError(password, passwordConfirmation);
+      const newEmailError = getEmailError(email);
+
       // Check has no werid characters and set error or ''
-      setLoginError(getLoginError(login));
+      setLoginError(newLoginError);
 
       // Check if password is str0nk and set error or ''
-      // setPasswordError(getPasswordError(password));
+      setPasswordError(newPasswordError);
 
       // Check if passwords are the same and set error or ''
-      setPasswordMatchError(getPasswordMatchError(password, passwordConfirmation));
+      setPasswordMatchError(newPasswordMatchError);
 
       // Check if email is valid and set error or ''
-      setEmailError(getEmailError(email));
+      setEmailError(newEmailError);
 
       // Check if all inputs have valid content
-      if (!loginError && !passwordsMatchError && !emailError) {
-        console.log(`brak errorów`);
-        if (login && password && passwordConfirmation && email) {
-          setCanMoveNext(true);
-        }
-      } else {
-        setCanMoveNext(false);
-      }
+      if (newLoginError || newPasswordError || newPasswordError || newEmailError) return setCanMoveNext(false);
+      // Check if all inputs contain value
+      if (!login || !password || !passwordConfirmation || !email) return setCanMoveNext(false);
+
+      setCanMoveNext(true);
     });
 
     return () => subscription.unsubscribe();
-  }, [watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
+  }, [setCanMoveNext, watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
 
   const handleNextStep = () => {
     if (!canMoveNext) return;
@@ -50,7 +51,6 @@ const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
 
   return (
     <StyledWrapper>
-      {console.log(`render`)}
       <HeadingWrapper>
         <h2>Sign Up! </h2>
         <p>It's quick and easy.</p>
@@ -59,7 +59,6 @@ const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
       <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
       <CredentialsInput {...register('passwordConfirmation')} id="passwordConfirmation" type="password" placeholder="Password confirmation" required errorMessage={passwordsMatchError} />
       <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required errorMessage={emailError} />
-      {canMoveNext ? null : <p>Make sure all fields are filled properly</p>}
       <CylinderButton type="button" bgColor="blue" textColor="white" onClick={handleNextStep}>
         Next
       </CylinderButton>

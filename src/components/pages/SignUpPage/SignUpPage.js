@@ -10,6 +10,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, watch } = useForm();
   const [step, setStep] = useState(1);
+  const [canMoveNext, setCanMoveNext] = useState(false);
 
   const handleCloseForm = () => {
     navigate('/');
@@ -27,7 +28,7 @@ const SignUpPage = () => {
           <p>Step {step}/2</p>
           <Routes>
             <Route path="/personals" element={<SignUpPersonalDetails register={register} setPrevStep={() => setStep(1)} />} />
-            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} watch={watch} />} />
+            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>
       </SignUpForm>

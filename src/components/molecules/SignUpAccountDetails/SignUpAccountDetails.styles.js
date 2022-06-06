@@ -8,7 +8,7 @@ export const StyledWrapper = styled.div`
   align-items: flex-start;
   gap: 0.75rem;
   button {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 `;
 
