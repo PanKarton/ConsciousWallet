@@ -11,6 +11,7 @@ const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
   const [passwordError, setPasswordError] = useState('');
   const [passwordsMatchError, setPasswordMatchError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [canMoveNext, setCanMoveNext] = useState(false);
   const { getLoginError, getPasswordError, getPasswordMatchError, getEmailError } = useSignUpValidation();
 
   useEffect(() => {
@@ -19,27 +20,37 @@ const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
       setLoginError(getLoginError(login));
 
       // Check if password is str0nk and set error or ''
-      setPasswordError(getPasswordError(password));
+      // setPasswordError(getPasswordError(password));
 
       // Check if passwords are the same and set error or ''
       setPasswordMatchError(getPasswordMatchError(password, passwordConfirmation));
 
       // Check if email is valid and set error or ''
       setEmailError(getEmailError(email));
+
+      // Check if all inputs have valid content
+      if (!loginError && !passwordsMatchError && !emailError) {
+        console.log(`brak errorów`);
+        if (login && password && passwordConfirmation && email) {
+          setCanMoveNext(true);
+        }
+      } else {
+        setCanMoveNext(false);
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, [watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError]);
+  }, [watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
 
-  const handleNextStep = (data) => {
-    console.log(data);
-    if (loginError || passwordsMatchError || emailError) return;
+  const handleNextStep = () => {
+    if (!canMoveNext) return;
     setNextStep();
     navigate('/signup/personals');
   };
 
   return (
     <StyledWrapper>
+      {console.log(`render`)}
       <HeadingWrapper>
         <h2>Sign Up! </h2>
         <p>It's quick and easy.</p>
@@ -48,6 +59,7 @@ const SignUpAccountDetails = ({ register, setNextStep, watch }) => {
       <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
       <CredentialsInput {...register('passwordConfirmation')} id="passwordConfirmation" type="password" placeholder="Password confirmation" required errorMessage={passwordsMatchError} />
       <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required errorMessage={emailError} />
+      {canMoveNext ? null : <p>Make sure all fields are filled properly</p>}
       <CylinderButton type="button" bgColor="blue" textColor="white" onClick={handleNextStep}>
         Next
       </CylinderButton>

@@ -6,7 +6,6 @@ const useSignUpValidation = () => {
   const getLoginError = useCallback((login) => {
     if (!login) return ``;
     const loginRegex = /^[A-Za-z0-9]+$/;
-    console.log(loginRegex.test(login));
     return loginRegex.test(login)
       ? ''
       : `Your login should not contain any special
@@ -19,8 +18,12 @@ const useSignUpValidation = () => {
   }, []);
 
   const getPasswordError = (password) => {
-    // DOKANCZAMY SPRAWDZANIE HASŁA 
-    if(!password) 
+    // DOKANCZAMY SPRAWDZANIE HASŁA
+    if (!password) return;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+    return passwordPattern.test(password)
+      ? ''
+      : 'Sorry, that password is not strong enough. Passwords must be at least 8 characters long, contain at least: one small and capital letter, one number and one special character of [@$!%*?&]';
   };
 
   const getEmailError = useCallback((email) => {
