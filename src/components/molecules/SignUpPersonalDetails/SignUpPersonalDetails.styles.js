@@ -10,10 +10,17 @@ export const StyledWrapper = styled.div`
     margin-top: 1rem;
   }
   .name-surname-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    .inputs-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    p {
+      font-size: ${({ theme }) => theme.fontSize.xs};
+      color: ${({ theme }) => theme.colors.errorRed};
+      margin-top: 0.25rem;
+    }
   }
   .disclaimer {
     color: ${({ theme }) => theme.colors.textGray};

@@ -42,7 +42,7 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
     });
 
     return () => subscription.unsubscribe();
-  }, [setCanMoveNext, watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
+  }, [setStep, setCanMoveNext, watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
 
   const handleNextStep = () => {
     if (!canMoveNext) return;

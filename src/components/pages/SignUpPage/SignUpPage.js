@@ -27,7 +27,7 @@ const SignUpPage = () => {
         <div className="max-width-wrapper">
           <p>Step {step}/2</p>
           <Routes>
-            <Route path="/personals" element={<SignUpPersonalDetails register={register} setStep={setStep} />} />
+            <Route path="/personals" element={<SignUpPersonalDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} />} />
             <Route path="*" element={<SignUpAccountDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>
@@ -37,22 +37,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-
-{
-  /* <SignUpWrapper>
-<SignUpForm>
-  <CloseIcon onClick={handleCloseForm} />
-  <div className="max-width-wrapper">
-    <h2>Create your account</h2>
-    <SignUpForm />
-    <PrivacyTermsDisclaimer>
-      By signing up, you agree to the
-      <a href="/"> Terms of Service </a>
-      and
-      <a href="/"> Privacy Policy </a>, including
-      <a href="/"> Cookie Use </a>.
-    </PrivacyTermsDisclaimer>
-  </div>
-</SignUpForm>
-</SignUpWrapper> */
-}

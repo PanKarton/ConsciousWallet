@@ -5,10 +5,10 @@ import { useCallback } from 'react';
 const useSignUpValidation = () => {
   const getLoginError = useCallback((login) => {
     if (!login) return ``;
-    const loginRegex = /^[A-Za-z0-9]+$/;
+    const loginRegex = /^[A-Za-z0-9]{1,12}$/;
     return loginRegex.test(login)
       ? ''
-      : `Your login should not contain any special
+      : `Your login should be max 12 characters long and should not contain any special
          (weird in our opinion) characters eg. [! , @ , # , $ , % , ^ , & , * , ( , ) , / , \\ , . , ]`;
   }, []);
 
@@ -22,7 +22,7 @@ const useSignUpValidation = () => {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
     return passwordPattern.test(password)
       ? ''
-      : 'Sorry, that password is not strong enough. Passwords must be at least 8 characters long, contain at least: one small and capital letter, one number and one special character of [@$!%*?&]';
+      : 'Sorry, that password is not strong enough. Passwords must be at least 8 and max 15 characters long, contain at least: one small and capital letter, one number and one special character of [@$!%*?&]';
   };
 
   const getEmailError = useCallback((email) => {
@@ -31,11 +31,18 @@ const useSignUpValidation = () => {
     return emailRegex.test(email) ? '' : 'Make sure you enter the correct email address';
   }, []);
 
+  const getNameAndSurnameError = useCallback((value) => {
+    if (!value) return '';
+    const regex = /^[A-Za-z]+$/;
+    return regex.test(value) ? '' : 'You can use only capital and small letters';
+  }, []);
+
   return {
     getLoginError,
     getPasswordError,
     getPasswordMatchError,
     getEmailError,
+    getNameAndSurnameError,
   };
 };
 
