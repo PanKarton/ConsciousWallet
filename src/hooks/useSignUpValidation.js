@@ -37,12 +37,18 @@ const useSignUpValidation = () => {
     return regex.test(value) ? '' : 'You can use only capital and small letters';
   }, []);
 
+  const getAgeError = useCallback((year) => {
+    if (!year) return '';
+    return year < 2009 ? '' : 'You are too young to use Twitter-copy';
+  }, []);
+
   return {
     getLoginError,
     getPasswordError,
     getPasswordMatchError,
     getEmailError,
     getNameAndSurnameError,
+    getAgeError,
   };
 };
 

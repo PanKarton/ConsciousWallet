@@ -11,12 +11,14 @@ const SignUpPage = () => {
   const { register, handleSubmit, watch } = useForm();
   const [step, setStep] = useState(1);
   const [canMoveNext, setCanMoveNext] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const handleCloseForm = () => {
     navigate('/');
   };
 
   const handleCreateAccount = (data) => {
+    if (!canSubmit) return console.log('napraw inputy smieciu');
     console.log(data);
   };
 
@@ -27,7 +29,10 @@ const SignUpPage = () => {
         <div className="max-width-wrapper">
           <p>Step {step}/2</p>
           <Routes>
-            <Route path="/personals" element={<SignUpPersonalDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} />} />
+            <Route
+              path="/personals"
+              element={<SignUpPersonalDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} canSubmit={canSubmit} setCanSubmit={setCanSubmit} />}
+            />
             <Route path="*" element={<SignUpAccountDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>

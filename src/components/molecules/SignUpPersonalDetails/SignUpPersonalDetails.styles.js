@@ -31,10 +31,20 @@ export const StyledWrapper = styled.div`
   }
   .buttons-wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
+    .error-message {
+      font-size: ${({ theme }) => theme.fontSize.xs};
+      color: ${({ theme }) => theme.colors.errorRed};
+      margin-bottom: 0.5rem;
+    }
+    .buttons-flex-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      button {
+        margin-top: 0;
+      }
+    }
   }
 `;
 

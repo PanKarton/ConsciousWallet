@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RadioInput from 'components/atoms/RadioInput/RadioInput';
-import GenderSelect from 'components/atoms/GenderSelect/GenderSelect';
+import CustomGenderSelect from 'components/atoms/CustomGenderSelect/CustomGenderSelect';
 import { StyledWrapper } from './GenderPicker.styles';
 
 const GenderPicker = ({ register, watch }) => {
@@ -22,7 +22,7 @@ const GenderPicker = ({ register, watch }) => {
         <RadioInput {...register('gender')} value="male" id="male" labelText="Male" />
         <RadioInput {...register('gender')} value="custom" id="custom" labelText="Custom" />
       </div>
-      {isGenderCustom && <GenderSelect register={register} />}
+      {isGenderCustom && <CustomGenderSelect register={register} />}
     </StyledWrapper>
   );
 };

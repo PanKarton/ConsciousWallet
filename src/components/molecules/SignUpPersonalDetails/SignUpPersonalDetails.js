@@ -7,12 +7,14 @@ import BirthDatePicker from '../BirthDatePicker/BirthDatePicker';
 import GenderPicker from '../GenderPicker/GenderPicker';
 import { HeadingWrapper, StyledWrapper } from './SignUpPersonalDetails.styles';
 import PropTypes from 'prop-types';
+import { getAllByRole } from '@testing-library/react';
 
-const SignUpPersonalDetails = ({ register, setStep, watch, canMoveNext }) => {
+const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
   const navigate = useNavigate();
   const [nameError, setNameError] = useState('');
   const [surnameError, setSurnameError] = useState('');
-  const { getNameAndSurnameError } = useSignUpValidation();
+  const [ageError, setAgeError] = useState('');
+  const { getNameAndSurnameError, getAgeError } = useSignUpValidation();
 
   useEffect(() => {
     // Move to step 1/2 if refreshed on step 2/2
@@ -21,16 +23,28 @@ const SignUpPersonalDetails = ({ register, setStep, watch, canMoveNext }) => {
 
   useEffect(() => {
     setStep(2);
-    const subscription = watch(({ name, surname }) => {
+    const subscription = watch(({ name, surname, birthYear, ...rest }) => {
+      console.log({ name, surname, birthYear, ...rest });
+      // Neet to put errors into variables to check if errors exist in the end of watch() because updating states is async
       const newNameError = getNameAndSurnameError(name);
       const newSurnameError = getNameAndSurnameError(surname);
+      const newAgeError = getAgeError(birthYear);
 
       setNameError(newNameError);
       setSurnameError(newSurnameError);
+      setAgeError(newAgeError);
+
+      // console.log(!name || !surname || newNameError || newSurnameError || newAgeError);
+      console.log(!name);
+      console.log(!surname);
+      console.log(!surname || !name || newNameError > 0 || newSurnameError.length > 0 || newAgeError.length > 0);
+
+      if (!name || !surname || newNameError.length > 0 || newSurnameError.length > 0 || newAgeError.length > 0) return setCanSubmit(false);
+      setCanSubmit(true);
     });
 
     return () => subscription.unsubscribe();
-  }, [setStep, watch, getNameAndSurnameError]);
+  }, [setStep, watch, getNameAndSurnameError, getAgeError, setCanSubmit]);
 
   const handlePreviousStep = () => {
     navigate('/signup');
@@ -44,13 +58,13 @@ const SignUpPersonalDetails = ({ register, setStep, watch, canMoveNext }) => {
       </HeadingWrapper>
       <div className="name-surname-wrapper">
         <div className="inputs-wrapper">
-          <CredentialsInput isHalfWidth {...register('name')} id="name" type="text" placeholder="Name" required />
-          <CredentialsInput isHalfWidth {...register('surname')} id="surname" type="text" placeholder="Surname" required />
+          <CredentialsInput isHalfWidth {...register('name')} id="name" type="text" placeholder="Name" />
+          <CredentialsInput isHalfWidth {...register('surname')} id="surname" type="text" placeholder="Surname" />
         </div>
         {nameError && <p>{nameError}</p>}
         {surnameError && <p>{surnameError}</p>}
       </div>
-      <BirthDatePicker register={register} />
+      <BirthDatePicker register={register} ageError={ageError} />
       <GenderPicker register={register} watch={watch} />
       <p className="disclaimer">People who use our service may have uploaded your contact information to Twitter-copy.</p>
       <p className="disclaimer">
@@ -58,10 +72,13 @@ const SignUpPersonalDetails = ({ register, setStep, watch, canMoveNext }) => {
         our <a href="/">Cookie Policy</a>. You may receive SMS notifications from us and can opt out at any time.
       </p>
       <div className="buttons-wrapper">
-        <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
-        <CylinderButton bgColor="blue" textColor="white" type="submit">
-          Sign Up
-        </CylinderButton>
+        {!canSubmit && <p className="error-message">Please make sure all fields are fulfilled properly.</p>}
+        <div className="buttons-flex-wrapper">
+          <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
+          <CylinderButton bgColor="blue" textColor="white" type="submit">
+            Sign Up
+          </CylinderButton>
+        </div>
       </div>
     </StyledWrapper>
   );
@@ -71,6 +88,7 @@ SignUpPersonalDetails.propTypes = {
   register: PropTypes.func,
   watch: PropTypes.func,
   setStep: PropTypes.func,
+  setCanSubmit: PropTypes.func,
 };
 
 export default SignUpPersonalDetails;
