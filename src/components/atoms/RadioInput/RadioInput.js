@@ -7,12 +7,12 @@ const StyledWrapper = styled.span`
   justify-content: space-between;
   align-items: center;
   padding-inline: 0.5rem;
+  padding-block: 0.75rem;
   border: 1px solid ${({ theme }) => theme.colors.borderGray};
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.m};
-  line-height: 1.25rem;
-  height: 2.25rem;
+  /* height: 2.25rem; */
   cursor: pointer;
   width: 100%;
 `;

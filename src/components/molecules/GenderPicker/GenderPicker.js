@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RadioInput from 'components/atoms/RadioInput/RadioInput';
 import styled from 'styled-components';
+import GenderSelect from 'components/atoms/GenderSelect/GenderSelect';
+import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -34,15 +36,8 @@ const GenderPicker = ({ register }) => {
         <RadioInput {...register('male')} id="male" labelText="Male" />
         <RadioInput {...register('custom')} id="custom" labelText="Custom" />
       </div>
-      <select>
-        <option defaultValue="1" disabled="1">
-          Select your pronoun
-        </option>
-        <option value="1"> She: "Wish her a happy birthday!"</option>
-        <option value="2"> He: "Wish him a happy birthday!"</option>
-        <option value="3"> They: "Wish them a happy birthday!"</option>
-      </select>
-      <input type="text" placeholder="Gender (optional)" />
+      <GenderSelect />
+      <CredentialsInput {...register('optionalGender')} id="optionalGender" type="text" placeholder="Gender (optional)" />
     </StyledWrapper>
   );
 };

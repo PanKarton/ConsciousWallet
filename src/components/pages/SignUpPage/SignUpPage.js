@@ -27,8 +27,8 @@ const SignUpPage = () => {
         <div className="max-width-wrapper">
           <p>Step {step}/2</p>
           <Routes>
-            <Route path="/personals" element={<SignUpPersonalDetails register={register} setPrevStep={() => setStep(1)} />} />
-            <Route path="*" element={<SignUpAccountDetails register={register} setNextStep={() => setStep(2)} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
+            <Route path="/personals" element={<SignUpPersonalDetails register={register} setStep={setStep} />} />
+            <Route path="*" element={<SignUpAccountDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>
       </SignUpForm>

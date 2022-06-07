@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeadingWrapper, StyledWrapper } from './SignUpAccountDetails.styles';
 
-const SignUpAccountDetails = ({ register, setNextStep, watch, canMoveNext, setCanMoveNext }) => {
+const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMoveNext }) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -14,6 +14,7 @@ const SignUpAccountDetails = ({ register, setNextStep, watch, canMoveNext, setCa
   const { getLoginError, getPasswordError, getPasswordMatchError, getEmailError } = useSignUpValidation();
 
   useEffect(() => {
+    setStep(1);
     const subscription = watch(({ login, password, passwordConfirmation, email }) => {
       const newLoginError = getLoginError(login);
       const newPasswordError = getPasswordError(password);
@@ -45,7 +46,6 @@ const SignUpAccountDetails = ({ register, setNextStep, watch, canMoveNext, setCa
 
   const handleNextStep = () => {
     if (!canMoveNext) return;
-    setNextStep();
     navigate('/signup/personals');
   };
 

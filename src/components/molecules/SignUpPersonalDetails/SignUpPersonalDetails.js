@@ -1,15 +1,19 @@
 import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
-import React from 'react';
+import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BirthDatePicker from '../BirthDatePicker/BirthDatePicker';
 import GenderPicker from '../GenderPicker/GenderPicker';
 import { HeadingWrapper, StyledWrapper } from './SignUpPersonalDetails.styles';
 
-const SignUpPersonalDetails = ({ register, setPrevStep }) => {
+const SignUpPersonalDetails = ({ register, setStep }) => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setStep(2);
+  }, [setStep]);
+
   const handlePreviousStep = () => {
-    setPrevStep();
     navigate('/signup');
   };
 
@@ -27,13 +31,17 @@ const SignUpPersonalDetails = ({ register, setPrevStep }) => {
       </div>
       <BirthDatePicker />
       <GenderPicker register={register} />
-      <p>People who use our service may have uploaded your contact information to Twitter-copy.</p>
-      <p>
-        By clicking Sign Up, you agree to our Terms. Learn how we collect, use and share your data in our Data Policy and how we use cookies and similar technology in our Cookie Policy. You may
-        receive SMS notifications from us and can opt out at any time.
+      <p className="disclaimer">People who use our service may have uploaded your contact information to Twitter-copy.</p>
+      <p className="disclaimer">
+        By clicking Sign Up, you agree to our <a href="/">Terms</a>. Learn how we collect, use and share your data in our <a href="/">Data Policy</a> and how we use cookies and similar technology in
+        our <a href="/">Cookie Policy</a>. You may receive SMS notifications from us and can opt out at any time.
       </p>
-      <button onClick={handlePreviousStep}>Back</button>
-      <button type="submit">Sign Up</button>
+      <div className="buttons-wrapper">
+        <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
+        <CylinderButton bgColor="blue" textColor="white" type="submit">
+          Sign Up
+        </CylinderButton>
+      </div>
     </StyledWrapper>
   );
 };
