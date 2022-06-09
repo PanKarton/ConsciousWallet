@@ -7,7 +7,6 @@ import BirthDatePicker from '../BirthDatePicker/BirthDatePicker';
 import GenderPicker from '../GenderPicker/GenderPicker';
 import { HeadingWrapper, StyledWrapper } from './SignUpPersonalDetails.styles';
 import PropTypes from 'prop-types';
-import { getAllByRole } from '@testing-library/react';
 
 const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
   const navigate = useNavigate();
@@ -23,25 +22,28 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
 
   useEffect(() => {
     setStep(2);
-    const subscription = watch(({ name, surname, birthYear, ...rest }) => {
-      console.log({ name, surname, birthYear, ...rest });
-      // Neet to put errors into variables to check if errors exist in the end of watch() because updating states is async
+    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, ...rest }) => {
+      console.log({ name, surname, birthDay, birthMonth, birthYear, gender, ...rest });
+      // Need to put errors into variables to check if errors exist in the end of watch() because updating states is async
       const newNameError = getNameAndSurnameError(name);
       const newSurnameError = getNameAndSurnameError(surname);
-      const newAgeError = getAgeError(birthYear);
+      const newAgeError = getAgeError(birthDay, birthMonth, birthYear);
 
       setNameError(newNameError);
       setSurnameError(newSurnameError);
       setAgeError(newAgeError);
 
-      // console.log(!name || !surname || newNameError || newSurnameError || newAgeError);
-      console.log(!name);
-      console.log(!surname);
-      console.log(!surname || !name || newNameError > 0 || newSurnameError.length > 0 || newAgeError.length > 0);
-
       if (!name || !surname || newNameError.length > 0 || newSurnameError.length > 0 || newAgeError.length > 0) return setCanSubmit(false);
       setCanSubmit(true);
     });
+
+    //
+    //
+    //  Z JAKEIGOS POWWODU SIE BLAD POJAWIA, TRZEBA SPRAWDZIC CUSTOMGENDER SEKECT, GDZIE WALIDUJEMY INPUTA, A Z JAKIEGOS POWODU SIE SMIEC
+    // PRZESTAŁ POJAWIAC
+    //
+    //
+    //
 
     return () => subscription.unsubscribe();
   }, [setStep, watch, getNameAndSurnameError, getAgeError, setCanSubmit]);
@@ -65,7 +67,7 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
         {surnameError && <p>{surnameError}</p>}
       </div>
       <BirthDatePicker register={register} ageError={ageError} />
-      <GenderPicker register={register} watch={watch} />
+      <GenderPicker register={register} watch={watch} setCanSubmit={setCanSubmit} />
       <p className="disclaimer">People who use our service may have uploaded your contact information to Twitter-copy.</p>
       <p className="disclaimer">
         By clicking Sign Up, you agree to our <a href="/">Terms</a>. Learn how we collect, use and share your data in our <a href="/">Data Policy</a> and how we use cookies and similar technology in

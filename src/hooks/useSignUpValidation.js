@@ -1,5 +1,3 @@
-// TRZEBA STWORZYC HOOKA, KTÓRY WYPLUWA WALIDACJE INPUTÓW DO SIGN UPA
-
 import { useCallback } from 'react';
 
 const useSignUpValidation = () => {
@@ -37,9 +35,18 @@ const useSignUpValidation = () => {
     return regex.test(value) ? '' : 'You can use only capital and small letters';
   }, []);
 
-  const getAgeError = useCallback((year) => {
-    if (!year) return '';
-    return year < 2009 ? '' : 'You are too young to use Twitter-copy';
+  const getAgeError = useCallback((day, month, year) => {
+    const birthdayDate = new Date(year, month, day);
+    const birthdayDateMS = birthdayDate.getTime();
+
+    const nowDate = new Date();
+    const nowDateMS = nowDate.getTime();
+
+    const differenceMS = nowDateMS - birthdayDateMS;
+
+    const minDifferenceMS = 410240038000;
+
+    return differenceMS > minDifferenceMS ? '' : 'You are too young to use Twitter-copy. Only 13+ users allowed.';
   }, []);
 
   return {

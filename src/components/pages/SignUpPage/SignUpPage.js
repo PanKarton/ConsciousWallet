@@ -19,7 +19,13 @@ const SignUpPage = () => {
 
   const handleCreateAccount = (data) => {
     if (!canSubmit) return console.log('napraw inputy smieciu');
-    console.log(data);
+    const { pronoun, optionalGender, ...rest } = data;
+    // Remove "pronoun" key if gender is male or female
+    if (data.gender === 'male' || data.gender === 'female') {
+      console.log({ ...rest });
+    } else {
+      console.log(data);
+    }
   };
 
   return (

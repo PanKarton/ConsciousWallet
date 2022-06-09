@@ -4,11 +4,16 @@ import { StyledSelect } from './Select.styles';
 
 const Select = React.forwardRef(({ array, ...props }, ref) => (
   <StyledSelect {...props} ref={ref}>
-    {array.map((element, index) => (
-      <option key={index} value={element}>
-        {element}
-      </option>
-    ))}
+    {array.map((element, index) => {
+      // If array is made of strings, then use index as value
+      const isElementString = typeof element === 'string' || element instanceof String ? true : false;
+
+      return (
+        <option key={index} value={isElementString ? index : element}>
+          {element}
+        </option>
+      );
+    })}
   </StyledSelect>
 ));
 
