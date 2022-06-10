@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import SignUpAccountDetails from 'components/molecules/SignUpAccountDetails/SignUpAccountDetails';
 import SignUpPersonalDetails from 'components/molecules/SignUpPersonalDetails/SignUpPersonalDetails';
 import { useForm } from 'react-hook-form';
+import SignUpFinal from 'components/molecules/SignUpFinal/SignUpFinal';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -12,20 +13,24 @@ const SignUpPage = () => {
   const [step, setStep] = useState(1);
   const [canMoveNext, setCanMoveNext] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
+  const [isStepVisible, setIsStepVisible] = useState(true);
 
   const handleCloseForm = () => {
     navigate('/');
   };
 
   const handleCreateAccount = (data) => {
-    if (!canSubmit) return console.log('napraw inputy smieciu');
     const { pronoun, optionalGender, ...rest } = data;
     // Remove "pronoun" key if gender is male or female
+    let accountData = {};
     if (data.gender === 'male' || data.gender === 'female') {
-      console.log({ ...rest });
+      accountData = { ...rest };
     } else {
-      console.log(data);
+      accountData = { ...data };
     }
+    console.log(accountData);
+    setIsStepVisible(false);
+    navigate('/signup/final');
   };
 
   return (
@@ -33,12 +38,13 @@ const SignUpPage = () => {
       <SignUpForm onSubmit={handleSubmit(handleCreateAccount)}>
         <CloseIcon onClick={handleCloseForm} />
         <div className="max-width-wrapper">
-          <p>Step {step}/2</p>
+          {isStepVisible && <p>Step {step}/2</p>}
           <Routes>
             <Route
               path="/personals"
               element={<SignUpPersonalDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} canSubmit={canSubmit} setCanSubmit={setCanSubmit} />}
             />
+            <Route path="/final" element={<SignUpFinal />} />
             <Route path="*" element={<SignUpAccountDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>

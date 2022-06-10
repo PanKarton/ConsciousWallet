@@ -13,6 +13,7 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
   const [nameError, setNameError] = useState('');
   const [surnameError, setSurnameError] = useState('');
   const [ageError, setAgeError] = useState('');
+  const [optionalGenderError, setOptionalGenderError] = useState('');
   const { getNameAndSurnameError, getAgeError } = useSignUpValidation();
 
   useEffect(() => {
@@ -22,28 +23,25 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
 
   useEffect(() => {
     setStep(2);
-    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, ...rest }) => {
-      console.log({ name, surname, birthDay, birthMonth, birthYear, gender, ...rest });
+    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender, ...rest }) => {
+      console.log({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender, ...rest });
       // Need to put errors into variables to check if errors exist in the end of watch() because updating states is async
       const newNameError = getNameAndSurnameError(name);
       const newSurnameError = getNameAndSurnameError(surname);
       const newAgeError = getAgeError(birthDay, birthMonth, birthYear);
+      const newOptionalGenderError = getNameAndSurnameError(optionalGender);
 
       setNameError(newNameError);
       setSurnameError(newSurnameError);
       setAgeError(newAgeError);
+      setOptionalGenderError(newOptionalGenderError);
 
-      if (!name || !surname || newNameError.length > 0 || newSurnameError.length > 0 || newAgeError.length > 0) return setCanSubmit(false);
-      setCanSubmit(true);
+      if (!name || !surname || gender === null || newNameError.length > 0 || newSurnameError.length > 0 || newAgeError.length > 0 || newOptionalGenderError.length > 0) {
+        setCanSubmit(false);
+      } else {
+        setCanSubmit(true);
+      }
     });
-
-    //
-    //
-    //  Z JAKEIGOS POWWODU SIE BLAD POJAWIA, TRZEBA SPRAWDZIC CUSTOMGENDER SEKECT, GDZIE WALIDUJEMY INPUTA, A Z JAKIEGOS POWODU SIE SMIEC
-    // PRZESTAŁ POJAWIAC
-    //
-    //
-    //
 
     return () => subscription.unsubscribe();
   }, [setStep, watch, getNameAndSurnameError, getAgeError, setCanSubmit]);
@@ -67,14 +65,14 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
         {surnameError && <p>{surnameError}</p>}
       </div>
       <BirthDatePicker register={register} ageError={ageError} />
-      <GenderPicker register={register} watch={watch} setCanSubmit={setCanSubmit} />
+      <GenderPicker register={register} watch={watch} setCanSubmit={setCanSubmit} optionalGenderError={optionalGenderError} setOptionalGenderError={setOptionalGenderError} />
       <p className="disclaimer">People who use our service may have uploaded your contact information to Twitter-copy.</p>
       <p className="disclaimer">
         By clicking Sign Up, you agree to our <a href="/">Terms</a>. Learn how we collect, use and share your data in our <a href="/">Data Policy</a> and how we use cookies and similar technology in
         our <a href="/">Cookie Policy</a>. You may receive SMS notifications from us and can opt out at any time.
       </p>
       <div className="buttons-wrapper">
-        {!canSubmit && <p className="error-message">Please make sure all fields are fulfilled properly.</p>}
+        {canSubmit ? null : <p className="error-message">Please make sure all fields are fulfilled properly.</p>}
         <div className="buttons-flex-wrapper">
           <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
           <CylinderButton bgColor="blue" textColor="white" type="submit">
