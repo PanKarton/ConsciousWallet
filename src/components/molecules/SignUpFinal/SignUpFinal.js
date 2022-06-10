@@ -1,38 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
-import styled from 'styled-components';
+
 import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
+import { useNavigate } from 'react-router-dom';
+import { StyledWrapper } from './SignUpFinal.styles';
 
-const StyledWrapper = styled.div`
-  border: 1px solid red;
-  /* height: 100%; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .bird-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-      position: static;
-      color: ${({ theme }) => theme.colors.twBlue};
-      font-size: 4rem;
-    }
-  }
-`;
+const SignUpFinal = ({ canMoveNext }) => {
+  const navigate = useNavigate();
 
-const SignUpFinal = (props) => (
-  <StyledWrapper>
-    <div className="bird-wrapper">
-      <BirdIcon />
-    </div>
-    <p></p>
-    <CylinderButton>Get Started</CylinderButton>
-  </StyledWrapper>
-);
+  useEffect(() => {
+    // Move to step 1/2 if refreshed on step 2/2
+    if (!canMoveNext) navigate('/signup');
+  }, [canMoveNext, navigate]);
 
-SignUpFinal.propTypes = {};
+  return (
+    <StyledWrapper>
+      <div className="bird-wrapper">
+        <BirdIcon />
+      </div>
+      <h2 className="welcome-heading">Welcome to Twitter-copy!</h2>
+      <p className="message">Make your first awesome tweet and connect with people all over the world!</p>
+      <CylinderButton bgColor="blue" textColor="white" type="submit">
+        Get Started
+      </CylinderButton>
+    </StyledWrapper>
+  );
+};
+
+SignUpFinal.propTypes = {
+  canMoveNext: PropTypes.bool,
+};
 
 export default SignUpFinal;

@@ -8,7 +8,7 @@ import GenderPicker from '../GenderPicker/GenderPicker';
 import { HeadingWrapper, StyledWrapper } from './SignUpPersonalDetails.styles';
 import PropTypes from 'prop-types';
 
-const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
+const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
   const navigate = useNavigate();
   const [nameError, setNameError] = useState('');
   const [surnameError, setSurnameError] = useState('');
@@ -23,8 +23,7 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
 
   useEffect(() => {
     setStep(2);
-    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender, ...rest }) => {
-      console.log({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender, ...rest });
+    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender }) => {
       // Need to put errors into variables to check if errors exist in the end of watch() because updating states is async
       const newNameError = getNameAndSurnameError(name);
       const newSurnameError = getNameAndSurnameError(surname);
@@ -48,6 +47,12 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
 
   const handlePreviousStep = () => {
     navigate('/signup');
+  };
+
+  const handleNextStep = () => {
+    setIsStepVisible(false);
+
+    navigate('/signup/final');
   };
 
   return (
@@ -75,7 +80,7 @@ const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMove
         {canSubmit ? null : <p className="error-message">Please make sure all fields are fulfilled properly.</p>}
         <div className="buttons-flex-wrapper">
           <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
-          <CylinderButton bgColor="blue" textColor="white" type="submit">
+          <CylinderButton bgColor="blue" textColor="white" onClick={handleNextStep}>
             Sign Up
           </CylinderButton>
         </div>

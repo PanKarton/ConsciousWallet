@@ -6,6 +6,7 @@ import SignUpAccountDetails from 'components/molecules/SignUpAccountDetails/Sign
 import SignUpPersonalDetails from 'components/molecules/SignUpPersonalDetails/SignUpPersonalDetails';
 import { useForm } from 'react-hook-form';
 import SignUpFinal from 'components/molecules/SignUpFinal/SignUpFinal';
+import { useAuth } from 'hooks/useAuth';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -14,12 +15,13 @@ const SignUpPage = () => {
   const [canMoveNext, setCanMoveNext] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
   const [isStepVisible, setIsStepVisible] = useState(true);
+  const auth = useAuth();
 
   const handleCloseForm = () => {
     navigate('/');
   };
 
-  const handleCreateAccount = (data) => {
+  const handleCreateAccount = ({ passwordConfirmation, ...data }) => {
     const { pronoun, optionalGender, ...rest } = data;
     // Remove "pronoun" key if gender is male or female
     let accountData = {};
@@ -28,9 +30,8 @@ const SignUpPage = () => {
     } else {
       accountData = { ...data };
     }
-    console.log(accountData);
-    setIsStepVisible(false);
-    navigate('/signup/final');
+    auth.handleSignUp(accountData);
+    // console.log(accountData);
   };
 
   return (
@@ -42,9 +43,19 @@ const SignUpPage = () => {
           <Routes>
             <Route
               path="/personals"
-              element={<SignUpPersonalDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} canSubmit={canSubmit} setCanSubmit={setCanSubmit} />}
+              element={
+                <SignUpPersonalDetails
+                  setIsStepVisible={setIsStepVisible}
+                  register={register}
+                  setStep={setStep}
+                  watch={watch}
+                  canMoveNext={canMoveNext}
+                  canSubmit={canSubmit}
+                  setCanSubmit={setCanSubmit}
+                />
+              }
             />
-            <Route path="/final" element={<SignUpFinal />} />
+            <Route path="/final" element={<SignUpFinal setIsStepVisible={setIsStepVisible} canMoveNext={canMoveNext} />} />
             <Route path="*" element={<SignUpAccountDetails register={register} setStep={setStep} watch={watch} canMoveNext={canMoveNext} setCanMoveNext={setCanMoveNext} />} />
           </Routes>
         </div>

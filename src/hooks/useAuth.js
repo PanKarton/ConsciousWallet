@@ -9,13 +9,9 @@ export const AuthProvider = ({ children }) => {
 
   const usersCollectionRef = collection(db, 'users');
 
-  const handleSignUp = async ({ login, password, passwordConfirmation, email }) => {
-    if (password !== passwordConfirmation) return console.log(`wrr`);
-    await addDoc(usersCollectionRef, {
-      login,
-      password,
-      email,
-    });
+  const handleSignUp = async (data) => {
+    await addDoc(usersCollectionRef, data);
+    setcurrentUser(data);
   };
 
   return <AuthContext.Provider value={{ currentUser, handleSignUp }}>{children}</AuthContext.Provider>;
