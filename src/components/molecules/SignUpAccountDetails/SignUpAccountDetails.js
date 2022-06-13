@@ -4,18 +4,29 @@ import useSignUpValidation from 'hooks/useSignUpValidation';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeadingWrapper, StyledWrapper } from './SignUpAccountDetails.styles';
+import debounce from 'lodash.debounce';
+import { useAuth } from 'hooks/useAuth';
 
 const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMoveNext }) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [passwordsMatchError, setPasswordMatchError] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [validationEmailError, setValidationEmailError] = useState('');
+  const [emailAvailabilityError, setEmailAvailabilityError] = useState('');
   const { getLoginError, getPasswordError, getPasswordMatchError, getEmailError } = useSignUpValidation();
+  const { isEmailAvaliable } = useAuth();
+
+  const checkEmailAvailability = debounce(async (email) => {
+    console.log(`czesc`);
+    const isAvaliable = await isEmailAvaliable(email);
+    setEmailAvailabilityError(isAvaliable ? 'Email already used by sameone else.' : '');
+  }, 500);
 
   useEffect(() => {
     setStep(1);
     const subscription = watch(({ login, password, passwordConfirmation, email }) => {
+      checkEmailAvailability(email);
       const newLoginError = getLoginError(login);
       const newPasswordError = getPasswordError(password);
       const newPasswordMatchError = getPasswordMatchError(password, passwordConfirmation);
@@ -31,10 +42,10 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
       setPasswordMatchError(newPasswordMatchError);
 
       // Check if email is valid and set error or ''
-      setEmailError(newEmailError);
+      setValidationEmailError(newEmailError);
 
       // Check if all inputs have valid content
-      if (newLoginError || newPasswordError || newPasswordError || newEmailError) return setCanMoveNext(false);
+      if (newLoginError || newPasswordError || newPasswordError || newEmailError || emailAvailabilityError) return setCanMoveNext(false);
       // Check if all inputs contain value
       if (!login || !password || !passwordConfirmation || !email) return setCanMoveNext(false);
 
@@ -42,7 +53,21 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
     });
 
     return () => subscription.unsubscribe();
-  }, [setStep, setCanMoveNext, watch, getLoginError, getPasswordError, getPasswordMatchError, getEmailError, emailError, loginError, passwordError, passwordsMatchError]);
+  }, [
+    checkEmailAvailability,
+    setStep,
+    setCanMoveNext,
+    watch,
+    getLoginError,
+    getPasswordError,
+    getPasswordMatchError,
+    getEmailError,
+    validationEmailError,
+    loginError,
+    passwordError,
+    passwordsMatchError,
+    emailAvailabilityError,
+  ]);
 
   const handleNextStep = () => {
     if (!canMoveNext) return;
@@ -58,7 +83,7 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
       <CredentialsInput {...register('login')} id="login" type="text" placeholder="Login" required errorMessage={loginError} />
       <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
       <CredentialsInput {...register('passwordConfirmation')} id="passwordConfirmation" type="password" placeholder="Password confirmation" required errorMessage={passwordsMatchError} />
-      <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required errorMessage={emailError} />
+      <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required errorMessage={validationEmailError} secondeErrorMessage={emailAvailabilityError} />
       <CylinderButton type="button" bgColor="blue" textColor="white" onClick={handleNextStep}>
         Next
       </CylinderButton>

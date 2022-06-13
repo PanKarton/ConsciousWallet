@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { db } from 'firebase-config';
-import { addDoc, collection } from '@firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 export const AuthContext = React.createContext({});
 
@@ -10,11 +10,30 @@ export const AuthProvider = ({ children }) => {
   const usersCollectionRef = collection(db, 'users');
 
   const handleSignUp = async (data) => {
-    await addDoc(usersCollectionRef, data);
-    setcurrentUser(data);
+    try {
+      data.keys((key) => (data[key] = data[key].trim()));
+      const user = await addDoc(usersCollectionRef, data);
+      setcurrentUser(data);
+      console.log('New user: ', user);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  return <AuthContext.Provider value={{ currentUser, handleSignUp }}>{children}</AuthContext.Provider>;
+  const isEmailAvaliable = async (email) => {
+    try {
+      const docs = await getDocs(usersCollectionRef, 'users');
+      let isAvaliable = false;
+      docs.forEach((doc) => {
+        if (doc.data().email === email) isAvaliable = true;
+      });
+      return isAvaliable;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return <AuthContext.Provider value={{ currentUser, handleSignUp, isEmailAvaliable }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
