@@ -11,9 +11,27 @@ export const AuthProvider = ({ children }) => {
 
   const handleSignUp = async (data) => {
     try {
-      data.keys((key) => (data[key] = data[key].trim()));
-      const user = await addDoc(usersCollectionRef, data);
-      setcurrentUser(data);
+      Object.keys(data).forEach((key) => (data[key] = data[key].trim()));
+      const { birthDay, birthMonth, birthYear, name, surname, gender, optionalGender, pronoun, ...rest } = data;
+      const refactredUserData = {
+        birth: {
+          day: birthDay,
+          month: birthMonth,
+          year: birthYear,
+        },
+        name: {
+          first: name,
+          last: surname,
+        },
+        gender: {
+          type: gender,
+          optional: optionalGender,
+          pronoun,
+        },
+        ...rest,
+      };
+      const user = await addDoc(usersCollectionRef, refactredUserData);
+      setcurrentUser(refactredUserData);
       console.log('New user: ', user);
     } catch (err) {
       console.log(err);
@@ -23,9 +41,9 @@ export const AuthProvider = ({ children }) => {
   const isEmailAvaliable = async (email) => {
     try {
       const docs = await getDocs(usersCollectionRef, 'users');
-      let isAvaliable = false;
+      let isAvaliable = true;
       docs.forEach((doc) => {
-        if (doc.data().email === email) isAvaliable = true;
+        if (doc.data().email === email) isAvaliable = false;
       });
       return isAvaliable;
     } catch (err) {

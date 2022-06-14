@@ -23,15 +23,13 @@ const SignUpPage = () => {
 
   const handleCreateAccount = ({ passwordConfirmation, ...data }) => {
     const { pronoun, optionalGender, ...rest } = data;
-    // Remove "pronoun" key if gender is male or female
     let accountData = {};
     if (data.gender === 'male' || data.gender === 'female') {
-      accountData = { ...rest };
+      accountData = { pronoun: 'none', optionalGender: 'none', ...rest };
     } else {
       accountData = { ...data };
     }
     auth.handleSignUp(accountData);
-    // console.log(accountData);
   };
 
   return (

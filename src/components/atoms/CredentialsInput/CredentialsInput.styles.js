@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
   width: ${({ isHalfWidth }) => (isHalfWidth ? '50%' : '100%')};
+
   p {
     font-size: ${({ theme }) => theme.fontSize.xs};
     color: ${({ theme }) => theme.colors.errorRed};
@@ -15,7 +16,8 @@ export const InputWrapper = styled.div`
   overflow: hidden;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.borderGray};
+  border: 1px solid ${({ theme, isError }) => (isError ? theme.colors.errorRed : theme.colors.borderGray)};
+
   label {
     display: block;
     position: relative;
