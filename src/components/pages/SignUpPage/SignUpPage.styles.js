@@ -1,7 +1,15 @@
 import { PrivacyTermsDisclaimer } from 'components/molecules/SignUpButtons/SignUpButtons/SignUpButtons.styles';
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
+export const SignUpWrapper = styled.section`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.bgcGray};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SignUpForm = styled.form`
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -14,24 +22,29 @@ export const ModalWrapper = styled.div`
     border-radius: 2rem;
     width: 37.5rem;
     height: auto;
-    padding-inline: 5rem;
-    padding-block: 7rem 6rem;
+    padding-block: 5rem;
   }
 
   .max-width-wrapper {
-    width: min(100%, 20.75rem);
+    position: relative;
+    width: min(100%, 20rem);
+    min-height: 26rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     gap: 1.25rem;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
 
-    h2 {
-      font-size: ${({ theme }) => theme.fontSize.l};
-      @media screen and (min-width: 500px) {
-        font-size: ${({ theme }) => theme.fontSize.xl};
-      }
+    & > p {
+      width: 100%;
+      text-align: left;
+      color: ${({ theme }) => theme.colors.textGray};
+      font-size: ${({ theme }) => theme.fontSize.xxm};
+      /* position: absolute; */
+      /* left: 1rem; */
+      /* top: 0; */
+      font-weight: 700;
     }
   }
 

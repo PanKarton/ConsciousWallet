@@ -6,22 +6,25 @@ import { GlobalStyle } from 'assets/styles/globalStyle';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { store } from 'store';
-import { AuthProvider } from 'hooks/useAuth';
+import { AuthProvider } from 'providers/AuthProvider';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppProvider = ({ children }) => {
   return (
     <Provider store={store}>
-      <AuthProvider>
-        <HelmetProvider>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Helmet>
-              <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
-            </Helmet>
-            {children}
-          </ThemeProvider>
-        </HelmetProvider>
-      </AuthProvider>
+      <Router>
+        <AuthProvider>
+          <HelmetProvider>
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
+              <Helmet>
+                <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+              </Helmet>
+              {children}
+            </ThemeProvider>
+          </HelmetProvider>
+        </AuthProvider>
+      </Router>
     </Provider>
   );
 };
