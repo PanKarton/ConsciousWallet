@@ -25,8 +25,7 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
   return (
     <StyledWrapper>
       <HeadingWrapper>
-        <h2>Sign Up! </h2>
-        <p>It's quick and easy.</p>
+        <h2>Sign Up! </h2>w<p>It's quick and easy.</p>
       </HeadingWrapper>
       <CredentialsInput {...register('login')} id="login" type="text" placeholder="Login" required errorMessage={loginError} secondErrorMessage={loginAvailabilityError} />
       <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
