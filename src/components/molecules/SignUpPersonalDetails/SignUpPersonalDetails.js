@@ -1,7 +1,7 @@
 import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import useSignUpValidation from 'hooks/useSignUpValidation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BirthDatePicker from '../BirthDatePicker/BirthDatePicker';
 import GenderPicker from '../GenderPicker/GenderPicker';
@@ -10,11 +10,7 @@ import PropTypes from 'prop-types';
 
 const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
   const navigate = useNavigate();
-  const [nameError, setNameError] = useState('');
-  const [surnameError, setSurnameError] = useState('');
-  const [ageError, setAgeError] = useState('');
-  const [optionalGenderError, setOptionalGenderError] = useState('');
-  const { getNameAndSurnameError, getAgeError } = useSignUpValidation();
+  const { nameError, ageError, surnameError, optionalGenderError, validatePersonalDataInputs } = useSignUpValidation();
 
   useEffect(() => {
     // Move to step 1/2 if refreshed on step 2/2
@@ -23,35 +19,19 @@ const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubm
 
   useEffect(() => {
     setStep(2);
-    const subscription = watch(({ name, surname, birthDay, birthMonth, birthYear, gender, optionalGender }) => {
-      // Need to put errors into variables to check if errors exist in the end of watch() because updating states is async
-      const newNameError = getNameAndSurnameError(name);
-      const newSurnameError = getNameAndSurnameError(surname);
-      const newAgeError = getAgeError(birthDay, birthMonth, birthYear);
-      const newOptionalGenderError = getNameAndSurnameError(optionalGender);
-
-      setNameError(newNameError);
-      setSurnameError(newSurnameError);
-      setAgeError(newAgeError);
-      setOptionalGenderError(newOptionalGenderError);
-
-      if (!name || !surname || gender === null || newNameError.length > 0 || newSurnameError.length > 0 || newAgeError.length > 0 || newOptionalGenderError.length > 0) {
-        setCanSubmit(false);
-      } else {
-        setCanSubmit(true);
-      }
+    const subscription = watch((data) => {
+      validatePersonalDataInputs(data, setCanSubmit);
     });
 
     return () => subscription.unsubscribe();
-  }, [setStep, watch, getNameAndSurnameError, getAgeError, setCanSubmit]);
+  }, [validatePersonalDataInputs, watch, setCanSubmit, setStep]);
 
   const handlePreviousStep = () => {
     navigate('/signup');
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = (e) => {
     setIsStepVisible(false);
-
     navigate('/signup/final');
   };
 
@@ -70,7 +50,7 @@ const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubm
         {surnameError && <p>{surnameError}</p>}
       </div>
       <BirthDatePicker register={register} ageError={ageError} />
-      <GenderPicker register={register} watch={watch} setCanSubmit={setCanSubmit} optionalGenderError={optionalGenderError} setOptionalGenderError={setOptionalGenderError} />
+      <GenderPicker register={register} watch={watch} setCanSubmit={setCanSubmit} optionalGenderError={optionalGenderError} />
       <p className="disclaimer">People who use our service may have uploaded your contact information to Twitter-copy.</p>
       <p className="disclaimer">
         By clicking Sign Up, you agree to our <a href="/">Terms</a>. Learn how we collect, use and share your data in our <a href="/">Data Policy</a> and how we use cookies and similar technology in
@@ -80,7 +60,7 @@ const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubm
         {canSubmit ? null : <p className="error-message">Please make sure all fields are fulfilled properly.</p>}
         <div className="buttons-flex-wrapper">
           <CylinderButton onClick={handlePreviousStep}>Back</CylinderButton>
-          <CylinderButton bgColor="blue" textColor="white" onClick={handleNextStep}>
+          <CylinderButton bgColor="blue" textColor="white" onClick={handleNextStep} disabled={!canSubmit}>
             Sign Up
           </CylinderButton>
         </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { db } from 'firebase-config';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 
 export const AuthContext = React.createContext({});
 
@@ -11,7 +11,12 @@ export const AuthProvider = ({ children }) => {
 
   const handleSignUp = async (data) => {
     try {
-      Object.keys(data).forEach((key) => (data[key] = data[key].trim()));
+      // Remove spaces and tabs in case there is any
+      Object.keys(data).forEach((key) => {
+        if (typeof data[key] === 'string') {
+          data[key] = data[key].trim();
+        }
+      });
       const { birthDay, birthMonth, birthYear, name, surname, gender, optionalGender, pronoun, ...rest } = data;
       const refactredUserData = {
         birth: {
@@ -31,27 +36,16 @@ export const AuthProvider = ({ children }) => {
         ...rest,
       };
       const user = await addDoc(usersCollectionRef, refactredUserData);
-      setcurrentUser(refactredUserData);
-      console.log('New user: ', user);
+      // TRZEBA ZROBIC REFAKTOR PRZEJSCIA DO ZAUTORYZOWWANEJ APKI, GDZIE NAJPIERW JEST PRZEJSCIE, POTEM LOADING
+      // A NA KONCU JAK DANE SIE ZAŁADUJĄ TO POJAWI SIE APKA, A TERAZ BD DANE PO PROSTU OD RAZU WCIŚNIĘTE I NIE ZROBI SB UPDATE
+      setcurrentUser(user.id);
+      console.log('New user: ', user, user.id);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const isEmailAvaliable = async (email) => {
-    try {
-      const docs = await getDocs(usersCollectionRef, 'users');
-      let isAvaliable = true;
-      docs.forEach((doc) => {
-        if (doc.data().email === email) isAvaliable = false;
-      });
-      return isAvaliable;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  return <AuthContext.Provider value={{ currentUser, handleSignUp, isEmailAvaliable }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ currentUser, handleSignUp }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

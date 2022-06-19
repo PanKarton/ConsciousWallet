@@ -22,14 +22,12 @@ const SignUpPage = () => {
   };
 
   const handleCreateAccount = ({ passwordConfirmation, ...data }) => {
-    const { pronoun, optionalGender, ...rest } = data;
-    let accountData = {};
+    // if gender is male or female, overwrite undefined with null
     if (data.gender === 'male' || data.gender === 'female') {
-      accountData = { pronoun: 'none', optionalGender: 'none', ...rest };
+      auth.handleSignUp({ pronoun: null, optionalGender: null, ...data });
     } else {
-      accountData = { ...data };
+      auth.handleSignUp({ ...data });
     }
-    auth.handleSignUp(accountData);
   };
 
   return (
