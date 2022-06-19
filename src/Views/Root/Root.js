@@ -4,9 +4,9 @@ import AuthenticatedApp from 'components/templates/AuthenticatedApp/Authenticate
 import UnauthenticatedApp from 'components/pages/UnauthenticatedApp/UnauthenticatedApp';
 
 const Root = () => {
-  const { currentUser } = useAuth();
+  const { isAuthorised } = useAuth();
 
-  return currentUser == null ? <UnauthenticatedApp /> : <AuthenticatedApp />;
+  return isAuthorised ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 };
 
 export default Root;

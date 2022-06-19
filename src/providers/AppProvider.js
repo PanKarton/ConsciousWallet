@@ -6,7 +6,7 @@ import { GlobalStyle } from 'assets/styles/globalStyle';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { store } from 'store';
-import { AuthProvider } from 'hooks/useAuth';
+import { AuthProvider } from 'providers/AuthProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const AppProvider = ({ children }) => {
