@@ -36,14 +36,11 @@ export const SignUpForm = styled.form`
     gap: 1.25rem;
     padding: 2rem 1rem 1rem 1rem;
 
-    & > p {
+    & > p.step {
       width: 100%;
       text-align: left;
       color: ${({ theme }) => theme.colors.textGray};
       font-size: ${({ theme }) => theme.fontSize.xxm};
-      /* position: absolute; */
-      /* left: 1rem; */
-      /* top: 0; */
       font-weight: 700;
     }
   }
