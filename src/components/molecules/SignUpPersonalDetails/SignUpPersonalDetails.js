@@ -8,7 +8,7 @@ import GenderPicker from '../GenderPicker/GenderPicker';
 import { HeadingWrapper, StyledWrapper } from './SignUpPersonalDetails.styles';
 import PropTypes from 'prop-types';
 
-const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
+const SignUpPersonalDetails = ({ register, setStep, setCanSubmit, watch, canMoveNext, canSubmit }) => {
   const navigate = useNavigate();
   const { nameError, ageError, surnameError, optionalGenderError, validatePersonalDataInputs } = useSignUpValidation();
 
@@ -30,8 +30,7 @@ const SignUpPersonalDetails = ({ setIsStepVisible, register, setStep, setCanSubm
     navigate('/signup');
   };
 
-  const handleNextStep = (e) => {
-    setIsStepVisible(false);
+  const handleNextStep = () => {
     navigate('/signup/final');
   };
 

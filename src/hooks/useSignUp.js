@@ -1,8 +1,13 @@
 import { db } from 'firebase-config';
 import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { useAuth } from 'providers/AuthProvider';
+import { useState } from 'react';
 
 const useSignUp = () => {
+  const [step, setStep] = useState(1);
+  const [canMoveNext, setCanMoveNext] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
+
   const usersCollectionRef = collection(db, 'users');
   const { setIsAuthorised, setCurrentUser } = useAuth();
 
@@ -42,7 +47,7 @@ const useSignUp = () => {
     }
   };
 
-  return { handleSignUp };
+  return { handleSignUp, step, setStep, canMoveNext, setCanMoveNext, canSubmit, setCanSubmit };
 };
 
 export default useSignUp;

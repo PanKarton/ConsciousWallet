@@ -6,13 +6,14 @@ import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 import { useNavigate } from 'react-router-dom';
 import { StyledWrapper } from './SignUpFinal.styles';
 
-const SignUpFinal = ({ canMoveNext }) => {
+const SignUpFinal = ({ canMoveNext, setStep }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
     // Move to step 1/2 if refreshed on step 2/2
     if (!canMoveNext) navigate('/signup');
-  }, [canMoveNext, navigate]);
+    setStep(3);
+  }, [canMoveNext, navigate, setStep]);
 
   return (
     <StyledWrapper>
