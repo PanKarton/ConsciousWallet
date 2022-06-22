@@ -6,7 +6,7 @@ import SignUpAccountDetails from 'components/molecules/SignUpAccountDetails/Sign
 import SignUpPersonalDetails from 'components/molecules/SignUpPersonalDetails/SignUpPersonalDetails';
 import { useForm } from 'react-hook-form';
 import SignUpFinal from 'components/molecules/SignUpFinal/SignUpFinal';
-import { useAuth } from 'hooks/useAuth';
+import useSignUp from 'hooks/useSignUp';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const SignUpPage = () => {
   const [canMoveNext, setCanMoveNext] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
   const [isStepVisible, setIsStepVisible] = useState(true);
-  const auth = useAuth();
+  const { handleSignUp } = useSignUp();
 
   const handleCloseForm = () => {
     navigate('/');
@@ -24,9 +24,9 @@ const SignUpPage = () => {
   const handleCreateAccount = ({ passwordConfirmation, ...data }) => {
     // if gender is male or female, overwrite undefined with null
     if (data.gender === 'male' || data.gender === 'female') {
-      auth.handleSignUp({ pronoun: null, optionalGender: null, ...data });
+      handleSignUp({ pronoun: null, optionalGender: null, ...data });
     } else {
-      auth.handleSignUp({ ...data });
+      handleSignUp({ ...data });
     }
   };
 
