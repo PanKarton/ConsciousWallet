@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton } from './CylinderButton.styles';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
-const CylinderButton = ({ children, bgColor = 'white', textColor = 'black', disabled, ...props }) => {
+const CylinderButton = ({ children, bgColor = 'white', textColor = 'black', disabled, isLoading, ...props }) => {
   return (
     <StyledButton bgColor={bgColor} textColor={textColor} disabled={disabled} {...props}>
-      {children}
+      {isLoading ? <AiOutlineLoading3Quarters className="loading-icon" /> : children}
     </StyledButton>
   );
 };
