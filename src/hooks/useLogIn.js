@@ -3,7 +3,7 @@ import { useAuth } from 'providers/AuthProvider';
 import { db } from 'firebase-config';
 import { collection, where, query, getDocs } from 'firebase/firestore';
 
-const useLogIn = (props) => {
+const useLogIn = () => {
   const [isError, setIsError] = useState(false);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -43,6 +43,7 @@ const useLogIn = (props) => {
       } else {
         setIsError(true);
       }
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }

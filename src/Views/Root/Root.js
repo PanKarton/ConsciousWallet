@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticatedApp from 'components/templates/AuthenticatedApp/AuthenticatedApp';
+import AuthenticatedApp from 'components/templates/MainTemplate/MainTemplate';
 import UnauthenticatedApp from 'components/pages/UnauthenticatedApp/UnauthenticatedApp';
 import { useAuth } from 'providers/AuthProvider';
 
