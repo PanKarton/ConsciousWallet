@@ -1,12 +1,11 @@
 import React from 'react';
-import { TemplateWrapper } from '../MainTemplate.styles';
+import { TemplateWrapper } from './MainTemplate.styles';
+import MainHeader from 'components/organisms/MainHeader/MainHeader';
 
 const MainTemplate = ({ children }) => {
   return (
     <TemplateWrapper>
-      <header className="app-header">
-        <nav className="app-nav">kajsdklaslkdj</nav>
-      </header>
+      <MainHeader />
       <main>{children}</main>
     </TemplateWrapper>
   );
