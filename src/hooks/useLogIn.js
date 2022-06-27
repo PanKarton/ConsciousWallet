@@ -35,6 +35,7 @@ const useLogIn = () => {
       // Query for data
       const querySnapshot = await getDocs(q);
       // Check if response is empty and then do stuff
+      console.log(querySnapshot);
       if (!querySnapshot.empty) {
         setIsAuthorised(true);
         querySnapshot.forEach((doc) => {

@@ -1,43 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { BiHomeCircle } from 'react-icons/bi';
-import { FiBell } from 'react-icons/fi';
-import { FaUserFriends } from 'react-icons/fa';
-import { CgProfile } from 'react-icons/cg';
+import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
+import { BsBell, BsFillBellFill, BsPeople, BsPeopleFill, BsEnvelope, BsEnvelopeFill, BsPerson, BsPersonFill } from 'react-icons/bs';
 import { useAuth } from 'providers/AuthProvider';
-import styled from 'styled-components';
-
-const StyledNav = styled.nav`
-  height: 100%;
-  a {
-    color: black;
-    svg {
-      height: 26.25px;
-      width: 26.25px;
-    }
-  }
-`;
-const StyledNavList = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 0.5rem;
-  width: 100%;
-  height: 100%;
-  li {
-    /* border: 1px solid red; */
-    flex-basis: 20%;
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      /* background-color: wheat; */
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-  }
-`;
+import { StyledNav, StyledNavList } from './MainNav.styles';
 
 const MainNav = () => {
   const { currentUser } = useAuth();
@@ -46,28 +12,48 @@ const MainNav = () => {
     <StyledNav>
       <StyledNavList>
         <li>
-          <NavLink to="home">
-            <BiHomeCircle />
+          <NavLink exact to="home">
+            <div className="icon-wrapper">
+              <p>czesc</p>
+              <AiOutlineHome className="active" />
+              <AiFillHome className="passive" />
+            </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="explore">
-            <FiBell />
+          <NavLink exact to="explore">
+            <div className="icon-wrapper">
+              <p>czesc</p>
+              <BsBell className="active" />
+              <BsFillBellFill className="passive" />
+            </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to={`${currentUser.login}/communities`}>
-            <FaUserFriends />
+          <NavLink exact to={`${currentUser.login}/communities`}>
+            <div className="icon-wrapper">
+              <p>czesc</p>
+              <BsPeople className="active" />
+              <BsPeopleFill className="passive" />
+            </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="notifications">
-            <FiBell />
+          <NavLink exact to="notifications">
+            <div className="icon-wrapper">
+              <p>czesc</p>
+              <BsEnvelope className="active" />
+              <BsEnvelopeFill className="passive" />
+            </div>
           </NavLink>
         </li>
         <li>
-          <NavLink to={`${currentUser.login}`}>
-            <CgProfile />
+          <NavLink exact to={`profile/${currentUser.login}`}>
+            <div className="icon-wrapper">
+              <p>czesc</p>
+              <BsPerson className="active" />
+              <BsPersonFill className="passive" />
+            </div>
           </NavLink>
         </li>
       </StyledNavList>
