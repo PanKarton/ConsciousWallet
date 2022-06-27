@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
-  height: 100%;
   a {
     color: black;
     svg {
@@ -16,7 +15,6 @@ export const StyledNavList = styled.ul`
   justify-content: space-around;
   gap: 0.5rem;
   width: 100%;
-  height: 100%;
   li {
     flex-basis: 20%;
   }

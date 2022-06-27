@@ -22,7 +22,6 @@ export const StyledHeader = styled.header`
 
   .app-nav-wrapper {
     height: 100%;
-
     .bird-wrapper {
       display: none;
       svg {
@@ -39,11 +38,5 @@ export const StyledHeader = styled.header`
         }
       }
     }
-  }
-
-  .add-tweet-button {
-    position: absolute;
-    right: 1rem;
-    top: -2rem;
   }
 `;

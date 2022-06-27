@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 import MainNav from 'components/molecules/MainNav/MainNav';
 import { StyledHeader } from './MainHeader.styles';
+import NewTweetButton from 'components/atoms/NewTweetButton/NewTweetButton';
 
 const MainHeader = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -19,9 +20,8 @@ const MainHeader = (props) => {
           <BirdIcon />
         </div>
         <MainNav windowWidth={windowWidth} />
-        <div className="add-tweet-button">ADD</div>
+        <NewTweetButton windowWidth={windowWidth} />
       </div>
-      {windowWidth > 500 ? <div className="logout-wrapper">Log out</div> : null}
     </StyledHeader>
   );
 };

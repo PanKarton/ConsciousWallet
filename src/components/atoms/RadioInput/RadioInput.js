@@ -1,21 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledWrapper = styled.span`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 0.5rem;
-  padding-block: 0.75rem;
-  border: 1px solid ${({ theme }) => theme.colors.borderGray};
-  border-radius: 0.25rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSize.m};
-  /* height: 2.25rem; */
-  cursor: pointer;
-  width: 100%;
-`;
+import { StyledWrapper } from './RadioInput.styles';
 
 const RadioInput = React.forwardRef(({ name, id, labelText, ...props }, ref) => (
   <StyledWrapper>
