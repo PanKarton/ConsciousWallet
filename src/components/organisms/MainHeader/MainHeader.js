@@ -18,7 +18,7 @@ const MainHeader = (props) => {
         <div className="bird-wrapper">
           <BirdIcon />
         </div>
-        <MainNav />
+        <MainNav windowWidth={windowWidth} />
         <div className="add-tweet-button">ADD</div>
       </div>
       {windowWidth > 500 ? <div className="logout-wrapper">Log out</div> : null}

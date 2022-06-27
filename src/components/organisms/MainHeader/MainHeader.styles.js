@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
 
   @media screen and (min-width: 500px) {
     height: 100vh;
+    padding-top: 0.5rem;
     border-right: 1px solid ${({ theme }) => theme.colors.borderGray};
   }
   @media screen and (min-width: 501px) and (max-width: 1300px) {
@@ -29,8 +30,9 @@ export const StyledHeader = styled.header`
       }
       @media screen and (min-width: 501px) {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        padding-left: 0.75rem;
         svg {
           height: 50px;
           width: 30px;

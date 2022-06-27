@@ -19,35 +19,13 @@ export const StyledNavList = styled.ul`
   height: 100%;
   li {
     flex-basis: 20%;
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      cursor: default;
-      .icon-wrapper {
-        padding: 0.75rem;
-      }
-      & .active {
-        display: block;
-      }
-      &.active .active {
-        display: none;
-      }
-      & .passive {
-        display: none;
-      }
-      &.active .passive {
-        display: block;
-      }
-    }
   }
   @media screen and (min-width: 501px) {
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
     gap: 1rem;
+    margin-top: 1rem;
     li {
       flex-basis: auto;
     }
