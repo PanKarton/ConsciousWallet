@@ -26,7 +26,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   & > .word {
-    padding-left: 0.75rem;
+    padding-left: 0.25rem;
     font-weight: 400;
     font-size: ${({ theme }) => theme.fontSize.xxm};
     color: ${({ theme }) => theme.colors.black};
