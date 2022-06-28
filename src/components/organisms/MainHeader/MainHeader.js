@@ -3,6 +3,7 @@ import BirdIcon from 'components/atoms/BirdIcon/BirdIcon';
 import MainNav from 'components/molecules/MainNav/MainNav';
 import { StyledHeader } from './MainHeader.styles';
 import NewTweetButton from 'components/atoms/NewTweetButton/NewTweetButton';
+import LogOutButton from 'components/atoms/LogOutButton/LogOutButton';
 
 const MainHeader = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,7 +21,8 @@ const MainHeader = (props) => {
           <BirdIcon />
         </div>
         <MainNav windowWidth={windowWidth} />
-        <NewTweetButton windowWidth={windowWidth} />
+        <NewTweetButton />
+        <LogOutButton />
       </div>
     </StyledHeader>
   );

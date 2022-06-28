@@ -16,7 +16,7 @@ export const StyledHeader = styled.header`
     padding-inline: 0.5rem;
   }
   @media screen and (min-width: 1301px) {
-    flex-basis: 251px;
+    flex-basis: 267px;
     padding-inline: 0.75rem;
   }
 

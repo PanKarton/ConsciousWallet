@@ -5,7 +5,7 @@ import { StyledNavLink } from './MainNavLinkButton.styles';
 const MainNavLinkButton = ({ to, children, word, windowWidth }) => (
   <StyledNavLink exact="true" to={to}>
     <div className="icon-wrapper">{children}</div>
-    {windowWidth < 1300 ? null : <span className="word">{word}</span>}
+    {windowWidth < 1301 ? null : <span className="word">{word}</span>}
   </StyledNavLink>
 );
 
