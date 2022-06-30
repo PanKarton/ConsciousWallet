@@ -12,3 +12,5 @@ const MainTemplate = ({ children }) => {
 };
 
 export default MainTemplate;
+
+export const SecondTemplate = (props) => <div>{console.log(props)}</div>;

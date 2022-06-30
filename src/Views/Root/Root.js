@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthenticatedApp from 'components/templates/MainTemplate/MainTemplate';
 import UnauthenticatedApp from 'components/pages/UnauthenticatedApp/UnauthenticatedApp';
 import { useAuth } from 'providers/AuthProvider';
+import AuthenticatedApp from 'components/pages/AuthenticatedApp/AuthenticatedApp';
 
 const Root = () => {
   const { isAuthorised } = useAuth();

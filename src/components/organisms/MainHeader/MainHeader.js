@@ -4,9 +4,14 @@ import MainNav from 'components/molecules/MainNav/MainNav';
 import { StyledHeader } from './MainHeader.styles';
 import NewTweetButton from 'components/atoms/NewTweetButton/NewTweetButton';
 import LogOutButton from 'components/atoms/LogOutButton/LogOutButton';
+import { useDispatch } from 'react-redux';
+import { handleNewTweetModalOpen } from 'store/slices/isNewTweetModalOpenSlice';
 
 const MainHeader = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const dispatch = useDispatch();
+
+  const openModal = () => dispatch(handleNewTweetModalOpen());
 
   useEffect(() => {
     window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
@@ -21,7 +26,7 @@ const MainHeader = (props) => {
           <BirdIcon />
         </div>
         <MainNav windowWidth={windowWidth} />
-        <NewTweetButton />
+        <NewTweetButton onClick={openModal} />
         <LogOutButton />
       </div>
     </StyledHeader>

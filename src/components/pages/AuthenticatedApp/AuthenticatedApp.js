@@ -1,11 +1,14 @@
 import AppLoadingBoard from 'components/molecules/AppLoadingBoard/AppLoadingBoard';
+import NewTweetModal from 'components/molecules/NewTweetModal/NewTweetModal';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import { useAuth } from 'providers/AuthProvider';
 import React from 'react';
-import { Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
 const AuthenticatedApp = () => {
   const { currentUser } = useAuth();
+  const isNewTweetModalOpenSlice = useSelector((store) => store.isNewTweetModalOpenSlice);
 
   return currentUser === null ? (
     <AppLoadingBoard />
@@ -13,8 +16,10 @@ const AuthenticatedApp = () => {
     <MainTemplate>
       <div className="wrapper">
         <Routes>
-          <div className="route">Home</div>
+          <Route path="/home" element={<div>czesc</div>} />
+          <Route path="*" element={<div>wrr</div>} />
         </Routes>
+        {isNewTweetModalOpenSlice && <NewTweetModal />}
       </div>
     </MainTemplate>
   );

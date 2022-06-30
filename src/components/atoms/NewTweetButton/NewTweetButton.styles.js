@@ -14,6 +14,9 @@ export const StyledButton = styled.button`
   cursor: default;
   background-color: ${({ theme }) => theme.colors.twBlue};
   color: ${({ theme }) => theme.colors.white};
+  &:active {
+    background-color: ${({ theme }) => theme.colors.twBlueHover};
+  }
 
   span.tweet-word {
     display: none;
