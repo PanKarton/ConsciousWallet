@@ -9,6 +9,17 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   justify-content: space-around;
   cursor: default;
+  @media screen and (min-width: 501px) {
+    cursor: pointer;
+    border-radius: 1000rem;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.whiteHover};
+    }
+  }
+  @media screen and (min-width: 1301px) {
+    padding-right: 1.75rem;
+    padding-left: 0.5rem;
+  }
   .icon-wrapper {
     padding: 0.75rem;
   }

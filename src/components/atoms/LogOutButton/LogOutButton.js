@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BiLogOut } from 'react-icons/bi';
 import styled from 'styled-components';
+import ProfileImageCircle from '../ProfileImageCircle/ProfileImageCircle';
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -15,13 +16,7 @@ const StyledWrapper = styled.div`
       align-items: center;
       gap: 0.5rem;
       .profile-image-wrapper {
-        height: 2.5rem;
-        aspect-ratio: 1;
-        border-radius: 1000rem;
-        background-image: url('https://i2-prod.mirror.co.uk/incoming/article25609246.ece/ALTERNATES/s1200/0_PUSS-IN-BOOTS.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        width: 2.5rem;
       }
       .profile-info-wrapper {
         height: 100%;
@@ -41,6 +36,7 @@ const StyledWrapper = styled.div`
     }
   }
   .logout-icon {
+    cursor: pointer;
     color: ${({ theme }) => theme.colors.red};
     font-size: ${({ theme }) => theme.fontSize.xl};
     &:hover {
@@ -66,7 +62,7 @@ const StyledWrapper = styled.div`
     justify-content: space-between;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.bgcGray};
+      background-color: ${({ theme }) => theme.colors.whiteHover};
     }
   }
 `;
@@ -74,7 +70,9 @@ const StyledWrapper = styled.div`
 const LogOutButton = (props) => (
   <StyledWrapper>
     <div className="profile-wrapper">
-      <div className="profile-image-wrapper"></div>
+      <div className="profile-image-wrapper">
+        <ProfileImageCircle />
+      </div>
       <div className="profile-info-wrapper">
         <span className="name">Arek Piersiak</span>
         <span className="login">@PanKarton</span>
