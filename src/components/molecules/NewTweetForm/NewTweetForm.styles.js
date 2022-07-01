@@ -36,6 +36,25 @@ export const StyledForm = styled.form`
       outline: none;
     }
   }
+  .flex-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    .circural-bar-wrapper {
+      display: grid;
+      place-items: center;
+      position: relative;
+      width: 1.5rem;
+      &::after {
+        position: absolute;
+        content: '';
+        height: 100%;
+        right: -0.375rem;
+        border-right: 1px solid ${({ theme }) => theme.colors.borderGray};
+      }
+    }
+  }
   button {
     width: 74px;
     padding: 0.5rem 0.75rem;

@@ -11,6 +11,7 @@ export const theme = {
     errorRed: 'rgb(255,148,148)',
     red: 'rgb(255,0,51)',
     redDarkHover: 'rgb(222,0,51)',
+    warningOrange: 'rgb(255, 121, 0)',
     bgcGray: 'rgba(0, 0 , 0, 0.15)',
   },
   fontSize: {
