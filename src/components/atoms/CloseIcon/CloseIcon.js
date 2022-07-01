@@ -7,7 +7,7 @@ export const StyledIcon = styled(GrClose)`
   cursor: pointer;
 `;
 
-const CloseIcon = ({ onClick }) => <StyledIcon onClick={onClick} />;
+const CloseIcon = ({ onClick, className }) => <StyledIcon onClick={onClick} className={className} />;
 
 CloseIcon.propTypes = {
   onClick: PropTypes.func,
