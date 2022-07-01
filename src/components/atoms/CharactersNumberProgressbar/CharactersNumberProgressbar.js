@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 const CharactersNumberProgressbar = ({ number }) => {
   const { colors } = useTheme();
 
-  const setCircleColor = (number) => {
+  const setColor = (number) => {
     if (number <= 260) return colors.twBlue;
     if (number < 280) return colors.warningOrange;
     return colors.red;
@@ -16,11 +16,12 @@ const CharactersNumberProgressbar = ({ number }) => {
   return (
     <CircularProgressbar
       styles={buildStyles({
-        textSize: '48px',
-        pathColor: setCircleColor(number),
+        textSize: '40px',
+        textColor: setColor(number),
+        pathColor: setColor(number),
         trailColor: '#d6d6d6',
       })}
-      value={number}
+      value={(number / 280) * 100}
       text={number <= 260 ? '' : `${280 - number}`}
     />
   );

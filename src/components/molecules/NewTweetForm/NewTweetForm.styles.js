@@ -38,14 +38,18 @@ export const StyledForm = styled.form`
   }
   .flex-bottom {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     .circural-bar-wrapper {
-      display: grid;
-      place-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
-      width: 1.5rem;
+      width: 2.1875rem;
+      /* .CircularProgressbar .CircularProgressbar-text {
+        font-size: 1rem;
+      } */
       &::after {
         position: absolute;
         content: '';
