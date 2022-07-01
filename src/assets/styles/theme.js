@@ -9,6 +9,8 @@ export const theme = {
     borderGray: 'rgb(218, 220, 224)',
     textGray: 'rgb(83, 100, 113)',
     errorRed: 'rgb(255,148,148)',
+    red: 'rgb(255,0,51)',
+    redDarkHover: 'rgb(222,0,51)',
     bgcGray: 'rgba(0, 0 , 0, 0.15)',
   },
   fontSize: {

@@ -4,6 +4,7 @@ export const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   gap: 0.25rem;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -41,5 +42,22 @@ export const StyledButton = styled.button`
           return theme.colors.whiteHover;
       }
     }};
+  }
+  & > svg.loading-icon {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    animation: rotate-center 0.75s linear infinite both;
+  }
+
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
   }
 `;

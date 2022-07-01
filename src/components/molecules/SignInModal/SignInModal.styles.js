@@ -22,7 +22,7 @@ export const ContentWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 0.5rem;
     padding: 1rem;
   }
   svg:first-child {
@@ -43,10 +43,11 @@ export const ContentWrapper = styled.div`
 
 export const StyledHeader = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.xl};
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const SignUpSuggestion = styled.p`
+  margin-top: 1rem;
   a {
     color: ${({ theme }) => theme.colors.twBlue};
     text-decoration: underline;
