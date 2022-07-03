@@ -42,6 +42,8 @@ const useSignUp = () => {
       const docRef = doc(usersCollectionRef, user.id);
       const fetchedUser = await getDoc(docRef);
       setCurrentUser(fetchedUser.data());
+      console.log(fetchedUser.data());
+      localStorage.setItem('token', fetchedUser.id);
     } catch (err) {
       console.log(err);
     }

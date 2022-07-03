@@ -17,6 +17,9 @@ export const StyledButton = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors.twBlueHover};
   }
+  &:focus {
+    outline: none;
+  }
 
   span.tweet-word {
     display: none;
@@ -36,16 +39,18 @@ export const StyledButton = styled.button`
     position: static;
     width: 3.125rem;
     margin-top: 2rem;
+    cursor: pointer;
   }
-
+  @media screen and (min-width: 501px) {
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.twBlueDarker};
+    }
+  }
   @media screen and (min-width: 1301px) {
     width: 14rem;
     height: 3.125rem;
     border-radius: 1000rem;
     cursor: pointer;
     aspect-ratio: unset;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.twBlueHover};
-    }
   }
 `;

@@ -60,6 +60,8 @@ All libraries and stuff are listed below:
     - react-helmet-async
     - react-modal
     - react-hook-form
+    - react-textarea-autosize (for new tweet content)
+    - react-circular-progressbar (to display characters limit on new post)
     - firebase and firestore
 
 ### Why was this project challenging and therefore a really good learning experience?

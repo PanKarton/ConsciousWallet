@@ -37,9 +37,21 @@ export const StyledButton = styled.button`
       if (textColor === 'blue' && bgColor === 'white') return theme.colors.whiteBlueHover;
       switch (bgColor) {
         case 'blue':
-          return theme.colors.twBlueHover;
+          return theme.colors.twBlueDarker;
         default:
           return theme.colors.whiteHover;
+      }
+    }};
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: ${({ bgColor, theme }) => {
+      switch (bgColor) {
+        case 'blue':
+          return theme.colors.twBlueLight;
+        default:
+          return theme.colors.white;
       }
     }};
   }

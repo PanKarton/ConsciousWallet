@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalViewWrapper from '../ModalViewWrapper/ModalViewWrapper';
-import { useSelector } from 'react-redux';
-import ProfileImageCircle from 'components/atoms/ProfileImageCircle/ProfileImageCircle';
-import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
+import { useDispatch, useSelector } from 'react-redux';
+import NewTweetForm from '../NewTweetForm/NewTweetForm';
+import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
+import { HiArrowLeft } from 'react-icons/hi';
+import { StyledWrapper } from './NewTweetModal.styles';
+import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
 
 const NewTweetModal = (props) => {
   const isNewTweetModalOpenSlice = useSelector((store) => store.isNewTweetModalOpenSlice);
+  const dispatch = useDispatch();
+
+  const handleCloseModal = () => dispatch(handleNewTweetModalClose());
 
   return (
-    <ModalViewWrapper isOpen={isNewTweetModalOpenSlice}>
-      <div className="wrapper">
-        <div className="exit-icon-wrapper">{`<-`}</div>
-        <div className="new-tweet-form">
-          <div className="profile-image-wrapper">
-            <ProfileImageCircle />
-          </div>
-          <input type="text" placeholder={`What's happening?`} />
-          <CylinderButton bgColor="blue" textColor="white">
-            <strong>Tweet</strong>
-          </CylinderButton>
+    <ModalViewWrapper isOpen={isNewTweetModalOpenSlice} onRequestClose={handleCloseModal}>
+      <StyledWrapper>
+        <div className="exit-icon-wrapper">
+          <CloseIcon className="desktop-icon" onClick={handleCloseModal} />
+          <HiArrowLeft className="mobile-icon" onClick={handleCloseModal} />
         </div>
-      </div>
+        <NewTweetForm />
+      </StyledWrapper>
     </ModalViewWrapper>
   );
 };
