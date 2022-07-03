@@ -8,7 +8,7 @@ export const StyledWrapper = styled.div`
   gap: 1rem;
   padding-inline: 1rem;
   padding-top: 3rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
   .profile-image-wrapper {
     flex-basis: 3rem;
   }
@@ -21,7 +21,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   .tweet-content {
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderGray};
     width: 100%;
