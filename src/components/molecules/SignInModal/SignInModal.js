@@ -15,7 +15,7 @@ const SignInModalWrapper = () => {
   const handleCloseModal = () => dispatch(handleSignInModalClose());
 
   return (
-    <ModalViewWrapper isOpen={isSignInModalOpenSlice}>
+    <ModalViewWrapper isOpen={isSignInModalOpenSlice} onRequestClose={handleCloseModal}>
       <ContentWrapper>
         <CloseIcon onClick={handleCloseModal} />
         <BirdIcon />

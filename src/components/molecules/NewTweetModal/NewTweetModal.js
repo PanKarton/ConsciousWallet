@@ -15,7 +15,7 @@ const NewTweetModal = (props) => {
   const handleCloseModal = () => dispatch(handleNewTweetModalClose());
 
   return (
-    <ModalViewWrapper isOpen={isNewTweetModalOpenSlice}>
+    <ModalViewWrapper isOpen={isNewTweetModalOpenSlice} onRequestClose={handleCloseModal}>
       <StyledWrapper>
         <div className="exit-icon-wrapper">
           <CloseIcon className="desktop-icon" onClick={handleCloseModal} />

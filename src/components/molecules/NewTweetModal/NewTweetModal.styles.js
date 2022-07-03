@@ -27,7 +27,7 @@ export const StyledWrapper = styled.div`
   @media screen and (min-width: 701px) {
     position: absolute;
     left: 50%;
-    top: 3rem;
+    top: -45vh;
     transform: translateX(-50%);
     width: 37.5rem;
     height: auto;

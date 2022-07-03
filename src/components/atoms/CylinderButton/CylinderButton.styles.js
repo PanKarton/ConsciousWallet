@@ -49,7 +49,7 @@ export const StyledButton = styled.button`
     background-color: ${({ bgColor, theme }) => {
       switch (bgColor) {
         case 'blue':
-          return theme.colors.twBlueLighter;
+          return theme.colors.twBlueLight;
         default:
           return theme.colors.white;
       }

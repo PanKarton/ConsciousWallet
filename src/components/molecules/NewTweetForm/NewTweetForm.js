@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import ProfileImageCircle from 'components/atoms/ProfileImageCircle/ProfileImageCircle';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -8,7 +7,7 @@ import CharactersNumberProgressbar from 'components/atoms/CharactersNumberProgre
 import { useForm } from 'react-hook-form';
 import useNewTweet from 'hooks/useNewTweet';
 
-const NewTweetForm = (props) => {
+const NewTweetForm = () => {
   const { handleSubmit, register, watch } = useForm();
   const { canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet } = useNewTweet();
   const submit = (data) => console.log(data);
@@ -42,6 +41,6 @@ const NewTweetForm = (props) => {
   );
 };
 
-NewTweetForm.propTypes = {};
+// NewTweetForm.propTypes = {};
 
 export default NewTweetForm;

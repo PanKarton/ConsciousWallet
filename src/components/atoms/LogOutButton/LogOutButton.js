@@ -1,10 +1,10 @@
 import React from 'react';
 import { BiLogOut } from 'react-icons/bi';
 import ProfileImageCircle from '../ProfileImageCircle/ProfileImageCircle';
-import { StyledWrapper } from './LogOutButton.styles';
+import { StyledButton } from './LogOutButton.styles';
 
 const LogOutButton = () => (
-  <StyledWrapper>
+  <StyledButton>
     <div className="profile-wrapper">
       <div className="profile-image-wrapper">
         <ProfileImageCircle />
@@ -17,7 +17,7 @@ const LogOutButton = () => (
     <div className="icon-wrapper">
       <BiLogOut className="logout-icon" />
     </div>
-  </StyledWrapper>
+  </StyledButton>
 );
 
 export default LogOutButton;
