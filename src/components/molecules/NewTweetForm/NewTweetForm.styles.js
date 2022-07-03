@@ -47,9 +47,6 @@ export const StyledForm = styled.form`
       align-items: center;
       position: relative;
       width: 2.1875rem;
-      /* .CircularProgressbar .CircularProgressbar-text {
-        font-size: 1rem;
-      } */
       &::after {
         position: absolute;
         content: '';

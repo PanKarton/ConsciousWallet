@@ -26,6 +26,8 @@ const CharactersNumberProgressbar = ({ number }) => {
     />
   );
 };
-CharactersNumberProgressbar.propTypes = {};
+CharactersNumberProgressbar.propTypes = {
+  number: PropTypes.number,
+};
 
 export default CharactersNumberProgressbar;

@@ -12,12 +12,12 @@ const SignInModalWrapper = () => {
   const isSignInModalOpenSlice = useSelector((store) => store.isSignInModalOpenSlice);
   const dispatch = useDispatch();
 
-  const closeModal = () => dispatch(handleSignInModalClose());
+  const handleCloseModal = () => dispatch(handleSignInModalClose());
 
   return (
     <ModalViewWrapper isOpen={isSignInModalOpenSlice}>
       <ContentWrapper>
-        <CloseIcon onClick={closeModal} />
+        <CloseIcon onClick={handleCloseModal} />
         <BirdIcon />
         <div className="max-width-wrapper">
           <StyledHeader>Log in on Twitter</StyledHeader>

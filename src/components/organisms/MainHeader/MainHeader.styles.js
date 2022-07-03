@@ -26,6 +26,7 @@ export const StyledHeader = styled.header`
       display: none;
       svg {
         color: ${({ theme }) => theme.colors.twBlue};
+        cursor: pointer;
       }
       @media screen and (min-width: 501px) {
         display: flex;
