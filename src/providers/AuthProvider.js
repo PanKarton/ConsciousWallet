@@ -9,15 +9,22 @@ export const AuthProvider = ({ children }) => {
   const [isAuthorised, setIsAuthorised] = useState(null);
   const { fetchUserById } = useFirebaseFirestore();
 
+  // TO DZIADOSTWO ODPALA INFINITE LOOPA BO SIE KURWA SMIEC ODPALA ZA KAZDYM RAZEM JAK POBIERZE SIE USER I ZROBI UPDATE STEJTU
+
   useEffect(() => {
+    // Exit func when currentUser exists
+    if (currentUser) return;
     // if there is token in localstorage, then set currentUser
     (async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) return;
+        if (!token) {
+          return setIsAuthorised(false);
+        }
         // If there is token, fetch user and update currentUser
         const fetchedUser = await fetchUserById(token);
         const userData = fetchedUser.data();
+        // Return if there is something wrong with data
         if (!userData) return;
         setCurrentUser(fetchedUser.data());
         setIsAuthorised(true);
@@ -25,9 +32,15 @@ export const AuthProvider = ({ children }) => {
         console.log('AuthProvider useEffect error: ', err);
       }
     })();
-  }, []);
+  }, [currentUser, fetchUserById]);
 
-  return <AuthContext.Provider value={{ currentUser, setCurrentUser, setIsAuthorised, isAuthorised }}>{children}</AuthContext.Provider>;
+  const handleLogOut = () => {
+    setIsAuthorised(false);
+    setCurrentUser(null);
+    localStorage.removeItem('token');
+  };
+
+  return <AuthContext.Provider value={{ currentUser, setCurrentUser, setIsAuthorised, isAuthorised, handleLogOut }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from 'providers/AuthProvider';
 import useFirebaseFirestore from './useFirebaseFirestore';
+import { useDispatch } from 'react-redux';
+import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
 
 const useLogIn = () => {
   const [isError, setIsError] = useState(false);
@@ -8,6 +10,10 @@ const useLogIn = () => {
   const [passwordError, setPasswordError] = useState(null);
   const { setIsAuthorised, setCurrentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleCloseModal = () => dispatch(handleSignInModalClose());
 
   const { fetchUserByEmailAndPassword } = useFirebaseFirestore();
 
@@ -36,6 +42,8 @@ const useLogIn = () => {
       } else {
         setIsError(true);
       }
+      // close modal, without it it is still open after logout
+      handleCloseModal();
       setIsLoading(false);
     } catch (err) {
       console.log(err);

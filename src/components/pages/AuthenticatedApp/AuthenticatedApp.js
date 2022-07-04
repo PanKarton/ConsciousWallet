@@ -17,6 +17,7 @@ const AuthenticatedApp = () => {
       <div className="wrapper">
         <Routes>
           <Route path="/home" element={<div>czesc</div>} />
+          <Route path="/logout" element={<div>are you sure dude</div>} />
           <Route path="*" element={<div>wrr</div>} />
         </Routes>
         {isNewTweetModalOpenSlice && <NewTweetModal />}
