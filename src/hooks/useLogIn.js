@@ -3,6 +3,7 @@ import { useAuth } from 'providers/AuthProvider';
 import useFirebaseFirestore from './useFirebaseFirestore';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
+import { useNavigate } from 'react-router-dom';
 
 const useLogIn = () => {
   const [isError, setIsError] = useState(false);
@@ -12,6 +13,7 @@ const useLogIn = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCloseModal = () => dispatch(handleSignInModalClose());
 
@@ -39,6 +41,7 @@ const useLogIn = () => {
           localStorage.setItem('token', doc.id);
           setCurrentUser(doc.data());
         });
+        navigate('/home');
       } else {
         setIsError(true);
       }

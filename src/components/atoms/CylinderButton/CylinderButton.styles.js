@@ -13,6 +13,8 @@ export const StyledButton = styled.button`
     switch (bgColor) {
       case 'blue':
         return theme.colors.twBlue;
+      case 'black':
+        return theme.colors.black;
       default:
         return theme.colors.white;
     }
@@ -38,6 +40,8 @@ export const StyledButton = styled.button`
       switch (bgColor) {
         case 'blue':
           return theme.colors.twBlueDarker;
+        case 'black':
+          return theme.colors.blackLight;
         default:
           return theme.colors.whiteHover;
       }

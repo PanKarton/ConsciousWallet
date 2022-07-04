@@ -1,6 +1,7 @@
 import useFirebaseFirestore from 'hooks/useFirebaseFirestore';
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = React.createContext({});
 
@@ -8,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthorised, setIsAuthorised] = useState(null);
   const { fetchUserById } = useFirebaseFirestore();
+  const navigate = useNavigate();
 
   // TO DZIADOSTWO ODPALA INFINITE LOOPA BO SIE KURWA SMIEC ODPALA ZA KAZDYM RAZEM JAK POBIERZE SIE USER I ZROBI UPDATE STEJTU
 
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         if (!userData) return;
         setCurrentUser(fetchedUser.data());
         setIsAuthorised(true);
+        navigate('/home');
       } catch (err) {
         console.log('AuthProvider useEffect error: ', err);
       }
@@ -38,6 +41,7 @@ export const AuthProvider = ({ children }) => {
     setIsAuthorised(false);
     setCurrentUser(null);
     localStorage.removeItem('token');
+    navigate('/');
   };
 
   return <AuthContext.Provider value={{ currentUser, setCurrentUser, setIsAuthorised, isAuthorised, handleLogOut }}>{children}</AuthContext.Provider>;

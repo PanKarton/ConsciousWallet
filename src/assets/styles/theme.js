@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     black: 'rgb(15, 20, 25)',
+    blackLight: 'rgb(41, 46, 56)',
     white: 'rgb(255, 255, 255)',
     whiteHover: 'rgb(230, 230, 230)',
     whiteBlueHover: 'rgba(29, 155, 240, 0.1)',

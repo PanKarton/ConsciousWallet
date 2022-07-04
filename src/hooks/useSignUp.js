@@ -1,5 +1,6 @@
 import { useAuth } from 'providers/AuthProvider';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFirebaseFirestore from './useFirebaseFirestore';
 
 const useSignUp = () => {
@@ -7,6 +8,7 @@ const useSignUp = () => {
   const [canMoveNext, setCanMoveNext] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
 
+  const navigate = useNavigate();
   const { setIsAuthorised, setCurrentUser } = useAuth();
   const { addUser, fetchUserById } = useFirebaseFirestore();
 
@@ -40,6 +42,7 @@ const useSignUp = () => {
       const user = await addUser(refactredUserData);
       const fetchedUser = await fetchUserById(user.id);
       setCurrentUser(fetchedUser.data());
+      navigate('/home');
       localStorage.setItem('token', fetchedUser.id);
     } catch (err) {
       console.log(err);

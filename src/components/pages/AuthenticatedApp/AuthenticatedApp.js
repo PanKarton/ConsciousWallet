@@ -1,5 +1,6 @@
 import AppLoadingBoard from 'components/molecules/AppLoadingBoard/AppLoadingBoard';
 import NewTweetModal from 'components/molecules/NewTweetModal/NewTweetModal';
+import LogoutConfirmation from 'components/organisms/LogoutConfirmation/LogoutConfirmation';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import { useAuth } from 'providers/AuthProvider';
 import React from 'react';
@@ -17,7 +18,7 @@ const AuthenticatedApp = () => {
       <div className="wrapper">
         <Routes>
           <Route path="/home" element={<div>czesc</div>} />
-          <Route path="/logout" element={<div>are you sure dude</div>} />
+          <Route path="/logout" element={<LogoutConfirmation />} />
           <Route path="*" element={<div>wrr</div>} />
         </Routes>
         {isNewTweetModalOpenSlice && <NewTweetModal />}
