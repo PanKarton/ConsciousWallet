@@ -41,12 +41,11 @@ const useLogIn = () => {
           localStorage.setItem('token', doc.id);
           setCurrentUser(doc.data());
         });
-        navigate('/home');
+        // close modal, without it it is still open after logout
+        handleCloseModal();
       } else {
         setIsError(true);
       }
-      // close modal, without it it is still open after logout
-      handleCloseModal();
       setIsLoading(false);
     } catch (err) {
       console.log(err);
