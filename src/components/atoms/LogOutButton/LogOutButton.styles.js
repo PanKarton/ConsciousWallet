@@ -1,11 +1,10 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(NavLink)`
   position: fixed;
   top: 0.75rem;
   right: 1rem;
-  background-color: transparent;
-  border: none;
   .profile-wrapper {
     display: none;
     @media screen and (min-width: 1301px) {

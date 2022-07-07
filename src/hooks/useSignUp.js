@@ -1,15 +1,16 @@
-import { db } from 'firebase-config';
-import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { useAuth } from 'providers/AuthProvider';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useFirebaseFirestore from './useFirebaseFirestore';
 
 const useSignUp = () => {
   const [step, setStep] = useState(1);
   const [canMoveNext, setCanMoveNext] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const usersCollectionRef = collection(db, 'users');
+  const navigate = useNavigate();
   const { setIsAuthorised, setCurrentUser } = useAuth();
+  const { addUser, fetchUserById } = useFirebaseFirestore();
 
   const handleSignUp = async (data) => {
     try {
@@ -38,11 +39,10 @@ const useSignUp = () => {
         },
         ...rest,
       };
-      const user = await addDoc(usersCollectionRef, refactredUserData);
-      const docRef = doc(usersCollectionRef, user.id);
-      const fetchedUser = await getDoc(docRef);
+      const user = await addUser(refactredUserData);
+      const fetchedUser = await fetchUserById(user.id);
       setCurrentUser(fetchedUser.data());
-      console.log(fetchedUser.data());
+      navigate('/home');
       localStorage.setItem('token', fetchedUser.id);
     } catch (err) {
       console.log(err);

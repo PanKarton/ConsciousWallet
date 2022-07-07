@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from 'providers/AuthProvider';
-import { db } from 'firebase-config';
-import { collection, where, query, getDocs } from 'firebase/firestore';
+import useFirebaseFirestore from './useFirebaseFirestore';
+import { useDispatch } from 'react-redux';
+import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
+import { useNavigate } from 'react-router-dom';
 
 const useLogIn = () => {
   const [isError, setIsError] = useState(false);
@@ -9,6 +11,13 @@ const useLogIn = () => {
   const [passwordError, setPasswordError] = useState(null);
   const { setIsAuthorised, setCurrentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleCloseModal = () => dispatch(handleSignInModalClose());
+
+  const { fetchUserByEmailAndPassword } = useFirebaseFirestore();
 
   const handleSignIn = async ({ email, password }) => {
     try {
@@ -23,24 +32,17 @@ const useLogIn = () => {
         if (!email) return setEmailError(`This field can't be empty.`);
         if (!password) return setPasswordError(`This field can't be empty.`);
       }
-
       setIsLoading(true);
-
-      // Ref to collection
-      const usersCollectionRef = collection(db, 'users');
-      // Array of query arguments
-      const queryArgs = [where('email', '==', email), where('password', '==', password)];
-      // Query in variable
-      const q = query(usersCollectionRef, ...queryArgs);
-      // Query for data
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await fetchUserByEmailAndPassword(email, password);
       // Check if response is empty and then do stuff
-      console.log(querySnapshot);
       if (!querySnapshot.empty) {
         setIsAuthorised(true);
         querySnapshot.forEach((doc) => {
+          localStorage.setItem('token', doc.id);
           setCurrentUser(doc.data());
         });
+        // close modal, without it it is still open after logout
+        handleCloseModal();
       } else {
         setIsError(true);
       }
