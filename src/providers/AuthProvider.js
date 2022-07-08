@@ -11,8 +11,6 @@ export const AuthProvider = ({ children }) => {
   const { fetchUserById } = useFirebaseFirestore();
   const navigate = useNavigate();
 
-  // TO DZIADOSTWO ODPALA INFINITE LOOPA BO SIE KURWA SMIEC ODPALA ZA KAZDYM RAZEM JAK POBIERZE SIE USER I ZROBI UPDATE STEJTU
-
   useEffect(() => {
     // Exit func when currentUser exists
     if (currentUser) return;
@@ -35,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         console.log('AuthProvider useEffect error: ', err);
       }
     })();
-  }, [currentUser, fetchUserById]);
+  }, [currentUser, fetchUserById, navigate]);
 
   const handleLogOut = () => {
     setIsAuthorised(false);

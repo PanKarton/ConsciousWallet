@@ -29,8 +29,16 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
         <p>It's quick and easy.</p>
       </HeadingWrapper>
       <CredentialsInput {...register('login')} id="login" type="text" placeholder="Login" required errorMessage={loginError} secondErrorMessage={loginAvailabilityError} />
-      <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
-      <CredentialsInput {...register('passwordConfirmation')} id="passwordConfirmation" type="password" placeholder="Password confirmation" required errorMessage={passwordsMatchError} />
+      <CredentialsInput {...register('password')} value="asdfgH123$" id="password" type="password" placeholder="Password" required errorMessage={passwordError} />
+      <CredentialsInput
+        {...register('passwordConfirmation')}
+        value="asdfgH123$"
+        id="passwordConfirmation"
+        type="password"
+        placeholder="Password confirmation"
+        required
+        errorMessage={passwordsMatchError}
+      />
       <CredentialsInput {...register('email')} id="email" type="email" placeholder="Email" required errorMessage={validationEmailError} secondErrorMessage={emailAvailabilityError} />
       <CylinderButton disabled={!canMoveNext} type="button" bgColor="blue" textColor="white" onClick={handleNextStep}>
         Next

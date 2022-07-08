@@ -1,44 +1,65 @@
-import { db } from 'firebase-config';
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { auth, db } from 'firebase-config';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const useFirebaseFirestore = () => {
-  // Ref to users collection
-  const usersCollectionRef = collection(db, 'users');
+  const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
+    try {
+      // Create user in auth and get response
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      // Return id from response
+      return response.user.uid;
+    } catch (error) {
+      console.log('handleCreateUserWithEmailAndPassword error:', error.code);
+    }
+  }, []);
 
-  const addUser = useCallback(
-    async (userData) => {
-      return await addDoc(usersCollectionRef, userData);
-    },
-    [usersCollectionRef],
-  );
+  const setUserDoc = useCallback(async (id, data) => {
+    try {
+      // Create document
+      const document = doc(db, 'users', id);
+      // Set (requires id) document to firestore db
+      await setDoc(document, { ...data });
+    } catch (err) {
+      console.log('setUserDoc', err);
+    }
+  }, []);
 
-  const fetchUserById = useCallback(
-    async (id) => {
-      try {
-        const docRef = doc(usersCollectionRef, id);
-        const data = await getDoc(docRef);
-        return data;
-      } catch (err) {
-        console.log('useFireBaseFirestore fetchUserById error:', err);
-      }
-    },
-    [usersCollectionRef],
-  );
+  const customSignInWithLoginAndPassword = useCallback(async (email, password) => {
+    try {
+      // Send query to auth and recieve response with uid in it
+      const authResponse = await signInWithEmailAndPassword(auth, email, password);
+      // Return user id
+      return authResponse.user.uid;
+    } catch (err) {
+      // Return error if sth happens
+      return err.code;
+    }
+  }, []);
 
-  const fetchUserByEmailAndPassword = useCallback(
-    async (email, password) => {
-      // Array of query arguments
-      const queryArgs = [where('email', '==', email), where('password', '==', password)];
-      // Query in variable
-      const q = query(usersCollectionRef, ...queryArgs);
-      // Query for data and instant return it
-      return await getDocs(q);
-    },
-    [usersCollectionRef],
-  );
-
-  return { addUser, fetchUserById, fetchUserByEmailAndPassword };
+  const getUserDocById = useCallback(async (id) => {
+    try {
+      // Create ref to doc based on id
+      const docRef = doc(db, 'users', id);
+      // Get doc
+      const firebaseResponse = await getDoc(docRef);
+      // Return object with data and uid
+      return {
+        id,
+        ...firebaseResponse.data(),
+      };
+    } catch (err) {
+      // Return error if sth happens
+      return err.code;
+    }
+  }, []);
+  return {
+    customCreateUserWithEmailAndPassword,
+    setUserDoc,
+    customSignInWithLoginAndPassword,
+    getUserDocById,
+  };
 };
 
 export default useFirebaseFirestore;

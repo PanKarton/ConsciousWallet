@@ -10,7 +10,7 @@ const useSignUp = () => {
 
   const navigate = useNavigate();
   const { setIsAuthorised, setCurrentUser } = useAuth();
-  const { addUser, fetchUserById } = useFirebaseFirestore();
+  const { customCreateUserWithEmailAndPassword, setUserDoc } = useFirebaseFirestore();
 
   const handleSignUp = async (data) => {
     try {
@@ -21,8 +21,9 @@ const useSignUp = () => {
           data[key] = data[key].trim();
         }
       });
-      const { birthDay, birthMonth, birthYear, name, surname, gender, optionalGender, pronoun, ...rest } = data;
-      const refactredUserData = {
+      const { login, birthDay, birthMonth, birthYear, name, surname, gender, optionalGender, pronoun, ...rest } = data;
+      const refactoredUserData = {
+        login,
         birth: {
           day: birthDay,
           month: birthMonth,
@@ -37,13 +38,12 @@ const useSignUp = () => {
           optional: optionalGender,
           pronoun,
         },
-        ...rest,
       };
-      const user = await addUser(refactredUserData);
-      const fetchedUser = await fetchUserById(user.id);
-      setCurrentUser(fetchedUser.data());
+      const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
+      await setUserDoc(userId, refactoredUserData);
+      setCurrentUser(refactoredUserData);
       navigate('/home');
-      localStorage.setItem('token', fetchedUser.id);
+      localStorage.setItem('token', userId);
     } catch (err) {
       console.log(err);
     }
