@@ -34,7 +34,7 @@ const useFirebaseFirestore = () => {
       return authResponse.user.uid;
     } catch (err) {
       // Return error if sth happens
-      return err.code;
+      return { ...err };
     }
   }, []);
 

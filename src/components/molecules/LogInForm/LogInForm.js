@@ -7,13 +7,13 @@ import useLogIn from 'hooks/useLogIn';
 
 const LogInForm = () => {
   const { register, handleSubmit } = useForm();
-  const { isError, emailError, passwordError, handleSignIn, isLoading } = useLogIn();
+  const { finalErrorMessage, emailError, passwordError, handleSignIn, isLoading } = useLogIn();
 
   return (
     <StyledForm onSubmit={handleSubmit(handleSignIn)}>
       <CredentialsInput {...register('email')} id="email" type="text" placeholder="Email" errorMessage={emailError} />
       <CredentialsInput {...register('password')} id="password" type="password" placeholder="Password" errorMessage={passwordError} />
-      {isError && <p className="wrong-credentials-error">Invalid login or password.</p>}
+      {finalErrorMessage && <p className="wrong-credentials-error">{finalErrorMessage}</p>}
       <CylinderButton type="submit" bgColor="blue" textColor="white" isLoading={isLoading}>
         Log in
       </CylinderButton>
