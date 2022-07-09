@@ -35,7 +35,6 @@ const useLogIn = () => {
         }
         setIsLoading(true);
         const response = await customSignInWithLoginAndPassword(email, password);
-        console.log(response);
         if (response.name === 'FirebaseError') {
           if (response.code === 'auth/invalid-email') {
             setFinalErrorMessage('Invalid login or password.');

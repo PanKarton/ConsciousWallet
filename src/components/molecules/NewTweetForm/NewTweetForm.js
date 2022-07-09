@@ -32,7 +32,7 @@ const NewTweetForm = () => {
           <div className="circural-bar-wrapper">
             <CharactersNumberProgressbar number={contentLength} />
           </div>
-          <CylinderButton bgColor="blue" textColor="white" type="submit" onClick={() => console.log(`czesc`)} disabled={!canTweet}>
+          <CylinderButton bgColor="blue" textColor="white" type="submit" disabled={!canTweet}>
             Tweet
           </CylinderButton>
         </div>

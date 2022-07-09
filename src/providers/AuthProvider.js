@@ -8,7 +8,7 @@ export const AuthContext = React.createContext({});
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthorised, setIsAuthorised] = useState(null);
-  const { fetchUserById } = useFirebaseFirestore();
+  const { getUserDocById, logOut } = useFirebaseFirestore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,20 +22,21 @@ export const AuthProvider = ({ children }) => {
           return setIsAuthorised(false);
         }
         // If there is token, fetch user and update currentUser
-        const fetchedUser = await fetchUserById(token);
-        const userData = fetchedUser.data();
+        const fetchedUser = await getUserDocById(token);
+        const userData = fetchedUser;
         // Return if there is something wrong with data
         if (!userData) return;
-        setCurrentUser(fetchedUser.data());
+        setCurrentUser(fetchedUser);
         setIsAuthorised(true);
         navigate('/home');
       } catch (err) {
         console.log('AuthProvider useEffect error: ', err);
       }
     })();
-  }, [currentUser, fetchUserById, navigate]);
+  }, [currentUser, getUserDocById, navigate]);
 
   const handleLogOut = () => {
+    logOut();
     setIsAuthorised(false);
     setCurrentUser(null);
     localStorage.removeItem('token');

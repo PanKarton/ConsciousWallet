@@ -1,15 +1,17 @@
 import { auth, db } from 'firebase-config';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const useFirebaseFirestore = () => {
   const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
     try {
       // Create user in auth and get response
-      const response = await createUserWithEmailAndPassword(auth, email, password);
+      const authResponse = await createUserWithEmailAndPassword(auth, email, password);
+      // Set id in local storage
+      localStorage.setItem('token', authResponse.user.uid);
       // Return id from response
-      return response.user.uid;
+      return authResponse.user.uid;
     } catch (error) {
       console.log('handleCreateUserWithEmailAndPassword error:', error.code);
     }
@@ -22,7 +24,7 @@ const useFirebaseFirestore = () => {
       // Set (requires id) document to firestore db
       await setDoc(document, { ...data });
     } catch (err) {
-      console.log('setUserDoc', err);
+      console.log('setUserDoc: ', err);
     }
   }, []);
 
@@ -30,6 +32,9 @@ const useFirebaseFirestore = () => {
     try {
       // Send query to auth and recieve response with uid in it
       const authResponse = await signInWithEmailAndPassword(auth, email, password);
+      console.log(authResponse);
+      // Set id in local storage
+      localStorage.setItem('token', authResponse.user.uid);
       // Return user id
       return authResponse.user.uid;
     } catch (err) {
@@ -54,11 +59,21 @@ const useFirebaseFirestore = () => {
       return err.code;
     }
   }, []);
+
+  const logOut = useCallback(async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   return {
     customCreateUserWithEmailAndPassword,
     setUserDoc,
     customSignInWithLoginAndPassword,
     getUserDocById,
+    logOut,
   };
 };
 
