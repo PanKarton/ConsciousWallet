@@ -41,7 +41,7 @@ const useSignUp = () => {
       };
       const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
       await setUserDoc(userId, refactoredUserData);
-      setCurrentUser(refactoredUserData);
+      setCurrentUser({ userId, ...refactoredUserData });
       navigate('/home');
       localStorage.setItem('token', userId);
     } catch (err) {

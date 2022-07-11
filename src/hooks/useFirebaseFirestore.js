@@ -1,5 +1,5 @@
 import { auth, db } from 'firebase-config';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
@@ -68,12 +68,21 @@ const useFirebaseFirestore = () => {
     }
   }, []);
 
+  const addTweetDoc = useCallback(async (data) => {
+    // Create collection ref
+    const collectionRef = collection(db, `users/${data.authorId}/tweets`);
+    // Create document
+    await addDoc(collectionRef, data);
+    console.log('added');
+  }, []);
+
   return {
     customCreateUserWithEmailAndPassword,
     setUserDoc,
     customSignInWithLoginAndPassword,
     getUserDocById,
     logOut,
+    addTweetDoc,
   };
 };
 

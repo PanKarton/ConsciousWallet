@@ -9,8 +9,7 @@ import useNewTweet from 'hooks/useNewTweet';
 
 const NewTweetForm = () => {
   const { handleSubmit, register, watch } = useForm();
-  const { canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet } = useNewTweet();
-  const submit = (data) => console.log(data);
+  const { canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter } = useNewTweet();
 
   useEffect(() => {
     const subscription = watch(({ content }) => {
@@ -26,7 +25,7 @@ const NewTweetForm = () => {
       <div className="profile-image-wrapper">
         <ProfileImageCircle />
       </div>
-      <StyledForm onSubmit={handleSubmit(submit)}>
+      <StyledForm onSubmit={handleSubmit(handleAddTwitter)}>
         <TextareaAutosize {...register('content')} className="tweet-content" placeholder={`What's happening?`} />
         <div className="flex-bottom">
           <div className="circural-bar-wrapper">

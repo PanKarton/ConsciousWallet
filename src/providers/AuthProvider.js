@@ -23,9 +23,8 @@ export const AuthProvider = ({ children }) => {
         }
         // If there is token, fetch user and update currentUser
         const fetchedUser = await getUserDocById(token);
-        const userData = fetchedUser;
         // Return if there is something wrong with data
-        if (!userData) return;
+        if (!fetchedUser) return;
         setCurrentUser(fetchedUser);
         setIsAuthorised(true);
         navigate('/home');
