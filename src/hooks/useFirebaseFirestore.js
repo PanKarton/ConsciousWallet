@@ -73,7 +73,6 @@ const useFirebaseFirestore = () => {
     const collectionRef = collection(db, `users/${data.authorId}/tweets`);
     // Create document
     await addDoc(collectionRef, data);
-    console.log('added');
   }, []);
 
   return {

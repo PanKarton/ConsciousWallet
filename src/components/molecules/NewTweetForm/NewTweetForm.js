@@ -9,7 +9,7 @@ import useNewTweet from 'hooks/useNewTweet';
 
 const NewTweetForm = () => {
   const { handleSubmit, register, watch } = useForm();
-  const { canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter } = useNewTweet();
+  const { isButtonLoading, canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter } = useNewTweet();
 
   useEffect(() => {
     const subscription = watch(({ content }) => {
@@ -31,7 +31,7 @@ const NewTweetForm = () => {
           <div className="circural-bar-wrapper">
             <CharactersNumberProgressbar number={contentLength} />
           </div>
-          <CylinderButton bgColor="blue" textColor="white" type="submit" disabled={!canTweet}>
+          <CylinderButton bgColor="blue" textColor="white" type="submit" disabled={!canTweet} isLoading={isButtonLoading}>
             Tweet
           </CylinderButton>
         </div>
