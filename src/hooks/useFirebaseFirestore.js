@@ -69,10 +69,14 @@ const useFirebaseFirestore = () => {
   }, []);
 
   const addTweetDoc = useCallback(async (data) => {
-    // Create collection ref
-    const collectionRef = collection(db, `users/${data.authorId}/tweets`);
-    // Create document
-    await addDoc(collectionRef, data);
+    try {
+      // Create collection ref
+      const collectionRef = collection(db, `users/${data.authorId}/tweets`);
+      // Create document
+      await addDoc(collectionRef, data);
+    } catch (err) {
+      console.log(`catch error: `, err);
+    }
   }, []);
 
   return {
