@@ -1,5 +1,6 @@
 import AppLoadingBoard from 'components/molecules/AppLoadingBoard/AppLoadingBoard';
 import NewTweetModal from 'components/molecules/NewTweetModal/NewTweetModal';
+import HomeTimeline from 'components/organisms/HomeTimeline/HomeTimeline';
 import LogoutConfirmation from 'components/organisms/LogoutConfirmation/LogoutConfirmation';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import { useAuth } from 'providers/AuthProvider';
@@ -17,7 +18,7 @@ const AuthenticatedApp = () => {
     <MainTemplate>
       <div className="wrapper">
         <Routes>
-          <Route path="/home" element={<div>czesc</div>} />
+          <Route path="/home" element={<HomeTimeline />} />
           <Route path="/logout" element={<LogoutConfirmation />} />
           <Route path="*" element={<div>wrr</div>} />
         </Routes>
