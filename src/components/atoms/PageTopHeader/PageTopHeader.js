@@ -1,35 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import ProfileImageCircle from '../ProfileImageCircle/ProfileImageCircle';
-
-const StyledWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.whiteBlurredTransparent};
-  position: sticky;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  padding-left: 1rem;
-  padding-block: 1rem;
-  & > .image-wrapper {
-    height: 100%;
-    width: 2rem;
-    @media screen and (min-width: 501px) {
-      display: none;
-    }
-  }
-  & > h2.page-header {
-    font-size: ${({ theme }) => theme.fontSize.xm};
-    color: ${({ theme }) => theme.colors.black};
-    @media screen and (min-width: 501px) {
-      font-size: ${({ theme }) => theme.fontSize.xxm};
-    }
-  }
-`;
+import { StyledWrapper } from './PageTopHeader.styles';
 
 const PageTopHeader = ({ children }) => (
   <StyledWrapper>
@@ -42,6 +14,8 @@ const PageTopHeader = ({ children }) => (
   </StyledWrapper>
 );
 
-PageTopHeader.propTypes = {};
+PageTopHeader.propTypes = {
+  children: PropTypes.string,
+};
 
 export default PageTopHeader;
