@@ -9,7 +9,7 @@ const Tweet = ({ name, lastName, login, textContent, timeSincePublication, likes
   return (
     <StyledTweedWrapper>
       <div className="image-wrapper">
-        <ProfileImageCircle />
+        <ProfileImageCircle hasHoverShadow />
       </div>
       <div className="content-wrapper">
         <div className="user-data">
