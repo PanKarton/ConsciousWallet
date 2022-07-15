@@ -29,7 +29,7 @@ const useNewTweet = () => {
         // Set update date in ms from 1970
         const date = new Date();
         // Form tweet data object
-        const tweetData = { authorId: currentUser.id, publicationDate: date.getTime(), ...data };
+        const tweetData = { authorId: currentUser.id, publicationDate: date.getTime(), likes: 0, ...data };
         // Upload data
         await addTweetDoc(tweetData);
         // Stop loading animation on button

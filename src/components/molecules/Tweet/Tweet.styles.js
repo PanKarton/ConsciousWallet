@@ -13,9 +13,10 @@ export const StyledTweedWrapper = styled.section`
     background-color: ${({ theme }) => theme.colors.whiteBrightHover};
   }
   .image-wrapper {
-    width: 3rem;
+    flex-basis: 3rem;
   }
   .content-wrapper {
+    flex-basis: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -34,23 +35,19 @@ export const StyledTweedWrapper = styled.section`
       .time {
         color: ${({ theme }) => theme.colors.textGray};
       }
-      .login {
-        position: relative;
-        &::after {
-          position: absolute;
-          content: '';
-          top: 50%;
-          right: -0.5rem;
-          height: 3px;
-          width: 3px;
-          border-radius: 50%;
-          background-color: ${({ theme }) => theme.colors.textGray};
-        }
+      .space-dot {
+        display: block;
+        content: '';
+        height: 3px;
+        width: 3px;
+        border-radius: 50%;
+        background-color: ${({ theme }) => theme.colors.textGray};
       }
       .tweet-text-wrapper {
         .tweet-text {
           color: ${({ theme }) => theme.colors.black};
           font-size: ${({ theme }) => theme.fontSize.m};
+          white-space: pre-wrap;
         }
       }
     }

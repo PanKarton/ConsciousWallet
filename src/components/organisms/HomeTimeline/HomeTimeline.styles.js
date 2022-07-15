@@ -8,6 +8,9 @@ export const StyledWrapper = styled.div`
   height: calc(100vh - 3.125rem);
   position: relative;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .new-tweet-form-wrapper {
     display: none;
     @media screen and (min-width: 501px) {
