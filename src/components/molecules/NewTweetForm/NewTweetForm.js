@@ -9,16 +9,17 @@ import useNewTweet from 'hooks/useNewTweet';
 
 const NewTweetForm = () => {
   const { handleSubmit, register, watch } = useForm();
-  const { isButtonLoading, canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter } = useNewTweet();
+  const { isButtonLoading, canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter, tweetContent, setTweetContent } = useNewTweet();
 
   useEffect(() => {
     const subscription = watch(({ content }) => {
+      setTweetContent(content);
       setContentLength(content.length);
       checkIfCanTweet(content.length);
     });
 
     return () => subscription.unsubscribe();
-  }, [watch, setCanTweet, setContentLength, checkIfCanTweet]);
+  }, [watch, setCanTweet, setContentLength, checkIfCanTweet, setTweetContent]);
 
   return (
     <StyledWrapper>
@@ -26,7 +27,7 @@ const NewTweetForm = () => {
         <ProfileImageCircle />
       </div>
       <StyledForm onSubmit={handleSubmit(handleAddTwitter)}>
-        <TextareaAutosize {...register('content')} className="tweet-content" placeholder={`What's happening?`} />
+        <TextareaAutosize {...register('content')} className="tweet-content" placeholder={`What's happening?`} value={tweetContent} />
         <div className="flex-bottom">
           <div className="circural-bar-wrapper">
             <CharactersNumberProgressbar number={contentLength} />

@@ -6,6 +6,7 @@ import useFirebaseFirestore from './useFirebaseFirestore';
 const { useState, useCallback } = require('react');
 
 const useNewTweet = () => {
+  const [tweetContent, setTweetContent] = useState('');
   const [contentLength, setContentLength] = useState(0);
   const [canTweet, setCanTweet] = useState(false);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
@@ -34,6 +35,8 @@ const useNewTweet = () => {
         await addTweetDoc(tweetData);
         // Stop loading animation on button
         setIsButtonLoading(false);
+        // Clear tweet text
+        setTweetContent('');
         // Close modal
         closeModal();
       } catch (err) {
@@ -43,7 +46,7 @@ const useNewTweet = () => {
     [currentUser.id, addTweetDoc, closeModal],
   );
 
-  return { isButtonLoading, contentLength, setContentLength, canTweet, setCanTweet, checkIfCanTweet, handleAddTwitter };
+  return { isButtonLoading, contentLength, setContentLength, canTweet, setCanTweet, checkIfCanTweet, handleAddTwitter, tweetContent, setTweetContent };
 };
 
 export default useNewTweet;

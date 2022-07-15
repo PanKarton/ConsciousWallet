@@ -1,5 +1,5 @@
 import { auth, db } from 'firebase-config';
-import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, limit, orderBy, query, setDoc } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
@@ -79,6 +79,15 @@ const useFirebaseFirestore = () => {
     }
   }, []);
 
+  const getXLastTweets = useCallback(async (num) => {
+    const tweetsCollectionGroup = collectionGroup(db, 'tweets');
+    const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
+    const response = await getDocs(q);
+    response.forEach((doc) => {
+      console.log(doc.id, '==', doc.data());
+    });
+  }, []);
+
   return {
     customCreateUserWithEmailAndPassword,
     setUserDoc,
@@ -86,6 +95,7 @@ const useFirebaseFirestore = () => {
     getUserDocById,
     logOut,
     addTweetDoc,
+    getXLastTweets,
   };
 };
 

@@ -5,7 +5,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { StyledTweedWrapper } from './Tweet.styles';
 import TweetStat from 'components/atoms/TweetStat/TweetStat';
 
-const Tweet = ({ name = 'text', lastName = 'text', login = 'text', textContent = 'text', timeSincePublication = 'text', likesNum = '69' }) => {
+const Tweet = ({ name, lastName, login, textContent, timeSincePublication, likesNum }) => {
   return (
     <StyledTweedWrapper>
       <div className="image-wrapper">
@@ -31,6 +31,13 @@ const Tweet = ({ name = 'text', lastName = 'text', login = 'text', textContent =
   );
 };
 
-Tweet.propTypes = {};
+Tweet.propTypes = {
+  name: PropTypes.string,
+  lastName: PropTypes.string,
+  login: PropTypes.string,
+  textContent: PropTypes.string,
+  timeSincePublication: PropTypes.string,
+  likesNum: PropTypes.number,
+};
 
 export default Tweet;
