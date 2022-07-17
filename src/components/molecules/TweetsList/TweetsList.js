@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tweet from '../Tweet/Tweet';
 import styled from 'styled-components';
@@ -9,17 +9,28 @@ const Asd = styled.div`
 `;
 
 const TweetsList = (props) => {
-  const arr = [];
-  const { getXLastTweets } = useFirebaseFirestore();
+  const [tweets, setTweets] = useState([]);
+  const { getXLastTweets, listenForCollectionGroupChanges } = useFirebaseFirestore();
 
   useEffect(() => {
-    getXLastTweets(2);
-  }, [getXLastTweets]);
+    // Attach listener
+    const unsubscribe = listenForCollectionGroupChanges(setTweets);
+    (async () => {
+      try {
+        const tweetsResponse = await getXLastTweets(10);
+        setTweets(tweetsResponse);
+      } catch (err) {
+        console.log('TweetsList useEffect error:', err);
+      }
+    })();
+    // Detach listener after demount
+    return () => unsubscribe();
+  }, [getXLastTweets, listenForCollectionGroupChanges]);
 
   return (
     <Asd>
-      {arr.map((el) => (
-        <Tweet />
+      {tweets.map(({ content, publicationDate, likes, id }) => (
+        <Tweet key={id} textContent={content} timeSincePublication={publicationDate} likesNum={likes} />
       ))}
     </Asd>
   );

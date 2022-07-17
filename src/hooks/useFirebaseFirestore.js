@@ -1,5 +1,5 @@
 import { auth, db } from 'firebase-config';
-import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, limit, orderBy, query, setDoc } from 'firebase/firestore';
+import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, setDoc, where } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
@@ -32,7 +32,6 @@ const useFirebaseFirestore = () => {
     try {
       // Send query to auth and recieve response with uid in it
       const authResponse = await signInWithEmailAndPassword(auth, email, password);
-      console.log(authResponse);
       // Set id in local storage
       localStorage.setItem('token', authResponse.user.uid);
       // Return user id
@@ -50,10 +49,11 @@ const useFirebaseFirestore = () => {
       // Get doc
       const firebaseResponse = await getDoc(docRef);
       // Return object with data and uid
-      return {
+      const user = {
         id,
         ...firebaseResponse.data(),
       };
+      return user;
     } catch (err) {
       // Return error if sth happens
       return err.code;
@@ -83,9 +83,41 @@ const useFirebaseFirestore = () => {
     const tweetsCollectionGroup = collectionGroup(db, 'tweets');
     const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
     const response = await getDocs(q);
+    const arr = [];
     response.forEach((doc) => {
-      console.log(doc.id, '==', doc.data());
+      // console.log(doc.id, '==', doc.data());
+      arr.push({ id: doc.id, ...doc.data() });
     });
+    return arr;
+  }, []);
+
+  const listenForCollectionGroupChanges = useCallback((setTweets) => {
+    try {
+      const tweetsCollectionGroup = collectionGroup(db, 'tweets');
+      const date = new Date();
+      const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), where('publicationDate', '>', date.getTime()));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        // Return if there are no docs returned
+        if (querySnapshot.size === 0) return;
+        // Set array for new Tweets
+        const newTweets = [];
+        // Fill array with new tweets
+        querySnapshot.forEach((doc) => {
+          newTweets.push({ id: doc.id, ...doc.data() });
+        });
+        // Update state
+        setTweets((prevArray) => {
+          // Set id list of tweets
+          const idList = prevArray.map((tweet) => tweet.id);
+          // Return merged arrays: 1 - filtered newTweets (if exists in prevArray, then remove) 2. prevArray of tweets
+          // To prevent displaying the same tweet twice
+          return [...newTweets.filter((tweet) => !idList.includes(tweet.id)), ...prevArray];
+        });
+      });
+      return unsubscribe;
+    } catch (err) {
+      console.log('listenForCollectionGroupChanges:', listenForCollectionGroupChanges);
+    }
   }, []);
 
   return {
@@ -96,6 +128,7 @@ const useFirebaseFirestore = () => {
     logOut,
     addTweetDoc,
     getXLastTweets,
+    listenForCollectionGroupChanges,
   };
 };
 
