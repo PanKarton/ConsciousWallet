@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTweedWrapper = styled.section`
+  position: relative;
   border-block: 1px solid ${({ theme }) => theme.colors.borderGray};
   display: flex;
   gap: 0.75rem;
@@ -56,6 +57,28 @@ export const StyledTweedWrapper = styled.section`
       display: flex;
       align-items: center;
       justify-content: flex-start;
+    }
+  }
+  .delete-icon-wrapper {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    svg.loading-icon {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      animation: rotate-center 0.75s linear infinite both;
+    }
+  }
+
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 `;

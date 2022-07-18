@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProfileImageCircle from 'components/atoms/ProfileImageCircle/ProfileImageCircle';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { StyledTweedWrapper } from './Tweet.styles';
 import TweetStat from 'components/atoms/TweetStat/TweetStat';
+import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
-const Tweet = ({ name = 'smieć', lastName = 'smieć', login = 'śmieć', textContent, timeSincePublication, likesNum }) => {
+import useTweetPost from 'hooks/useTweetPost';
+
+const Tweet = ({ authorId, id, textContent, timeSincePublication, likesNum }) => {
+  const { authorData, initiateTweetPost, refactorPostDate, loadingDeleteIcon, handleDeleteTweet } = useTweetPost();
+
+  useEffect(() => {
+    initiateTweetPost(authorId);
+  }, [initiateTweetPost, authorId]);
+
   return (
     <StyledTweedWrapper>
       <div className="image-wrapper">
@@ -13,10 +23,10 @@ const Tweet = ({ name = 'smieć', lastName = 'smieć', login = 'śmieć', textCo
       </div>
       <div className="content-wrapper">
         <div className="user-data">
-          <span className="name">{`${name} ${lastName}`}</span>
-          <span className="login">{`@${login}`}</span>
+          <span className="name">{authorData ? `${authorData.name.first} ${authorData.name.last}` : 'Loading...'}</span>
+          <span className="login">{authorData ? `@${authorData.login}` : 'Loading...'}</span>
           <div className="space-dot" />
-          <span className="time">{timeSincePublication}</span>
+          <span className="time">{refactorPostDate(timeSincePublication)}</span>
         </div>
         <div className="tweet-text-wrapper">
           <span className="tweet-text">{textContent}</span>
@@ -27,6 +37,7 @@ const Tweet = ({ name = 'smieć', lastName = 'smieć', login = 'śmieć', textCo
           </TweetStat>
         </div>
       </div>
+      <div className="delete-icon-wrapper">{loadingDeleteIcon ? <AiOutlineLoading3Quarters className="loading-icon" /> : <CloseIcon onClick={() => handleDeleteTweet(id, authorData.id)} />}</div>
     </StyledTweedWrapper>
   );
 };

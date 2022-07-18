@@ -1,38 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import Tweet from '../Tweet/Tweet';
 import styled from 'styled-components';
-import useFirebaseFirestore from 'hooks/useFirebaseFirestore';
+import useHomeTweetList from 'hooks/useHomeTweetList';
 
-const Asd = styled.div`
+const StyledTweetsList = styled.ul`
   width: 100%;
 `;
 
 const TweetsList = (props) => {
-  const [tweets, setTweets] = useState([]);
-  const { getXLastTweets, listenForCollectionGroupChanges } = useFirebaseFirestore();
+  const { tweets, initiateTweetList } = useHomeTweetList();
 
   useEffect(() => {
     // Attach listener
-    const unsubscribe = listenForCollectionGroupChanges(setTweets);
-    (async () => {
-      try {
-        const tweetsResponse = await getXLastTweets(10);
-        setTweets(tweetsResponse);
-      } catch (err) {
-        console.log('TweetsList useEffect error:', err);
-      }
-    })();
+    const unsubscribe = initiateTweetList();
     // Detach listener after demount
     return () => unsubscribe();
-  }, [getXLastTweets, listenForCollectionGroupChanges]);
+  }, [initiateTweetList]);
 
   return (
-    <Asd>
-      {tweets.map(({ content, publicationDate, likes, id }) => (
-        <Tweet key={id} textContent={content} timeSincePublication={publicationDate} likesNum={likes} />
+    <StyledTweetsList>
+      {tweets.map(({ content, publicationDate, likes, id, authorId }) => (
+        <li key={id}>
+          <Tweet textContent={content} id={id} authorId={authorId} timeSincePublication={publicationDate} likesNum={likes} />
+        </li>
       ))}
-    </Asd>
+    </StyledTweetsList>
   );
 };
 
