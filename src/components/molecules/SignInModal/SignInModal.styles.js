@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
