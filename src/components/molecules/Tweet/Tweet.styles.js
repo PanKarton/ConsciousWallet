@@ -21,13 +21,16 @@ export const StyledTweedWrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 0.125rem;
+    gap: 0.25rem;
     .user-data {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       gap: 0.75rem;
-      font-size: ${({ theme }) => theme.fontSize.m};
+      font-size: ${({ theme }) => theme.fontSize.s};
+      @media screen (max-width: 401px) {
+        font-size: ${({ theme }) => theme.fontSize.m};
+      }
       .name {
         font-weight: 700;
         color: ${({ theme }) => theme.colors.black};
@@ -44,30 +47,31 @@ export const StyledTweedWrapper = styled.section`
         border-radius: 50%;
         background-color: ${({ theme }) => theme.colors.textGray};
       }
-      .tweet-text-wrapper {
-        .tweet-text {
-          color: ${({ theme }) => theme.colors.black};
-          font-size: ${({ theme }) => theme.fontSize.m};
-          white-space: pre-wrap;
+      .delete-icon-wrapper {
+        margin-left: auto;
+        svg.loading-icon {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          animation: rotate-center 0.75s linear infinite both;
         }
       }
+    }
+    .tweet-text-wrapper {
+      .tweet-text {
+        max-width: clamp(50px, 65vw, 500px);
+        display: block;
+        color: ${({ theme }) => theme.colors.black};
+        font-size: ${({ theme }) => theme.fontSize.m};
+        word-wrap: break-word;
+      }
+      margin-bottom: 0.5rem;
     }
     .tweet-stats {
       margin-top: auto;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-    }
-  }
-  .delete-icon-wrapper {
-    position: absolute;
-    top: 0.75rem;
-    right: 1rem;
-    svg.loading-icon {
-      position: relative !important;
-      top: auto !important;
-      left: auto !important;
-      animation: rotate-center 0.75s linear infinite both;
     }
   }
 

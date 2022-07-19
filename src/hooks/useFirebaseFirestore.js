@@ -109,7 +109,6 @@ const useFirebaseFirestore = () => {
 
   const listenForCollectionGroupChanges = useCallback((setTweets) => {
     try {
-      console.log(`czesc`);
       const tweetsCollectionGroup = collectionGroup(db, 'tweets');
       const date = new Date();
       const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), where('publicationDate', '>', date.getTime()));

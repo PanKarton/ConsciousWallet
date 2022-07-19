@@ -42,6 +42,10 @@ const useTweetPost = () => {
       try {
         console.log('witam');
         setLoadingDeleteIcon(true);
+
+        // TRZEBA ZROBIC TAK ZEBY UPDATOWAŁO LISTE ZDISPLAYOWANYCH TWEETÓW
+        //
+
         await deleteTweetDocById(tweetId, authorId);
 
         setLoadingDeleteIcon(false);

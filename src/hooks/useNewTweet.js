@@ -15,7 +15,7 @@ const useNewTweet = () => {
   const { addTweetDoc } = useFirebaseFirestore();
   const dispatch = useDispatch();
 
-  const closeModal = useCallback(() => dispatch(handleNewTweetModalClose()), []);
+  const closeModal = useCallback(() => dispatch(handleNewTweetModalClose()), [dispatch]);
 
   const checkIfCanTweet = useCallback((length) => {
     if (length > 0 && length <= 280) return setCanTweet(true);
@@ -25,6 +25,7 @@ const useNewTweet = () => {
   const handleAddTwitter = useCallback(
     async (data) => {
       try {
+        console.log(currentUser);
         // Start loading animation on button
         setIsButtonLoading(true);
         // Set update date in ms from 1970

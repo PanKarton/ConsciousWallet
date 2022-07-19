@@ -17,7 +17,6 @@ export const StyledWrapper = styled.div`
     align-items: center;
     & > svg {
       position: relative;
-      z-index: 2;
       transition: color 0.125s;
     }
     &::after {

@@ -8,9 +8,11 @@ import CloseIcon from 'components/atoms/CloseIcon/CloseIcon';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import useTweetPost from 'hooks/useTweetPost';
+import { useAuth } from 'providers/AuthProvider';
 
 const Tweet = ({ authorId, id, textContent, timeSincePublication, likesNum }) => {
   const { authorData, initiateTweetPost, refactorPostDate, loadingDeleteIcon, handleDeleteTweet } = useTweetPost();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     initiateTweetPost(authorId);
@@ -27,6 +29,9 @@ const Tweet = ({ authorId, id, textContent, timeSincePublication, likesNum }) =>
           <span className="login">{authorData ? `@${authorData.login}` : 'Loading...'}</span>
           <div className="space-dot" />
           <span className="time">{refactorPostDate(timeSincePublication)}</span>
+          {authorId === currentUser.id ? (
+            <div className="delete-icon-wrapper">{loadingDeleteIcon ? <AiOutlineLoading3Quarters className="loading-icon" /> : <CloseIcon onClick={() => handleDeleteTweet(id, authorData.id)} />}</div>
+          ) : null}
         </div>
         <div className="tweet-text-wrapper">
           <span className="tweet-text">{textContent}</span>
@@ -37,7 +42,6 @@ const Tweet = ({ authorId, id, textContent, timeSincePublication, likesNum }) =>
           </TweetStat>
         </div>
       </div>
-      <div className="delete-icon-wrapper">{loadingDeleteIcon ? <AiOutlineLoading3Quarters className="loading-icon" /> : <CloseIcon onClick={() => handleDeleteTweet(id, authorData.id)} />}</div>
     </StyledTweedWrapper>
   );
 };
