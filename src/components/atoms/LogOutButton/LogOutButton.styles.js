@@ -5,6 +5,7 @@ export const StyledButton = styled(NavLink)`
   position: fixed;
   top: 0.75rem;
   right: 1rem;
+  z-index: 1000;
   .profile-wrapper {
     display: none;
     @media screen and (min-width: 1301px) {

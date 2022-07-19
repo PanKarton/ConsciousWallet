@@ -12,6 +12,7 @@ export const StyledButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: default;
+  z-index: 9999;
   background-color: ${({ theme }) => theme.colors.twBlue};
   color: ${({ theme }) => theme.colors.white};
   &:active {

@@ -6,6 +6,7 @@ import useFirebaseFirestore from './useFirebaseFirestore';
 const { useState, useCallback } = require('react');
 
 const useNewTweet = () => {
+  const [tweetContent, setTweetContent] = useState('');
   const [contentLength, setContentLength] = useState(0);
   const [canTweet, setCanTweet] = useState(false);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
@@ -14,7 +15,7 @@ const useNewTweet = () => {
   const { addTweetDoc } = useFirebaseFirestore();
   const dispatch = useDispatch();
 
-  const closeModal = useCallback(() => dispatch(handleNewTweetModalClose()), []);
+  const closeModal = useCallback(() => dispatch(handleNewTweetModalClose()), [dispatch]);
 
   const checkIfCanTweet = useCallback((length) => {
     if (length > 0 && length <= 280) return setCanTweet(true);
@@ -24,16 +25,19 @@ const useNewTweet = () => {
   const handleAddTwitter = useCallback(
     async (data) => {
       try {
+        console.log(currentUser);
         // Start loading animation on button
         setIsButtonLoading(true);
         // Set update date in ms from 1970
         const date = new Date();
         // Form tweet data object
-        const tweetData = { authorId: currentUser.id, publicationDate: date.getTime(), ...data };
+        const tweetData = { authorId: currentUser.id, publicationDate: date.getTime(), likes: 0, ...data };
         // Upload data
         await addTweetDoc(tweetData);
         // Stop loading animation on button
         setIsButtonLoading(false);
+        // Clear tweet text
+        setTweetContent('');
         // Close modal
         closeModal();
       } catch (err) {
@@ -43,7 +47,7 @@ const useNewTweet = () => {
     [currentUser.id, addTweetDoc, closeModal],
   );
 
-  return { isButtonLoading, contentLength, setContentLength, canTweet, setCanTweet, checkIfCanTweet, handleAddTwitter };
+  return { isButtonLoading, contentLength, setContentLength, canTweet, setCanTweet, checkIfCanTweet, handleAddTwitter, tweetContent, setTweetContent };
 };
 
 export default useNewTweet;

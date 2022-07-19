@@ -36,7 +36,7 @@ const useLogIn = () => {
         setIsLoading(true);
         const response = await customSignInWithLoginAndPassword(email, password);
         if (response.name === 'FirebaseError') {
-          if (response.code === 'auth/invalid-email') {
+          if (response.code === 'auth/user-not-found' || response.code === 'auth/user-not-found') {
             setFinalErrorMessage('Invalid login or password.');
           } else if (response.code === 'auth/network-request-failed') {
             setFinalErrorMessage('Please check your internet connection.');
