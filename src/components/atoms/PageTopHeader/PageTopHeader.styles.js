@@ -12,6 +12,7 @@ export const StyledWrapper = styled.div`
   gap: 1rem;
   padding-left: 1rem;
   padding-block: 1rem;
+  z-index: 0;
   & > .image-wrapper {
     height: 100%;
     width: 2rem;

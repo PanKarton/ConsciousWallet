@@ -31,7 +31,6 @@ export const StyledWrapper = styled.div`
       background-color: ${({ theme, stat }) => {
         if (stat === 'likes') return theme.colors.twBlueLighter;
       }};
-      z-index: 1;
       opacity: 0;
       transition: opacity 0.125s;
     }

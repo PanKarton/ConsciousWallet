@@ -6,7 +6,7 @@ export const theme = {
     whiteHover: 'rgb(230, 230, 230)',
     whiteBrightHover: 'rgb(245, 245, 245)',
     whiteBlueHover: 'rgba(29, 155, 240, 0.1)',
-    whiteBlurredTransparent: 'rgb(255,255,255)',
+    whiteBlurredTransparent: 'rgba(255,255,255,.9)',
     twBlue: 'rgb(29, 155, 240)',
     twBlueDarker: 'rgba(26, 140, 216)',
     twBlueLight: 'rgba(140, 221, 255)',
