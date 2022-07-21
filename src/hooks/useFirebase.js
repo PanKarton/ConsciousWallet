@@ -70,7 +70,6 @@ const useFirebaseFirestore = () => {
 
   const addTweetDoc = useCallback(async (data) => {
     try {
-      console.log(data);
       // Create collection ref
       const collectionRef = collection(firestore, `users/${data.authorId}/tweets`);
       // Create document
@@ -101,7 +100,6 @@ const useFirebaseFirestore = () => {
     const response = await getDocs(q);
     const arr = [];
     response.forEach((doc) => {
-      // console.log(doc.id, '==', doc.data());
       arr.push({ id: doc.id, ...doc.data() });
     });
     return arr;

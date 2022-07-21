@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebaseFirestore from './useFirebase';
 
 const useHomeTweetList = () => {
   const [tweets, setTweets] = useState([]);

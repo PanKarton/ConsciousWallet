@@ -1,7 +1,7 @@
 import { useAuth } from 'providers/AuthProvider';
 import { useDispatch } from 'react-redux';
 import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebaseFirestore from './useFirebase';
 
 const { useState, useCallback } = require('react');
 
@@ -25,7 +25,6 @@ const useNewTweet = () => {
   const handleAddTwitter = useCallback(
     async (data) => {
       try {
-        console.log(currentUser);
         // Start loading animation on button
         setIsButtonLoading(true);
         // Set update date in ms from 1970

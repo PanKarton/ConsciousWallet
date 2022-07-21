@@ -27,7 +27,7 @@ export const StyledTweetWrapper = styled.section`
       align-items: center;
       gap: 0.75rem;
       font-size: ${({ theme }) => theme.fontSize.s};
-      @media screen (max-width: 401px) {
+      @media screen and (min-width: 401px) {
         font-size: ${({ theme }) => theme.fontSize.m};
       }
       .name {
