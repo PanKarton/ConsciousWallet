@@ -1,4 +1,4 @@
-import { auth, db } from 'firebase-config';
+import { auth, firestore } from 'firebase-config';
 import { addDoc, collection, collectionGroup, deleteDoc, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, setDoc, where } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -20,8 +20,8 @@ const useFirebaseFirestore = () => {
   const setUserDoc = useCallback(async (id, data) => {
     try {
       // Create document
-      const document = doc(db, 'users', id);
-      // Set (requires id) document to firestore db
+      const document = doc(firestore, 'users', id);
+      // Set (requires id) document to firestore firestore
       await setDoc(document, { ...data });
     } catch (err) {
       console.log('setUserDoc: ', err);
@@ -45,7 +45,7 @@ const useFirebaseFirestore = () => {
   const getUserDocById = useCallback(async (id) => {
     try {
       // Create ref to doc based on id
-      const docRef = doc(db, 'users', id);
+      const docRef = doc(firestore, 'users', id);
       // Get doc
       const firebaseResponse = await getDoc(docRef);
       // Return object with data and uid
@@ -72,7 +72,7 @@ const useFirebaseFirestore = () => {
     try {
       console.log(data);
       // Create collection ref
-      const collectionRef = collection(db, `users/${data.authorId}/tweets`);
+      const collectionRef = collection(firestore, `users/${data.authorId}/tweets`);
       // Create document
       await addDoc(collectionRef, data);
     } catch (err) {
@@ -84,7 +84,7 @@ const useFirebaseFirestore = () => {
     try {
       console.log(tweetId, authorId);
       // Create ref to doc based on id
-      const docRef = doc(db, `users/${authorId}/tweets`, tweetId);
+      const docRef = doc(firestore, `users/${authorId}/tweets`, tweetId);
       // Delete doc
       const firebaseResponse = await deleteDoc(docRef);
       // Return object with data and uid
@@ -96,7 +96,7 @@ const useFirebaseFirestore = () => {
   }, []);
 
   const getXLastTweets = useCallback(async (num) => {
-    const tweetsCollectionGroup = collectionGroup(db, 'tweets');
+    const tweetsCollectionGroup = collectionGroup(firestore, 'tweets');
     const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
     const response = await getDocs(q);
     const arr = [];
@@ -109,7 +109,7 @@ const useFirebaseFirestore = () => {
 
   const listenForCollectionGroupChanges = useCallback((setTweets) => {
     try {
-      const tweetsCollectionGroup = collectionGroup(db, 'tweets');
+      const tweetsCollectionGroup = collectionGroup(firestore, 'tweets');
       const date = new Date();
       const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), where('publicationDate', '>', date.getTime()));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {

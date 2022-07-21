@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledTweedWrapper = styled.section`
+export const StyledTweetWrapper = styled.section`
   border-block: 1px solid ${({ theme }) => theme.colors.borderGray};
   display: flex;
   gap: 0.75rem;

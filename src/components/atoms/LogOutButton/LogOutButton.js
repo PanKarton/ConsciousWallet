@@ -9,6 +9,7 @@ const LogOutButton = () => {
     currentUser: {
       name: { first, last },
       login,
+      imageBackgroundColor,
     },
   } = useAuth();
 
@@ -16,7 +17,7 @@ const LogOutButton = () => {
     <StyledButton to="logout">
       <div className="profile-wrapper">
         <div className="profile-image-wrapper">
-          <ProfileImageCircle />
+          <ProfileImageCircle firstName={first} lastName={last} imageBackgroundColor={imageBackgroundColor} />
         </div>
         <div className="profile-info-wrapper">
           <span className="name">{`${first} ${last}`}</span>

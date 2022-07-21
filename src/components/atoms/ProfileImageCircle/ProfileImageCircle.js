@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledWrapper } from './ProfileImageCircle.styles';
+import { Initials, StyledWrapper } from './ProfileImageCircle.styles';
 
-const ProfileImageCircle = ({ imgUrl = 'https://i2-prod.mirror.co.uk/incoming/article25609246.ece/ALTERNATES/s1200/0_PUSS-IN-BOOTS.jpg', hasHoverShadow }) => (
-  <StyledWrapper imgUrl={imgUrl} hasHoverShadow={hasHoverShadow}>
-    <div className="image" />
-  </StyledWrapper>
-);
+const ProfileImageCircle = ({ imgUrl, hasHoverShadow, firstName, lastName, imageBackgroundColor }) => {
+  const initials = `${firstName?.charAt(0).toUpperCase()}${lastName?.charAt(0).toUpperCase()}`;
+  return (
+    <StyledWrapper imgUrl={imgUrl} hasHoverShadow={hasHoverShadow}>
+      {imgUrl ? (
+        <div className="image" />
+      ) : (
+        <Initials backgroundColor={imageBackgroundColor}>
+          <span className="initials-span">{initials}</span>
+        </Initials>
+      )}
+    </StyledWrapper>
+  );
+};
 
 ProfileImageCircle.propTypes = {
   imgUrl: PropTypes.string,

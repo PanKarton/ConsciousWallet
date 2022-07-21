@@ -39,6 +39,7 @@ const useSignUp = () => {
             optional: optionalGender,
             pronoun,
           },
+          imageBackgroundColor: Math.floor(Math.random() * 360),
         };
         const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
         await setUserDoc(userId, refactoredUserData);

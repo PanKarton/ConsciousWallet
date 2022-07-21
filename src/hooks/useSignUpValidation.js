@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from 'firebase-config';
+import { firestore } from 'firebase-config';
 
 const useSignUpValidation = () => {
   const [loginError, setLoginError] = useState('');
@@ -14,7 +14,7 @@ const useSignUpValidation = () => {
   const [ageError, setAgeError] = useState('');
   const [optionalGenderError, setOptionalGenderError] = useState('');
 
-  const usersCollectionRef = collection(db, 'users');
+  const usersCollectionRef = collection(firestore, 'users');
 
   const getLoginError = useCallback((login) => {
     if (!login) return ``;
