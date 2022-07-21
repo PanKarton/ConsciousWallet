@@ -15,3 +15,20 @@ export const StyledWrapper = styled.div`
     }
   }
 `;
+
+export const Initials = styled.div`
+  aspect-ratio: 1;
+  border-radius: 1000rem;
+  overflow: hidden;
+  .initials-span {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${({ theme }) => theme.fontSize.xxm};
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ backgroundColor }) => `hsl(${backgroundColor}, 100%, 25%)`};
+  }
+`;

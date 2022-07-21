@@ -6,10 +6,17 @@ import { StyledForm, StyledWrapper } from './NewTweetForm.styles';
 import CharactersNumberProgressbar from 'components/atoms/CharactersNumberProgressbar/CharactersNumberProgressbar';
 import { useForm } from 'react-hook-form';
 import useNewTweet from 'hooks/useNewTweet';
+import { useAuth } from 'providers/AuthProvider';
 
 const NewTweetForm = () => {
   const { handleSubmit, register, watch } = useForm();
   const { isButtonLoading, canTweet, setCanTweet, contentLength, setContentLength, checkIfCanTweet, handleAddTwitter, tweetContent, setTweetContent } = useNewTweet();
+  const {
+    currentUser: {
+      name: { first, last },
+      imageBackgroundColor,
+    },
+  } = useAuth();
 
   useEffect(() => {
     const subscription = watch(({ content }) => {
@@ -24,7 +31,7 @@ const NewTweetForm = () => {
   return (
     <StyledWrapper>
       <div className="profile-image-wrapper">
-        <ProfileImageCircle />
+        <ProfileImageCircle firstName={first} lastName={last} imageBackgroundColor={imageBackgroundColor} />
       </div>
       <StyledForm onSubmit={handleSubmit(handleAddTwitter)}>
         <TextareaAutosize {...register('content')} className="tweet-content" placeholder={`What's happening?`} value={tweetContent} />

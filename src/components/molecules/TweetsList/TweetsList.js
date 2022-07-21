@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Tweet from '../Tweet/Tweet';
 import styled from 'styled-components';
 import useHomeTweetList from 'hooks/useHomeTweetList';
+import LoadingCircle from 'components/atoms/LoadingCircle/LoadingCircle';
 
 const StyledTweetsList = styled.ul`
   width: 100%;
@@ -17,7 +18,7 @@ const TweetsList = (props) => {
     return () => unsubscribe();
   }, [initiateTweetList]);
 
-  return (
+  return tweets ? (
     <StyledTweetsList>
       {tweets.map(({ content, publicationDate, likes, id, authorId }) => (
         <li key={id}>
@@ -25,6 +26,8 @@ const TweetsList = (props) => {
         </li>
       ))}
     </StyledTweetsList>
+  ) : (
+    <LoadingCircle />
   );
 };
 
