@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import SearchBar from 'components/atoms/SearchBar/SearchBar';
 
 const StyledWrapper = styled.aside`
-  background-color: wheat;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.5rem;
 `;
 
 const MainSidebar = (props) => (
   <StyledWrapper>
-    <div>search bar</div>
+    <SearchBar placeholderText="Search Users" />
     <div>
       <h2>Who to follow</h2>
       <ul>
