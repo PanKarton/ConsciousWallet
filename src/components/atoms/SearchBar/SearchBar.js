@@ -1,17 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { RiCloseFill } from 'react-icons/ri';
-import { useForm } from 'react-hook-form';
 import debounce from 'lodash.debounce';
 import { StyledCancelIconWrapper, StyledInput, StyledWrapper } from './SearchBar.styles';
 import SearchResultsList from 'components/molecules/SearchResultsList/SearchResultsList';
 import useOnClickOutside from 'hooks/useClickOutside';
+import useHomeUsersSearchBar from 'hooks/useHomeUsersSearchBar';
 
 const SearchBar = ({ placeholderText }) => {
-  const { register, watch, reset } = useForm();
-  const [isDeleteVisible, setIsDeleteVisible] = useState(false);
-  const [isListOpen, setIsListOpen] = useState(false);
+  const { register, watch, isDeleteVisible, isListOpen, clearInput, handleOpenListByInputFocus, setIsDeleteVisible, setIsListOpen } = useHomeUsersSearchBar();
+
   const listRef = useRef();
 
   useOnClickOutside(listRef, () => setIsListOpen(false));
@@ -24,23 +23,125 @@ const SearchBar = ({ placeholderText }) => {
           setIsListOpen(true);
         } else {
           setIsDeleteVisible(false);
-          setIsListOpen(false);
         }
       }, 250),
     );
 
     return () => subscribe.unsubscribe();
-  }, [watch]);
+  }, [watch, setIsDeleteVisible, setIsListOpen]);
 
-  const clearInput = () => {
-    setIsDeleteVisible(false);
-    reset();
-  };
+  const users = [
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+    {
+      name: {
+        first: 'Miriamciucha',
+        last: 'Lagoood',
+      },
+      imgUrl: null,
+      imageBackgroundColor: '100',
+      login: 'Milioffs',
+    },
+  ];
 
-  const handleOpenListByInputFocus = (e) => {
-    if (!e.target.value) return;
-    setIsListOpen(true);
-  };
+  const users2 = [];
 
   return (
     <StyledWrapper>
@@ -55,7 +156,7 @@ const SearchBar = ({ placeholderText }) => {
           <RiCloseFill className="close-icon" />
         </StyledCancelIconWrapper>
       )}
-      {isListOpen && <SearchResultsList ref={listRef} />}
+      {isListOpen && <SearchResultsList ref={listRef} users={users} />}
     </StyledWrapper>
   );
 };

@@ -20,6 +20,9 @@ export const StyledWrapper = styled.div`
       align-items: flex-start;
       gap: 0.125rem;
       font-size: ${({ theme }) => theme.fontSize.m};
+      @media screen and (min-width: 501px) {
+        font-size: ${({ theme }) => theme.fontSize.s};
+      }
       .user-name {
         margin-bottom: auto;
       }
