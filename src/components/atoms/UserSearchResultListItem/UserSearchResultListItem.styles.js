@@ -19,12 +19,23 @@ export const StyledWrapper = styled.div`
       justify-content: flex-end;
       align-items: flex-start;
       gap: 0.125rem;
-      font-size: ${({ theme }) => theme.fontSize.m};
-      @media screen and (min-width: 501px) {
-        font-size: ${({ theme }) => theme.fontSize.s};
+      padding-block: 0.25rem;
+      font-size: ${({ theme }) => theme.fontSize.s};
+      @media screen and (min-width: 1101px) {
+        font-size: ${({ theme }) => theme.fontSize.m};
+        padding-block: 0;
       }
       .user-name {
         margin-bottom: auto;
+      }
+      .user-bio {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 10rem;
+        @media screen and (min-width: 1101px) {
+          max-width: 14rem;
+        }
       }
     }
   }

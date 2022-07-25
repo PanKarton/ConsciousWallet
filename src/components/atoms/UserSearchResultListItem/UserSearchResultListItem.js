@@ -21,7 +21,7 @@ const UserSearchResultListItem = ({
           <strong>{`${first} ${last}`}</strong>
         </span>
         <span className="user-login">{`@${login}`}</span>
-        <span className="user-bio">Jestem Miriamcia i cos tam... </span>
+        <span className="user-bio">Jestem Miriamcia i cos tam cos tam se pisze tralala </span>
       </div>
     </div>
   </StyledWrapper>

@@ -7,9 +7,11 @@ import { StyledCancelIconWrapper, StyledInput, StyledWrapper } from './SearchBar
 import SearchResultsList from 'components/molecules/SearchResultsList/SearchResultsList';
 import useOnClickOutside from 'hooks/useClickOutside';
 import useHomeUsersSearchBar from 'hooks/useHomeUsersSearchBar';
+import useFirebaseFirestore from 'hooks/useFirebase';
 
 const SearchBar = ({ placeholderText }) => {
   const { register, watch, isDeleteVisible, isListOpen, clearInput, handleOpenListByInputFocus, setIsDeleteVisible, setIsListOpen } = useHomeUsersSearchBar();
+  const { getUsersByNameLastnameOrLogin } = useFirebaseFirestore();
 
   const listRef = useRef();
 
@@ -21,6 +23,7 @@ const SearchBar = ({ placeholderText }) => {
         if (data.searchBar) {
           setIsDeleteVisible(true);
           setIsListOpen(true);
+          getUsersByNameLastnameOrLogin('s');
         } else {
           setIsDeleteVisible(false);
         }
@@ -28,7 +31,7 @@ const SearchBar = ({ placeholderText }) => {
     );
 
     return () => subscribe.unsubscribe();
-  }, [watch, setIsDeleteVisible, setIsListOpen]);
+  }, [watch, setIsDeleteVisible, setIsListOpen, getUsersByNameLastnameOrLogin]);
 
   const users = [
     {
