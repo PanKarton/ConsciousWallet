@@ -17,7 +17,8 @@ export const theme = {
     red: 'rgb(255,0,51)',
     redDarkHover: 'rgb(222,0,51)',
     warningOrange: 'rgb(255, 121, 0)',
-    bgcGray: 'rgba(0, 0 , 0, 0.15)',
+    bgcGray: 'rgb(217, 217 , 217)',
+    searchbarBgcGrey: 'rgb(239, 243, 244)',
   },
   fontSize: {
     xxxl: '64px',

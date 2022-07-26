@@ -1,4 +1,4 @@
-import useFirebaseFirestore from 'hooks/useFirebaseFirestore';
+import useFirebaseFirestore from 'hooks/useFirebase';
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';

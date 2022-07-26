@@ -16,6 +16,7 @@ export const StyledTweetWrapper = styled.section`
     flex-basis: 3rem;
   }
   .content-wrapper {
+    position: relative;
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
@@ -27,13 +28,21 @@ export const StyledTweetWrapper = styled.section`
       align-items: center;
       gap: 0.75rem;
       font-size: ${({ theme }) => theme.fontSize.s};
-      @media screen (max-width: 401px) {
+      @media screen and (min-width: 401px) {
         font-size: ${({ theme }) => theme.fontSize.m};
       }
       .name {
         font-weight: 700;
         color: ${({ theme }) => theme.colors.black};
       }
+
+      .name,
+      .login {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
       .login,
       .time {
         color: ${({ theme }) => theme.colors.textGray};
@@ -47,7 +56,9 @@ export const StyledTweetWrapper = styled.section`
         background-color: ${({ theme }) => theme.colors.textGray};
       }
       .delete-icon-wrapper {
-        margin-left: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
         svg.loading-icon {
           position: relative !important;
           top: auto !important;

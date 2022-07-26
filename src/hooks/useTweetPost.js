@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebaseFirestore from './useFirebase';
 
 const useTweetPost = () => {
   const [authorData, setAuthorData] = useState(null);

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useAuth } from 'providers/AuthProvider';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebaseFirestore from './useFirebase';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
 import { useNavigate } from 'react-router-dom';
