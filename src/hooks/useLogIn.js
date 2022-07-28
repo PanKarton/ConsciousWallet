@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useAuth } from 'providers/AuthProvider';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebase from './useFirebase';
 import { useDispatch } from 'react-redux';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ const useLogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { customSignInWithLoginAndPassword, getUserDocById } = useFirebaseFirestore();
+  const { customSignInWithLoginAndPassword, getUserDocById } = useFirebase();
 
   const handleCloseModal = useCallback(() => dispatch(handleSignInModalClose()), [dispatch]);
 

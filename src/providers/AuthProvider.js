@@ -1,4 +1,4 @@
-import useFirebaseFirestore from 'hooks/useFirebaseFirestore';
+import useFirebase from 'hooks/useFirebase';
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ export const AuthContext = React.createContext({});
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthorised, setIsAuthorised] = useState(null);
-  const { getUserDocById, logOut } = useFirebaseFirestore();
+  const { getUserDocById, logOut } = useFirebase();
   const navigate = useNavigate();
 
   useEffect(() => {

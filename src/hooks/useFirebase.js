@@ -3,7 +3,7 @@ import { addDoc, collection, collectionGroup, deleteDoc, doc, getDoc, getDocs, l
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
-const useFirebaseFirestore = () => {
+const useFirebase = () => {
   const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
     try {
       // Create user in auth and get response
@@ -149,4 +149,4 @@ const useFirebaseFirestore = () => {
   };
 };
 
-export default useFirebaseFirestore;
+export default useFirebase;

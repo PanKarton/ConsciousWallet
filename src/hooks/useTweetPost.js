@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import useFirebaseFirestore from './useFirebaseFirestore';
+import useFirebase from './useFirebase';
 
 const useTweetPost = () => {
   const [authorData, setAuthorData] = useState(null);
   const [loadingDeleteIcon, setLoadingDeleteIcon] = useState(false);
-  const { getUserDocById, deleteTweetDocById } = useFirebaseFirestore();
+  const { getUserDocById, deleteTweetDocById } = useFirebase();
 
   const initiateTweetPost = useCallback(
     (authorId) => {
