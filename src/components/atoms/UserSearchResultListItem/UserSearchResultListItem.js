@@ -8,6 +8,7 @@ const UserSearchResultListItem = ({
     name: { first, last },
     imageBackgroundColor,
     imgUrl,
+    userBio = 'No bio provided.',
   },
 }) => (
   <StyledWrapper>
@@ -20,10 +21,21 @@ const UserSearchResultListItem = ({
           <strong>{`${first} ${last}`}</strong>
         </span>
         <span className="user-login">{`@${login}`}</span>
-        <span className="user-bio">Jestem Miriamcia i cos tam cos tam se pisze tralala </span>
+        <span className="user-bio">{userBio}</span>
       </div>
     </div>
   </StyledWrapper>
 );
-UserSearchResultListItem.propTypes = {};
+UserSearchResultListItem.propTypes = {
+  user: PropTypes.shape({
+    login: PropTypes.string,
+    name: PropTypes.shape({
+      first: PropTypes.string,
+      last: PropTypes.string,
+    }),
+    imageBackgroundColor: PropTypes.string,
+    imgUrl: PropTypes.string,
+    userBio: PropTypes.string,
+  }),
+};
 export default UserSearchResultListItem;

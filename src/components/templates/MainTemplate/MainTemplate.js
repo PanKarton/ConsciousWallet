@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledLayoutWrapper, TemplateWrapper } from './MainTemplate.styles';
 import MainHeader from 'components/organisms/MainHeader/MainHeader';
-import SearchBar from 'components/molecules/SearchBar/SearchBar';
+import MainSidebar from 'components/organisms/MainSidebar/MainSidebar';
 
 const MainTemplate = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ const MainTemplate = ({ children }) => {
         <StyledLayoutWrapper>
           <div className="left">{children}</div>
           <div className="right">
-            <SearchBar />
+            <MainSidebar />
           </div>
         </StyledLayoutWrapper>
       </main>

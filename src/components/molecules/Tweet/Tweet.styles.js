@@ -16,6 +16,8 @@ export const StyledTweetWrapper = styled.section`
     flex-basis: 3rem;
   }
   .content-wrapper {
+    position: relative;
+    padding-right: 1rem;
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
@@ -34,6 +36,18 @@ export const StyledTweetWrapper = styled.section`
         font-weight: 700;
         color: ${({ theme }) => theme.colors.black};
       }
+
+      .name,
+      .login,
+      .time {
+        @media screen and (max-width: 500px) {
+          max-width: 25%;
+        }
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
       .login,
       .time {
         color: ${({ theme }) => theme.colors.textGray};
@@ -47,7 +61,9 @@ export const StyledTweetWrapper = styled.section`
         background-color: ${({ theme }) => theme.colors.textGray};
       }
       .delete-icon-wrapper {
-        margin-left: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
         svg.loading-icon {
           position: relative !important;
           top: auto !important;

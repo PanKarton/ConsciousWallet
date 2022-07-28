@@ -22,6 +22,7 @@ export const StyledNavLink = styled(NavLink)`
   }
   .icon-wrapper {
     padding: 0.75rem;
+    /* border: 1px solid red; */
   }
   & .active {
     display: block;

@@ -3,6 +3,7 @@ import UserSearchResultListItem from 'components/atoms/UserSearchResultListItem/
 import { forwardRef } from 'react';
 
 const SearchResultsList = forwardRef(({ users }, ref) => {
+  console.log(users);
   return (
     <StyledWrapper ref={ref} isScrollable={users.length ? true : false}>
       {users.length > 0 ? (
@@ -21,3 +22,7 @@ const SearchResultsList = forwardRef(({ users }, ref) => {
 });
 
 export default SearchResultsList;
+
+//
+// trzeba zrobic tak zeby wyniki wwyszukiwania sie wydisplejowały tutaj.
+//

@@ -40,6 +40,7 @@ const useSignUp = () => {
             pronoun,
           },
           imageBackgroundColor: Math.floor(Math.random() * 360),
+          userBio: null,
         };
         const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
         await setUserDoc(userId, refactoredUserData);

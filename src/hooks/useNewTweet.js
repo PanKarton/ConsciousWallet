@@ -25,7 +25,6 @@ const useNewTweet = () => {
   const handleAddTwitter = useCallback(
     async (data) => {
       try {
-        console.log(currentUser);
         // Start loading animation on button
         setIsButtonLoading(true);
         // Set update date in ms from 1970
