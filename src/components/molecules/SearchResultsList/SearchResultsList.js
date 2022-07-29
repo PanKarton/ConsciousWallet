@@ -1,9 +1,9 @@
 import { StyledWrapper } from './SearchResultsList.styles';
+import PropTypes from 'prop-types';
 import UserSearchResultListItem from 'components/atoms/UserSearchResultListItem/UserSearchResultListItem';
 import { forwardRef } from 'react';
 
 const SearchResultsList = forwardRef(({ users }, ref) => {
-  console.log(users);
   return (
     <StyledWrapper ref={ref} isScrollable={users.length ? true : false}>
       {users.length > 0 ? (
@@ -21,8 +21,18 @@ const SearchResultsList = forwardRef(({ users }, ref) => {
   );
 });
 
-export default SearchResultsList;
+SearchResultsList.propTypes = {
+  user: PropTypes.shape({
+    login: PropTypes.string,
+    name: PropTypes.shape({
+      first: PropTypes.string,
+      last: PropTypes.string,
+    }),
+    imageBackgroundColor: PropTypes.number,
+    imgUrl: PropTypes.string,
+    userBio: PropTypes.string,
+  }),
+  ref: PropTypes.ref,
+};
 
-//
-// trzeba zrobic tak zeby wyniki wwyszukiwania sie wydisplejowały tutaj.
-//
+export default SearchResultsList;

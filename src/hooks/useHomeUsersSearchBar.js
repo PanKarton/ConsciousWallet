@@ -14,11 +14,12 @@ const useHomeUsersSearchBar = () => {
       try {
         if (data.searchBar) {
           const result = await getUsersByNameLastnameOrLogin(data.searchBar);
-          setSearchResults(result.hits);
+          setSearchResults(result);
           setIsDeleteVisible(true);
           setIsListOpen(true);
         } else {
           setIsDeleteVisible(false);
+          setSearchResults([]);
         }
       } catch (err) {
         console.log('useHomeUsersSearchBar handleSearchByPhrase:', err);
