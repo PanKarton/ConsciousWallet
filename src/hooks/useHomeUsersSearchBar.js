@@ -33,6 +33,7 @@ const useHomeUsersSearchBar = () => {
     setIsDeleteVisible(false);
   }, [setSearchResults]);
 
+
   const handleOpenListByInputFocus = useCallback((e) => {
     setIsListOpen(true);
   }, []);

@@ -18,6 +18,7 @@ export const StyledTweetWrapper = styled.section`
   .content-wrapper {
     position: relative;
     padding-right: 1rem;
+
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
@@ -29,7 +30,7 @@ export const StyledTweetWrapper = styled.section`
       align-items: center;
       gap: 0.75rem;
       font-size: ${({ theme }) => theme.fontSize.s};
-      @media screen (max-width: 401px) {
+      @media screen and (min-width: 401px) {
         font-size: ${({ theme }) => theme.fontSize.m};
       }
       .name {
@@ -40,12 +41,14 @@ export const StyledTweetWrapper = styled.section`
       .name,
       .login,
       .time {
+      text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         @media screen and (max-width: 500px) {
           max-width: 25%;
         }
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+
+        
       }
 
       .login,

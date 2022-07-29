@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
 import useFirebase from './useFirebase';
 
+
 const { useState, useCallback } = require('react');
 
 const useNewTweet = () => {

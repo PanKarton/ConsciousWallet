@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFirebase from './useFirebase';
 
+
 const useSignUp = () => {
   const [step, setStep] = useState(1);
   const [canMoveNext, setCanMoveNext] = useState(false);

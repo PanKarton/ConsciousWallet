@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchBar from 'components/molecules/SearchBar/SearchBar';
 
+
 const StyledWrapper = styled.aside`
   height: 100vh;
   display: flex;
@@ -13,6 +14,7 @@ const StyledWrapper = styled.aside`
 `;
 
 const MainSidebar = () => (
+
   <StyledWrapper>
     <SearchBar placeholderText="Search Users" />
     <div>

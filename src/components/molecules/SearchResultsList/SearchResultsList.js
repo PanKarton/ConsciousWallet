@@ -5,6 +5,7 @@ import UserSearchResultListItem from 'components/atoms/UserSearchResultListItem/
 const SearchResultsList = ({ users }) => {
   return (
     <StyledWrapper isScrollable={users.length ? true : false}>
+
       {users.length > 0 ? (
         <ul>
           {users.map((user, index) => (
@@ -32,5 +33,6 @@ SearchResultsList.propTypes = {
     userBio: PropTypes.string,
   }),
 };
+
 
 export default SearchResultsList;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const StyledWrapper = styled.div`
   min-height: 5.25rem;
   height: 1px;
@@ -21,7 +22,8 @@ export const StyledWrapper = styled.div`
       font-size: ${({ theme }) => theme.fontSize.m};
       @media screen and (min-width: 501px) {
         font-size: ${({ theme }) => theme.fontSize.s};
-      padding-block: 0.25rem;
+}
+padding-block: 0.25rem;
       font-size: ${({ theme }) => theme.fontSize.s};
       @media screen and (min-width: 1101px) {
         font-size: ${({ theme }) => theme.fontSize.m};

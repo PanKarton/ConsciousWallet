@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const useFirebase = () => {
+
   const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
     try {
       // Create user in auth and get response
@@ -95,6 +96,7 @@ const useFirebase = () => {
   }, []);
 
   const getXLastTweets = useCallback(async (num) => {
+   try{
     const tweetsCollectionGroup = collectionGroup(firestore, 'tweets');
     const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
     const response = await getDocs(q);
@@ -103,7 +105,11 @@ const useFirebase = () => {
       // console.log(doc.id, '==', doc.data());
       arr.push({ id: doc.id, ...doc.data() });
     });
-    return arr;
+    return arr;}
+    catch(err){
+    console.log('useFirebase getXLastTweets error', err);
+    }
+
   }, []);
 
   const listenForCollectionGroupChanges = useCallback((setTweets) => {
@@ -135,6 +141,7 @@ const useFirebase = () => {
     }
   }, []);
 
+
   return {
     customCreateUserWithEmailAndPassword,
     setUserDoc,
@@ -149,3 +156,4 @@ const useFirebase = () => {
 };
 
 export default useFirebase;
+

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProfileImageCircle from '../ProfileImageCircle/ProfileImageCircle';
 import { StyledWrapper } from './UserSearchResultListItem.styles';
+
 const UserSearchResultListItem = ({ user: { login, firstName, lastName, imageBackgroundColor, imgUrl, userBio } }) => (
   <StyledWrapper>
     <div className="flex-container">
@@ -18,6 +19,7 @@ const UserSearchResultListItem = ({ user: { login, firstName, lastName, imageBac
     </div>
   </StyledWrapper>
 );
+
 UserSearchResultListItem.propTypes = {
   user: PropTypes.shape({
     login: PropTypes.string,
@@ -30,4 +32,5 @@ UserSearchResultListItem.propTypes = {
     userBio: PropTypes.string,
   }),
 };
+
 export default UserSearchResultListItem;
