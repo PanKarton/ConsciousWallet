@@ -19,7 +19,11 @@ export const StyledWrapper = styled.div`
       justify-content: flex-end;
       align-items: flex-start;
       gap: 0.125rem;
-      padding-block: 0.25rem;
+      font-size: ${({ theme }) => theme.fontSize.m};
+      @media screen and (min-width: 501px) {
+        font-size: ${({ theme }) => theme.fontSize.s};
+}
+padding-block: 0.25rem;
       font-size: ${({ theme }) => theme.fontSize.s};
       @media screen and (min-width: 1101px) {
         font-size: ${({ theme }) => theme.fontSize.m};

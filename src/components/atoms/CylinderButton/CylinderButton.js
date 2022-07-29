@@ -15,6 +15,8 @@ CylinderButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.arrayOf(PropTypes.element)]),
   bgColor: PropTypes.string,
   textColor: PropTypes.string,
+  disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 export default CylinderButton;

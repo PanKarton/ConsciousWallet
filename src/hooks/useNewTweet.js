@@ -1,7 +1,8 @@
 import { useAuth } from 'providers/AuthProvider';
 import { useDispatch } from 'react-redux';
 import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
-import useFirebaseFirestore from './useFirebase';
+import useFirebase from './useFirebase';
+
 
 const { useState, useCallback } = require('react');
 
@@ -12,7 +13,7 @@ const useNewTweet = () => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   const { currentUser } = useAuth();
-  const { addTweetDoc } = useFirebaseFirestore();
+  const { addTweetDoc } = useFirebase();
   const dispatch = useDispatch();
 
   const closeModal = useCallback(() => dispatch(handleNewTweetModalClose()), [dispatch]);

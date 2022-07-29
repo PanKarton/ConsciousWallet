@@ -1,9 +1,10 @@
 import { auth, firestore } from 'firebase-config';
-import { addDoc, collection, collectionGroup, deleteDoc, doc, endAt, getDoc, getDocs, limit, onSnapshot, orderBy, query, setDoc, startAt, where } from 'firebase/firestore';
+import { addDoc, collection, collectionGroup, deleteDoc, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, setDoc, where } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
-const useFirebaseFirestore = () => {
+const useFirebase = () => {
+
   const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
     try {
       // Create user in auth and get response
@@ -95,18 +96,20 @@ const useFirebaseFirestore = () => {
   }, []);
 
   const getXLastTweets = useCallback(async (num) => {
-    try {
-      const tweetsCollectionGroup = collectionGroup(firestore, 'tweets');
-      const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
-      const response = await getDocs(q);
-      const arr = [];
-      response.forEach((doc) => {
-        arr.push({ id: doc.id, ...doc.data() });
-      });
-      return arr;
-    } catch (err) {
-      console.log('getXLastTweets error: ', err);
+   try{
+    const tweetsCollectionGroup = collectionGroup(firestore, 'tweets');
+    const q = query(tweetsCollectionGroup, orderBy('publicationDate', 'desc'), limit(num));
+    const response = await getDocs(q);
+    const arr = [];
+    response.forEach((doc) => {
+      // console.log(doc.id, '==', doc.data());
+      arr.push({ id: doc.id, ...doc.data() });
+    });
+    return arr;}
+    catch(err){
+    console.log('useFirebase getXLastTweets error', err);
     }
+
   }, []);
 
   const listenForCollectionGroupChanges = useCallback((setTweets) => {
@@ -138,27 +141,6 @@ const useFirebaseFirestore = () => {
     }
   }, []);
 
-  const getUsersByNameLastnameOrLogin = useCallback(async (queryText) => {
-    try {
-      console.log(queryText);
-      const usersCollectionRef = collection(firestore, 'users');
-      const nameQuery = query(
-        usersCollectionRef,
-        // orderBy('name.first', 'desc'),
-        // orderBy('name.last', 'desc'),
-        // orderBy('login', 'desc'),
-        where('name.first', '>=', queryText),
-        where('name.first', '<=', queryText + '\uf8ff'),
-      );
-      const nameResults = await getDocs(nameQuery);
-      const usersByName = [];
-      nameResults.docs.forEach((doc) => {
-        console.log(doc.data().name.first);
-      });
-    } catch (err) {
-      console.log('getUsersByNameLastnameOrLogin error: ', err);
-    }
-  }, []);
 
   return {
     customCreateUserWithEmailAndPassword,
@@ -170,8 +152,8 @@ const useFirebaseFirestore = () => {
     getXLastTweets,
     listenForCollectionGroupChanges,
     deleteTweetDocById,
-    getUsersByNameLastnameOrLogin,
   };
 };
 
-export default useFirebaseFirestore;
+export default useFirebase;
+

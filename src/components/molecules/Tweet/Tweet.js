@@ -60,7 +60,7 @@ Tweet.propTypes = {
   lastName: PropTypes.string,
   login: PropTypes.string,
   textContent: PropTypes.string,
-  // timeSincePublication: PropTypes.string,
+  timeSincePublication: PropTypes.number,
   likesNum: PropTypes.number,
 };
 

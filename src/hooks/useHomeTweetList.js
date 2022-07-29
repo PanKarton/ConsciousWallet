@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
-import useFirebaseFirestore from './useFirebase';
+import useFirebase from './useFirebase';
+
 
 const useHomeTweetList = () => {
   const [tweets, setTweets] = useState([]);
-  const { getXLastTweets, listenForCollectionGroupChanges } = useFirebaseFirestore();
+  const { getXLastTweets, listenForCollectionGroupChanges } = useFirebase();
 
   const initiateTweetList = useCallback(() => {
     const unsubscribe = listenForCollectionGroupChanges(setTweets);

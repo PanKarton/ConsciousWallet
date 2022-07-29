@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SearchBar from 'components/atoms/SearchBar/SearchBar';
+import SearchBar from 'components/molecules/SearchBar/SearchBar';
+
 
 const StyledWrapper = styled.aside`
   height: 100vh;
@@ -13,7 +13,8 @@ const StyledWrapper = styled.aside`
   padding-top: 0.5rem;
 `;
 
-const MainSidebar = (props) => (
+const MainSidebar = () => (
+
   <StyledWrapper>
     <SearchBar placeholderText="Search Users" />
     <div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { BsBell, BsFillBellFill, BsPeople, BsPeopleFill, BsEnvelope, BsEnvelopeFill, BsPerson, BsPersonFill } from 'react-icons/bs';
 import { useAuth } from 'providers/AuthProvider';
@@ -44,6 +45,10 @@ const MainNav = ({ windowWidth }) => {
       </StyledNavList>
     </StyledNav>
   );
+};
+
+MainNav.propTypes = {
+  windowWidth: PropTypes.number,
 };
 
 export default MainNav;
