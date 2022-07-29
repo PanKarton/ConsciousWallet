@@ -64,6 +64,7 @@ All libraries and stuff are listed below:
     - react-circular-progressbar (to display characters limit on new post)
     - firebase Firestore
     - firebase Authentication
+    - Algolia for search bar
 
 ### Why was this project challenging and therefore a really good learning experience?
 
