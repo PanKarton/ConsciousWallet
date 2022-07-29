@@ -1,9 +1,7 @@
-
 import { useAuth } from 'providers/AuthProvider';
 import { useDispatch } from 'react-redux';
 import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
 import useFirebase from './useFirebase';
-
 
 const { useState, useCallback } = require('react');
 
@@ -32,7 +30,7 @@ const useNewTweet = () => {
         // Set update date in ms from 1970
         const date = new Date();
         // Form tweet data object
-        const tweetData = { authorId: currentUser.userId, publicationDate: date.getTime(), likes: 0, ...data };
+        const tweetData = { authorId: currentUser.id, publicationDate: date.getTime(), likes: 0, ...data };
         // Upload data
         await addTweetDoc(tweetData);
         // Stop loading animation on button
@@ -52,4 +50,3 @@ const useNewTweet = () => {
 };
 
 export default useNewTweet;
->>>>>>> 2f637be5584a22a1b1e17b5daf965bb3e71defb1
