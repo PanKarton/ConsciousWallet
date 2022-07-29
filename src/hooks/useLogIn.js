@@ -49,7 +49,6 @@ const useLogIn = () => {
           // close modal, without it it is still open after logout
           handleCloseModal();
         }
-        // console.log(userDocument);
         setIsLoading(false);
       } catch (err) {
         console.log(err);

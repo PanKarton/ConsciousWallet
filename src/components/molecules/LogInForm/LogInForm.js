@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import { StyledForm } from './LogInForm.styles';
