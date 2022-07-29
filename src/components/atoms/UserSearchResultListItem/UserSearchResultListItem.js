@@ -14,7 +14,7 @@ const UserSearchResultListItem = ({ user: { login, firstName, lastName, imageBac
           <strong>{`${firstName} ${lastName}`}</strong>
         </span>
         <span className="user-login">{`@${login}`}</span>
-        <span className="user-bio">{userBio || 'No bio provided'}</span>
+        <span className="user-bio">{userBio || 'No bio provided.'}</span>
       </div>
     </div>
   </StyledWrapper>

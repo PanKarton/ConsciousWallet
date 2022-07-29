@@ -2,6 +2,7 @@ import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput
 import CylinderButton from 'components/atoms/CylinderButton/CylinderButton';
 import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
+
 import { useNavigate } from 'react-router-dom';
 import { HeadingWrapper, StyledWrapper } from './SignUpAccountDetails.styles';
 import useSignUpValidation from 'hooks/useSignUpValidation';
@@ -47,6 +48,7 @@ const SignUpAccountDetails = ({ register, watch, setStep, canMoveNext, setCanMov
     </StyledWrapper>
   );
 };
+
 SignUpAccountDetails.propTypes = {
   register: PropTypes.func,
   watch: PropTypes.func,

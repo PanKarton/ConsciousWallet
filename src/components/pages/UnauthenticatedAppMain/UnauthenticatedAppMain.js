@@ -4,7 +4,7 @@ import UnauthenticatedAppView from 'components/organisms/UnauthenticatedAppView/
 import React from 'react';
 import { MainContentWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedAppMain.styles';
 
-const UnauthenticatedAppMain = (props) => (
+const UnauthenticatedAppMain = () => (
   <UnauthenticatedAppWrapper>
     <MainContentWrapper>
       <WallWithBirdImage />

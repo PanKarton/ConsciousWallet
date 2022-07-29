@@ -3,7 +3,7 @@ import { addDoc, collection, collectionGroup, deleteDoc, doc, getDoc, getDocs, l
 import { useCallback } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
-const useFirebaseFirestore = () => {
+const useFirebase = () => {
   const customCreateUserWithEmailAndPassword = useCallback(async (email, password) => {
     try {
       // Create user in auth and get response
@@ -101,11 +101,12 @@ const useFirebaseFirestore = () => {
       const response = await getDocs(q);
       const arr = [];
       response.forEach((doc) => {
+        // console.log(doc.id, '==', doc.data());
         arr.push({ id: doc.id, ...doc.data() });
       });
       return arr;
     } catch (err) {
-      console.log('getXLastTweets error: ', err);
+      console.log('useFirebase getXLastTweets error', err);
     }
   }, []);
 
@@ -151,4 +152,4 @@ const useFirebaseFirestore = () => {
   };
 };
 
-export default useFirebaseFirestore;
+export default useFirebase;

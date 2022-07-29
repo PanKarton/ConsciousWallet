@@ -17,6 +17,8 @@ export const StyledTweetWrapper = styled.section`
   }
   .content-wrapper {
     position: relative;
+    padding-right: 1rem;
+
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
@@ -37,10 +39,16 @@ export const StyledTweetWrapper = styled.section`
       }
 
       .name,
-      .login {
-        text-overflow: ellipsis;
+      .login,
+      .time {
+      text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        @media screen and (max-width: 500px) {
+          max-width: 25%;
+        }
+
+        
       }
 
       .login,

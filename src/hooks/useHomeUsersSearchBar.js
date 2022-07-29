@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import useAlgolia from 'hooks/useAlgolia';
 
 const useHomeUsersSearchBar = () => {
-  const { register, watch, reset } = useForm();
+  const { register, watch } = useForm();
   const [isDeleteVisible, setIsDeleteVisible] = useState(false);
   const [isListOpen, setIsListOpen] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -19,6 +19,7 @@ const useHomeUsersSearchBar = () => {
           setIsListOpen(true);
         } else {
           setIsDeleteVisible(false);
+          setSearchResults([]);
         }
       } catch (err) {
         console.log('useHomeUsersSearchBar handleSearchByPhrase:', err);
@@ -29,9 +30,8 @@ const useHomeUsersSearchBar = () => {
 
   const clearInput = useCallback(() => {
     setSearchResults([]);
-    reset();
     setIsDeleteVisible(false);
-  }, [setSearchResults, reset]);
+  }, [setSearchResults]);
 
   const handleOpenListByInputFocus = useCallback((e) => {
     setIsListOpen(true);

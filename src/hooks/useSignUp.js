@@ -1,7 +1,8 @@
 import { useAuth } from 'providers/AuthProvider';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useFirebaseFirestore from './useFirebase';
+import useFirebase from './useFirebase';
+
 
 const useSignUp = () => {
   const [step, setStep] = useState(1);
@@ -10,7 +11,7 @@ const useSignUp = () => {
 
   const navigate = useNavigate();
   const { setIsAuthorised, setCurrentUser } = useAuth();
-  const { customCreateUserWithEmailAndPassword, setUserDoc } = useFirebaseFirestore();
+  const { customCreateUserWithEmailAndPassword, setUserDoc } = useFirebase();
 
   const handleSignUp = useCallback(
     async (data) => {
@@ -40,6 +41,7 @@ const useSignUp = () => {
             pronoun,
           },
           imageBackgroundColor: Math.floor(Math.random() * 360),
+          userBio: null,
         };
         const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
         await setUserDoc(userId, refactoredUserData);

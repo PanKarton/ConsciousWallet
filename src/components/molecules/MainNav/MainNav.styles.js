@@ -14,7 +14,6 @@ export const StyledNavList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 0.5rem;
   width: 100%;
   li {
     flex-basis: 20%;

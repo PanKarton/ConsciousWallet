@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GrClose } from 'react-icons/gr';
-import styled from 'styled-components';
-
-export const StyledIcon = styled(GrClose)`
-  cursor: pointer;
-`;
+import { StyledIcon } from './CloseIcon.styles';
 
 const CloseIcon = ({ onClick, className }) => <StyledIcon onClick={onClick} className={className} />;
 

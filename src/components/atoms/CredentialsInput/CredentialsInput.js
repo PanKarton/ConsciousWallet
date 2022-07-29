@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { InputWrapper, StyledWrapper } from './CredentialsInput.styles';
-import PropTypes from 'prop-types';
 
 const CredentialsInput = React.forwardRef(({ secondErrorMessage, isHalfWidth, name, id, placeholder, type = 'text', required, errorMessage, ...props }, ref) => (
   <StyledWrapper isHalfWidth={isHalfWidth}>

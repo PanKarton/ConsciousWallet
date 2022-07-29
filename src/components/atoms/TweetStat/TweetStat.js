@@ -16,4 +16,5 @@ TweetStat.propTypes = {
   number: PropTypes.number,
   stat: PropTypes.string,
 };
+
 export default TweetStat;

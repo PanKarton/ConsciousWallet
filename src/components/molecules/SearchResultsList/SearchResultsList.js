@@ -1,6 +1,5 @@
-import React from 'react';
+import { StyledWrapper } from './SearchResultsList.styles';
 import PropTypes from 'prop-types';
-import { StyledWrapper } from './SearchResultList.styles';
 import UserSearchResultListItem from 'components/atoms/UserSearchResultListItem/UserSearchResultListItem';
 
 const SearchResultsList = ({ users }) => {
@@ -22,7 +21,16 @@ const SearchResultsList = ({ users }) => {
 };
 
 SearchResultsList.propTypes = {
-  users: PropTypes.array,
+  user: PropTypes.shape({
+    login: PropTypes.string,
+    name: PropTypes.shape({
+      first: PropTypes.string,
+      last: PropTypes.string,
+    }),
+    imageBackgroundColor: PropTypes.number,
+    imgUrl: PropTypes.string,
+    userBio: PropTypes.string,
+  }),
 };
 
 export default SearchResultsList;

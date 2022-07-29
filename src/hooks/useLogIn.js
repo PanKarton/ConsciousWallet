@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useAuth } from 'providers/AuthProvider';
-import useFirebaseFirestore from './useFirebase';
+import useFirebase from './useFirebase';
+
 import { useDispatch } from 'react-redux';
 import { handleSignInModalClose } from 'store/slices/isSignInModalOpenSlice';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ const useLogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { customSignInWithLoginAndPassword, getUserDocById } = useFirebaseFirestore();
+  const { customSignInWithLoginAndPassword, getUserDocById } = useFirebase();
 
   const handleCloseModal = useCallback(() => dispatch(handleSignInModalClose()), [dispatch]);
 
@@ -49,6 +50,7 @@ const useLogIn = () => {
           // close modal, without it it is still open after logout
           handleCloseModal();
         }
+        // console.log(userDocument);
         setIsLoading(false);
       } catch (err) {
         console.log(err);

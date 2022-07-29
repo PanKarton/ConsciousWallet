@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { ImQuill } from 'react-icons/im';
 import { StyledButton } from './NewTweetButton.styles';
 
