@@ -10,9 +10,9 @@ import useHomeUsersSearchBar from 'hooks/useHomeUsersSearchBar';
 
 const SearchBar = ({ placeholderText }) => {
   const { register, watch, isDeleteVisible, isListOpen, searchResults, clearInput, handleOpenListByInputFocus, setIsDeleteVisible, setIsListOpen, handleSearchByPhrase } = useHomeUsersSearchBar();
-  const listRef = useRef();
+  const searchBarRef = useRef();
 
-  useOnClickOutside(listRef, () => setIsListOpen(false));
+  useOnClickOutside(searchBarRef, () => setIsListOpen(false));
   useEffect(() => {
     const subscribe = watch(
       debounce((data) => {
@@ -24,7 +24,7 @@ const SearchBar = ({ placeholderText }) => {
   }, [watch, setIsDeleteVisible, setIsListOpen, handleSearchByPhrase]);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper ref={searchBarRef}>
       <form autoComplete="off">
         <label htmlFor="searchBar">
           <AiOutlineSearch className="search-icon" />
@@ -36,7 +36,7 @@ const SearchBar = ({ placeholderText }) => {
           <RiCloseFill className="close-icon" />
         </StyledCancelIconWrapper>
       )}
-      {isListOpen && <SearchResultsList ref={listRef} users={searchResults} />}
+      {isListOpen && <SearchResultsList users={searchResults} />}
     </StyledWrapper>
   );
 };

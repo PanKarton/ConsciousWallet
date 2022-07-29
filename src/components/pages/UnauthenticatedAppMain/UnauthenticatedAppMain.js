@@ -1,10 +1,10 @@
-import UnauthenticatedNav from 'components/molecules/SignUpButtons/UnauthenticatedNav/UnauthenticatedNav';
+import UnauthenticatedNav from 'components/molecules/UnauthenticatedNav/UnauthenticatedNav';
 import WallWithBirdImage from 'components/molecules/WallWithBirdImage/WallWithBirdImage';
 import UnauthenticatedAppView from 'components/organisms/UnauthenticatedAppView/UnauthenticatedAppView';
 import React from 'react';
 import { MainContentWrapper, UnauthenticatedAppWrapper } from './UnauthenticatedAppMain.styles';
 
-const UnauthenticatedAppMain = (props) => (
+const UnauthenticatedAppMain = () => (
   <UnauthenticatedAppWrapper>
     <MainContentWrapper>
       <WallWithBirdImage />

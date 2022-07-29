@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { StyledWrapper } from './TweetStat.styles';
 
 const TweetStat = ({ children, number, stat }) => (
@@ -12,6 +11,10 @@ const TweetStat = ({ children, number, stat }) => (
   </StyledWrapper>
 );
 
-TweetStat.propTypes = {};
+TweetStat.propTypes = {
+  children: PropTypes.element,
+  number: PropTypes.number,
+  stat: PropTypes.string,
+};
 
 export default TweetStat;

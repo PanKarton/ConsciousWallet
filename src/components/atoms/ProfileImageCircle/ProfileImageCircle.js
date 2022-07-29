@@ -20,6 +20,9 @@ const ProfileImageCircle = ({ imgUrl, hasHoverShadow, firstName, lastName, image
 ProfileImageCircle.propTypes = {
   imgUrl: PropTypes.string,
   hasHoverShadow: PropTypes.bool,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  imageBackgroundColor: PropTypes.number,
 };
 
 export default ProfileImageCircle;

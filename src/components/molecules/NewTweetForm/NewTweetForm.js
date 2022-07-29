@@ -48,6 +48,4 @@ const NewTweetForm = () => {
   );
 };
 
-// NewTweetForm.propTypes = {};
-
 export default NewTweetForm;

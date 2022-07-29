@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SearchBar from 'components/molecules/SearchBar/SearchBar';
 
@@ -13,7 +12,7 @@ const StyledWrapper = styled.aside`
   padding-top: 0.5rem;
 `;
 
-const MainSidebar = (props) => (
+const MainSidebar = () => (
   <StyledWrapper>
     <SearchBar placeholderText="Search Users" />
     <div>
@@ -35,4 +34,5 @@ const MainSidebar = (props) => (
     </footer>
   </StyledWrapper>
 );
+
 export default MainSidebar;

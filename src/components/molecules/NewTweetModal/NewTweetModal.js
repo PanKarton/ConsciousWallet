@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ModalViewWrapper from '../ModalViewWrapper/ModalViewWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import NewTweetForm from '../NewTweetForm/NewTweetForm';
@@ -8,7 +7,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 import { StyledWrapper } from './NewTweetModal.styles';
 import { handleNewTweetModalClose } from 'store/slices/isNewTweetModalOpenSlice';
 
-const NewTweetModal = (props) => {
+const NewTweetModal = () => {
   const isNewTweetModalOpenSlice = useSelector((store) => store.isNewTweetModalOpenSlice);
   const dispatch = useDispatch();
 
@@ -26,7 +25,5 @@ const NewTweetModal = (props) => {
     </ModalViewWrapper>
   );
 };
-
-NewTweetModal.propTypes = {};
 
 export default NewTweetModal;

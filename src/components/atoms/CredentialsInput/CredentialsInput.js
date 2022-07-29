@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { InputWrapper, StyledWrapper } from './CredentialsInput.styles';
 
@@ -11,5 +12,16 @@ const CredentialsInput = React.forwardRef(({ secondErrorMessage, isHalfWidth, na
     {secondErrorMessage && <p>{secondErrorMessage}</p>}
   </StyledWrapper>
 ));
+
+CredentialsInput.propTypes = {
+  secondErrorMessage: PropTypes.string,
+  isHalfWidth: PropTypes.bool,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  required: PropTypes.bool,
+  errorMessage: PropTypes.string,
+};
 
 export default CredentialsInput;
