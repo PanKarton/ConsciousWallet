@@ -4,6 +4,7 @@ import { OrWithLines, PrivacyTermsDisclaimer, Wrapper } from './SignUpButtons.st
 import { AiFillApple } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+
 const SignUpButtons = () => {
   const navigate = useNavigate();
 

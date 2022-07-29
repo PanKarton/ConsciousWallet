@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledWrapper } from './SearchResultList.styles';
 import UserSearchResultListItem from 'components/atoms/UserSearchResultListItem/UserSearchResultListItem';
 
-const SearchResultsList = forwardRef(({ users }, ref) => {
+const SearchResultsList = ({ users }) => {
   return (
-    <StyledWrapper ref={ref} isScrollable={users.length ? true : false}>
+    <StyledWrapper isScrollable={users.length ? true : false}>
       {users.length > 0 ? (
         <ul>
           {users.map((user, index) => (
@@ -19,8 +19,10 @@ const SearchResultsList = forwardRef(({ users }, ref) => {
       )}
     </StyledWrapper>
   );
-});
+};
 
-SearchResultsList.propTypes = {};
+SearchResultsList.propTypes = {
+  users: PropTypes.array,
+};
 
 export default SearchResultsList;

@@ -73,6 +73,8 @@ SignUpPersonalDetails.propTypes = {
   watch: PropTypes.func,
   setStep: PropTypes.func,
   setCanSubmit: PropTypes.func,
+  canMoveNext: PropTypes.bool,
+  canSubmit: PropTypes.bool,
 };
 
 export default SignUpPersonalDetails;

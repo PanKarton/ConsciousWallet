@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { handleNewTweetModalOpen } from 'store/slices/isNewTweetModalOpenSlice';
 import BirdMainHeader from 'components/atoms/BirdMainHeader/BirdMainHeader';
 
-const MainHeader = (props) => {
+const MainHeader = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
 
@@ -30,7 +30,5 @@ const MainHeader = (props) => {
     </StyledHeader>
   );
 };
-
-MainHeader.propTypes = {};
 
 export default MainHeader;

@@ -8,7 +8,7 @@ const StyledTweetsList = styled.ul`
   width: 100%;
 `;
 
-const TweetsList = (props) => {
+const TweetsList = () => {
   const { tweets, initiateTweetList } = useHomeTweetList();
 
   useEffect(() => {
@@ -30,7 +30,5 @@ const TweetsList = (props) => {
     <LoadingCircle />
   );
 };
-
-TweetsList.propTypes = {};
 
 export default TweetsList;

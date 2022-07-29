@@ -4,7 +4,7 @@ import RadioInput from 'components/atoms/RadioInput/RadioInput';
 import { StyledSelect, StyledWrapper } from './GenderPicker.styles';
 import CredentialsInput from 'components/atoms/CredentialsInput/CredentialsInput';
 
-const GenderPicker = ({ register, watch, optionalGenderError, setOptionalGenderError }) => {
+const GenderPicker = ({ register, watch, optionalGenderError }) => {
   const [isGenderCustom, setIsGenderCustom] = useState(false);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const GenderPicker = ({ register, watch, optionalGenderError, setOptionalGenderE
 GenderPicker.propTypes = {
   register: PropTypes.func,
   watch: PropTypes.func,
+  optionalGenderError: PropTypes.string,
 };
 
 export default GenderPicker;

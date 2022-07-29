@@ -11,6 +11,7 @@ const CloseIcon = ({ onClick, className }) => <StyledIcon onClick={onClick} clas
 
 CloseIcon.propTypes = {
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default CloseIcon;

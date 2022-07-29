@@ -7,147 +7,26 @@ import { StyledCancelIconWrapper, StyledInput, StyledWrapper } from './SearchBar
 import SearchResultsList from 'components/molecules/SearchResultsList/SearchResultsList';
 import useOnClickOutside from 'hooks/useClickOutside';
 import useHomeUsersSearchBar from 'hooks/useHomeUsersSearchBar';
-import useFirebaseFirestore from 'hooks/useFirebase';
 
 const SearchBar = ({ placeholderText }) => {
-  const { register, watch, isDeleteVisible, isListOpen, clearInput, handleOpenListByInputFocus, setIsDeleteVisible, setIsListOpen } = useHomeUsersSearchBar();
-  const { getUsersByNameLastnameOrLogin } = useFirebaseFirestore();
+  const { register, watch, isDeleteVisible, isListOpen, searchResults, clearInput, handleOpenListByInputFocus, setIsDeleteVisible, setIsListOpen, handleSearchByPhrase } = useHomeUsersSearchBar();
 
-  const listRef = useRef();
+  const searchBarRef = useRef();
 
-  useOnClickOutside(listRef, () => setIsListOpen(false));
+  useOnClickOutside(searchBarRef, () => setIsListOpen(false));
 
   useEffect(() => {
     const subscribe = watch(
       debounce((data) => {
-        if (data.searchBar) {
-          setIsDeleteVisible(true);
-          setIsListOpen(true);
-          getUsersByNameLastnameOrLogin('s');
-        } else {
-          setIsDeleteVisible(false);
-        }
+        handleSearchByPhrase(data);
       }, 250),
     );
 
     return () => subscribe.unsubscribe();
-  }, [watch, setIsDeleteVisible, setIsListOpen, getUsersByNameLastnameOrLogin]);
-
-  const users = [
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-    {
-      name: {
-        first: 'Miriamciucha',
-        last: 'Lagoood',
-      },
-      imgUrl: null,
-      imageBackgroundColor: '100',
-      login: 'Milioffs',
-    },
-  ];
-
-  const users2 = [];
+  }, [watch, setIsDeleteVisible, setIsListOpen, handleSearchByPhrase]);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper ref={searchBarRef}>
       <form autoComplete="off">
         <label htmlFor="searchBar">
           <AiOutlineSearch className="search-icon" />
@@ -159,7 +38,7 @@ const SearchBar = ({ placeholderText }) => {
           <RiCloseFill className="close-icon" />
         </StyledCancelIconWrapper>
       )}
-      {isListOpen && <SearchResultsList ref={listRef} users={users} />}
+      {isListOpen && <SearchResultsList users={searchResults} />}
     </StyledWrapper>
   );
 };

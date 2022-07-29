@@ -31,6 +31,7 @@ const SignUpFinal = ({ canMoveNext, setStep }) => {
 
 SignUpFinal.propTypes = {
   canMoveNext: PropTypes.bool,
+  setStep: PropTypes.func,
 };
 
 export default SignUpFinal;

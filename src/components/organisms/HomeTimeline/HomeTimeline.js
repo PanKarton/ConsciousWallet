@@ -4,7 +4,7 @@ import TweetsList from 'components/molecules/TweetsList/TweetsList';
 import React from 'react';
 import { StyledWrapper } from './HomeTimeline.styles';
 
-const HomeTimeline = (props) => {
+const HomeTimeline = () => {
   return (
     <StyledWrapper>
       <PageTopHeader>Home</PageTopHeader>
@@ -15,7 +15,5 @@ const HomeTimeline = (props) => {
     </StyledWrapper>
   );
 };
-
-HomeTimeline.propTypes = {};
 
 export default HomeTimeline;

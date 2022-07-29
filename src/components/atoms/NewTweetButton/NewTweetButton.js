@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ImQuill } from 'react-icons/im';
 import { StyledButton } from './NewTweetButton.styles';
 
@@ -8,5 +9,9 @@ const NewTweetButton = ({ onClick }) => (
     <ImQuill className="quill-icon" />
   </StyledButton>
 );
+
+NewTweetButton.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default NewTweetButton;
