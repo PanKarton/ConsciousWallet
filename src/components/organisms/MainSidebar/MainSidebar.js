@@ -1,27 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 import SearchBar from 'components/molecules/SearchBar/SearchBar';
-
-const StyledWrapper = styled.aside`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 0.5rem;
-`;
+import UsersSuggestions from 'components/organisms/UsersSuggestions/UsersSuggestions';
+import { StyledWrapper } from './MainSidebar.styles';
 
 const MainSidebar = () => (
   <StyledWrapper>
     <SearchBar placeholderText="Search Users" />
-    <div>
-      <h2>Who to follow</h2>
-      <ul>
-        <li>jeden</li>
-        <li>drugi</li>
-      </ul>
-    </div>
+    <UsersSuggestions />
     <footer>
       <ul>
         <li>Terms of Service</li>

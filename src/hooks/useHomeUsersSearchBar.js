@@ -14,6 +14,7 @@ const useHomeUsersSearchBar = () => {
       try {
         if (data.searchBar) {
           const result = await getUsersByNameLastnameOrLogin(data.searchBar);
+          if (!result) return;
           setSearchResults(result);
           setIsDeleteVisible(true);
           setIsListOpen(true);

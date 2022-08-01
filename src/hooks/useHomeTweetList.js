@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import useFirebase from './useFirebase';
 
-
 const useHomeTweetList = () => {
   const [tweets, setTweets] = useState([]);
   const { getXLastTweets, listenForCollectionGroupChanges } = useFirebase();
@@ -11,7 +10,7 @@ const useHomeTweetList = () => {
     (async () => {
       try {
         const tweetsResponse = await getXLastTweets(10);
-        setTweets(tweetsResponse);
+        if (tweetsResponse) setTweets(tweetsResponse);
       } catch (err) {
         console.log('TweetsList useEffect error:', err);
       }
