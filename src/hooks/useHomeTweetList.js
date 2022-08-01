@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useFirebase from './useFirebase';
 
 const useHomeTweetList = () => {
   const [tweets, setTweets] = useState([]);
   const { getXLastTweets, listenForCollectionGroupChanges } = useFirebase();
 
-  const initiateTweetList = useCallback(() => {
+  useEffect(() => {
     const unsubscribe = listenForCollectionGroupChanges(setTweets);
     (async () => {
       try {
@@ -18,7 +18,7 @@ const useHomeTweetList = () => {
     return unsubscribe;
   }, [setTweets, getXLastTweets, listenForCollectionGroupChanges]);
 
-  return { tweets, initiateTweetList };
+  return { tweets };
 };
 
 export default useHomeTweetList;

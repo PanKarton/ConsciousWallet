@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Tweet from '../Tweet/Tweet';
 import styled from 'styled-components';
 import useHomeTweetList from 'hooks/useHomeTweetList';
@@ -9,14 +9,7 @@ const StyledTweetsList = styled.ul`
 `;
 
 const TweetsList = () => {
-  const { tweets, initiateTweetList } = useHomeTweetList();
-
-  useEffect(() => {
-    // Attach listener
-    const unsubscribe = initiateTweetList();
-    // Detach listener after demount
-    return () => unsubscribe();
-  }, [initiateTweetList]);
+  const { tweets } = useHomeTweetList();
 
   return tweets ? (
     <StyledTweetsList>
