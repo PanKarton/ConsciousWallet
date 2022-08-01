@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFirebase from './useFirebase';
 
-
 const useSignUp = () => {
   const [step, setStep] = useState(1);
   const [canMoveNext, setCanMoveNext] = useState(false);
@@ -42,6 +41,7 @@ const useSignUp = () => {
           },
           imageBackgroundColor: Math.floor(Math.random() * 360),
           userBio: null,
+          followsAmount: 0,
         };
         const userId = await customCreateUserWithEmailAndPassword(rest.email, rest.password);
         await setUserDoc(userId, refactoredUserData);

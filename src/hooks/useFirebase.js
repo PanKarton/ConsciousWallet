@@ -101,12 +101,27 @@ const useFirebase = () => {
       const response = await getDocs(q);
       const arr = [];
       response.forEach((doc) => {
-        // console.log(doc.id, '==', doc.data());
         arr.push({ id: doc.id, ...doc.data() });
       });
       return arr;
     } catch (err) {
       console.log('useFirebase getXLastTweets error', err);
+    }
+  }, []);
+
+  const getXMostFollowedUsers = useCallback(async (usersNumber) => {
+    try {
+      const usersCollection = collection(firestore, 'users');
+      const q = query(usersCollection, orderBy('followsAmount', 'desc'), limit(usersNumber));
+      const response = await getDocs(q);
+      if (!response) return;
+      const arr = [];
+      response.forEach((doc) => {
+        arr.push({ id: doc.id, ...doc.data() });
+      });
+      return arr;
+    } catch (err) {
+      console.log('useFirebase getXMostFollowedUsers error:', err);
     }
   }, []);
 
@@ -149,6 +164,7 @@ const useFirebase = () => {
     getXLastTweets,
     listenForCollectionGroupChanges,
     deleteTweetDocById,
+    getXMostFollowedUsers,
   };
 };
 
