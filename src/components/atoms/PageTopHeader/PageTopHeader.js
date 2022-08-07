@@ -8,14 +8,14 @@ const PageTopHeader = ({ children }) => {
   const {
     currentUser: {
       name: { first, last },
-      backgroundColor,
+      imageBackgroundColor,
     },
   } = useAuth();
 
   return (
     <StyledWrapper>
       <div className="image-wrapper">
-        <ProfileImageCircle firstName={first} lastName={last} backgroundColor={backgroundColor} />
+        <ProfileImageCircle firstName={first} lastName={last} imageBackgroundColor={imageBackgroundColor} />
       </div>
       <h2 className="page-header">
         <strong>{children}</strong>

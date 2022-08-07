@@ -9,7 +9,7 @@ const useAlgolia = () => {
     async (searchPhrase) => {
       try {
         const result = await usersSearchIndex.search(searchPhrase);
-        return result.hits;
+        if (result) return result.hits;
       } catch (err) {
         console.log('useAlgolia getUsersByNameLastnameOrLogin', err);
       }

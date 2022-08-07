@@ -36,9 +36,7 @@ const NewTweetForm = () => {
       <StyledForm onSubmit={handleSubmit(handleAddTwitter)}>
         <TextareaAutosize {...register('content')} className="tweet-content" placeholder={`What's happening?`} value={tweetContent} />
         <div className="flex-bottom">
-          <div className="circural-bar-wrapper">
-            <CharactersNumberProgressbar number={contentLength} />
-          </div>
+          <div className="circural-bar-wrapper">{contentLength === 0 ? null : <CharactersNumberProgressbar number={contentLength} />}</div>
           <CylinderButton bgColor="blue" textColor="white" type="submit" disabled={!canTweet} isLoading={isButtonLoading}>
             Tweet
           </CylinderButton>

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.whiteBlurredTransparent};
+  background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
   position: sticky;
   width: 100%;
   top: 0;
