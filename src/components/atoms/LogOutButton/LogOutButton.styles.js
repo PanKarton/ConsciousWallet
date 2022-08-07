@@ -9,6 +9,7 @@ export const StyledButton = styled(NavLink)`
   .profile-wrapper {
     display: none;
     @media screen and (min-width: 1301px) {
+      position: static;
       height: 100%;
       display: flex;
       align-items: center;
@@ -43,11 +44,8 @@ export const StyledButton = styled(NavLink)`
   }
 
   @media screen and (min-width: 501px) {
-    position: absolute;
-    bottom: 1rem;
-    top: auto;
-    right: 50%;
-    transform: translateX(50%);
+    position: static;
+    margin-top: auto;
   }
   @media screen and (min-width: 1301px) {
     padding: 0.75rem;

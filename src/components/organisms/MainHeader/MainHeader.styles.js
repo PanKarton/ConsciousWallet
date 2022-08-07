@@ -22,5 +22,12 @@ export const StyledHeader = styled.header`
 
   .app-nav-wrapper {
     height: 100%;
+    @media screen and (min-width: 501px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 1rem;
+    }
   }
 `;
